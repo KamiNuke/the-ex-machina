@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciihe8f10wvij"]
+
+[ext_resource type="Script" uid="uid://cpvtibqo3spkv" path="res://src/states/menu.gd" id="1_0op3s"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0op3s")
+
+[node name="text" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 108.0
+offset_right = 1150.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="text"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 272.0
+offset_right = 832.0
+offset_bottom = 632.0
+alignment = 1
+
+[node name="Start" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Start"
+
+[node name="Exit" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="button_up" from="Buttons/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Buttons/Exit" to="." method="_on_exit_button_up"]
