@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwi3huxw7eb2g"]
 
-[ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/player.tscn" id="1_2evji"]
+[ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/playercontroller.tscn" id="1_2evji"]
 [ext_resource type="Script" uid="uid://hunogrnk236b" path="res://src/states/default.gd" id="1_hjvbs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2evji"]
@@ -25,8 +25,8 @@ size = Vector3(10, 50, 10)
 [node name="default" type="Node"]
 script = ExtResource("1_hjvbs")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+[node name="SUN" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.500003, -0.749999, 0.43301, 0, 0.499998, 0.866027, -0.866024, -0.433016, 0.250001, 0, 27, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -34,20 +34,53 @@ environment = SubResource("Environment_feaac")
 
 [node name="Player" parent="." instance=ExtResource("1_2evji")]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.07695, 0)
+[node name="balls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="balls"]
+transform = Transform3D(1, 0, 0, 0, 0.912421, 0.409254, 0, -0.409254, 0.912421, -0.729868, 5.68456, 16.1318)
+mesh = SubResource("BoxMesh_hjvbs")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="balls"]
+transform = Transform3D(1, 0, 0, 0, 0.585552, 0.810635, 0, -0.810635, 0.585552, -0.729868, 5.76205, 28.2813)
+mesh = SubResource("BoxMesh_hjvbs")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="balls"]
+transform = Transform3D(1, 0, 0, 0, -0.998905, -0.0467926, 0, 0.0467926, -0.998905, -0.729868, 23.3233, 22.727)
+mesh = SubResource("BoxMesh_feaac")
+skeleton = NodePath("../..")
+
+[node name="trash" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="trash"]
+transform = Transform3D(9.30287, 0, 0, 0, 9.30287, 0, 0, 0, 1, -8.29446, 4.88873, -8.94122)
+use_collision = true
+size = Vector3(2.7832, 1.27686, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="trash"]
+transform = Transform3D(9.30287, 0, 0, 0, 9.30287, 0, 0, 0, 1, 19.9406, -0.312358, -7.23688)
+use_collision = true
+size = Vector3(2.7832, 0.166748, 15.106)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2509.96, 0, 0, 0, 1, 0, 11.134, 0)
+use_collision = true
+
+[node name="floor" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.000398413, 0, 0, 0, 1, 0, -0.004865, 0)
 use_collision = true
 radius = 100.0
 height = 0.01
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.585552, 0.810635, 0, -0.810635, 0.585552, -0.729868, 5.76205, 16.1318)
-mesh = SubResource("BoxMesh_hjvbs")
+[node name="wall" type="CSGCylinder3D" parent="CSGCombiner3D"]
+use_collision = true
+radius = 100.0
+height = 0.01
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.585552, 0.810635, 0, -0.810635, 0.585552, -0.729868, 5.76205, 28.2813)
-mesh = SubResource("BoxMesh_hjvbs")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.998905, -0.0467926, 0, 0.0467926, -0.998905, -0.729868, 23.3233, 22.727)
-mesh = SubResource("BoxMesh_feaac")
+[node name="wall_wall" type="CSGCylinder3D" parent="CSGCombiner3D/wall"]
+operation = 2
+use_collision = true
+radius = 95.9331
+height = 0.01

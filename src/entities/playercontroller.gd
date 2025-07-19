@@ -4,7 +4,7 @@ var speed
 const WALK_SPEED = 2.5
 const SPRINT_SPEED = 5.0
 
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 6.5
 const SENSIVITY = 0.005
 
 #sine wave part
