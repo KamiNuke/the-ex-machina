@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@onready var head: Node3D = $"."
+@onready var camera: Camera3D = $head/Camera3D
+
 var speed
 const WALK_SPEED = 2.5
 const SPRINT_SPEED = 5.0
@@ -13,11 +16,8 @@ const BOB_AMP = 0.02 #how far camera will go
 var t_bob = 0.0 #don't touch
 
 #FOV
-const BASE_FOV = 75.0
+@export var BASE_FOV = 75.0
 const CHANGE_FOV = 2.5
-
-@onready var head: Node3D = $"."
-@onready var camera: Camera3D = $head/Camera3D
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and !Global.is_paused:
