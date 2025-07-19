@@ -17,5 +17,6 @@ mesh = SubResource("CapsuleMesh_2lfla")
 shape = SubResource("ConvexPolygonShape3D_2lfla")
 
 [node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99043, 0.138015, 0, -0.138015, 0.99043, 1.12083, 0.695985, 2.0913)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
