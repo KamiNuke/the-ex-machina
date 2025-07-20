@@ -39,12 +39,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 		camera.rotate_x(-event.relative.y * SENSIVITY)
 		#DEBUG
-		weapon.rotate_x(-event.relative.y * SENSIVITY)
+		#weapon.rotate_x(-event.relative.y * SENSIVITY)
 		#DEBUG
-		const LIMIT_VIEW_DOWN = -25
-		const LIMIT_VIEW_UP = 35
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
-		weapon.rotation.x = clamp(weapon.rotation.x, deg_to_rad(0), deg_to_rad(0))
+		#const LIMIT_VIEW_DOWN = -25
+		#const LIMIT_VIEW_UP = 35
+		#camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		#weapon.rotation.x = clamp(weapon.rotation.x, deg_to_rad(0), deg_to_rad(0))
 		#DEBUG
 
 func _process(delta: float) -> void:
