@@ -30,8 +30,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		const LIMIT_VIEW_UP = 35
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 
-var i = 1
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -41,7 +39,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	i += 1
 	# Handle sprint
 	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped():
 		BOB_FREQ = 0.0 # remove camera shaking during boost
