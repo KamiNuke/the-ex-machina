@@ -4,16 +4,28 @@ extends RigidBody3D
 
 const COLLECT_ITEM = preload("res://src/ui/collect_item.tscn")
 var collect_item_instance
+var player_instance
+
+# for physics after equipping an item
+var rng = RandomNumberGenerator.new()
+
+var body_part = BodyParts.SYMBIOTIC_LEGS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
+func swap_parts() -> void:
+	var temp = player_instance.body_part
+	player_instance.body_part = body_part
+	body_part = temp
+
 func _integrate_forces(state):
 	if collect_item_instance != null:
 		if Input.is_action_just_pressed("action"):
-			const FORCE = Vector3(0, 500, 0)
+			var FORCE = Vector3(rng.randi_range(-100, 100), 500, rng.randi_range(-100, 100))
 			state.apply_force(FORCE)
+			swap_parts()
 			pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +35,7 @@ func _process(delta: float) -> void:
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	var ent = area.get_parent()
 	if ent.is_in_group("player"):
+		player_instance = ent
 		collect_item_instance = COLLECT_ITEM.instantiate()
 		add_child(collect_item_instance)
 

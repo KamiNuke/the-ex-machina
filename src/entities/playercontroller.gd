@@ -5,9 +5,11 @@ extends CharacterBody3D
 @onready var boost_left: Timer = $timers/boost_left
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 
+var body_part = BodyParts.DEFAULT_LEGS
+
 var speed
-const WALK_SPEED = 7.5
-const BOOST_SPEED = 45.0
+var WALK_SPEED = body_part
+const BOOST_SPEED = 5.0
 
 const JUMP_VELOCITY = 6.5
 const SENSIVITY = 0.005
@@ -30,6 +32,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		const LIMIT_VIEW_UP = 35
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 
+func _process(delta: float) -> void:
+	WALK_SPEED = BodyParts.leg_types[body_part]
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -43,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped():
 		BOB_FREQ = 0.0 # remove camera shaking during boost
 		boost_left.start()
-		speed = BOOST_SPEED
+		speed = BOOST_SPEED * WALK_SPEED
 	elif boost_left.is_stopped():
 		speed = WALK_SPEED
 
