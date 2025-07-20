@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwi3huxw7eb2g"]
+[gd_scene load_steps=9 format=3 uid="uid://cwi3huxw7eb2g"]
 
 [ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/playercontroller.tscn" id="1_2evji"]
 [ext_resource type="Script" uid="uid://hunogrnk236b" path="res://src/states/default.gd" id="1_hjvbs"]
+[ext_resource type="PackedScene" uid="uid://cv8cfkuu60gff" path="res://src/items/collectable_part.tscn" id="3_feaac"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2evji"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -84,3 +85,6 @@ operation = 2
 use_collision = true
 radius = 95.9331
 height = 0.01
+
+[node name="RobotPart" parent="." instance=ExtResource("3_feaac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

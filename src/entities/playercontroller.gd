@@ -13,7 +13,8 @@ const JUMP_VELOCITY = 6.5
 const SENSIVITY = 0.005
 
 #sine wave part
-const BOB_FREQ = 1.4 #how often footsteps happen
+const CAMERA_SHAKING = 1.4
+var BOB_FREQ = CAMERA_SHAKING #how often footsteps happen
 const BOB_AMP = 0.02 #how far camera will go
 var t_bob = 0.0 #don't touch
 
@@ -43,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	i += 1
 	# Handle sprint
 	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped():
+		BOB_FREQ = 0.0 # remove camera shaking during boost
 		boost_left.start()
 		speed = BOOST_SPEED
 	elif boost_left.is_stopped():
@@ -58,9 +60,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
-			const WHAT_DOES_IT_DO = 2.5
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * WHAT_DOES_IT_DO)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * WHAT_DOES_IT_DO)
+			const SLIDING = 7.5 # the less value the more character slides like on ice
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * SLIDING)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * SLIDING)
 	else:
 		const CONTROL_IN_AIR = 10.0
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * CONTROL_IN_AIR)
@@ -86,6 +88,7 @@ func headbob(time) -> Vector3:
 	return pos
 
 func _on_boost_left_timeout() -> void:
+	BOB_FREQ = CAMERA_SHAKING # return camera shaking after boost
 	boost_left.stop()
 	boost_cooldown.start()
 
