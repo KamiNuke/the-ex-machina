@@ -14,7 +14,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	var ent = area.get_parent()
 	if ent.is_in_group("player"):
