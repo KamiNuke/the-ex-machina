@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://e45vwngmqhid"]
+
+[ext_resource type="Script" uid="uid://uh2ofltj8n7h" path="res://src/entities/projectile.gd" id="1_40mcg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ep7l"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ep7l"]
+albedo_color = Color(1, 0.596078, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.596078, 0, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40mcg"]
+albedo_color = Color(1, 0.596078, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.596078, 0, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_40mcg"]
+emission_shape_scale = Vector3(1, 1, 0)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+
+[sub_resource type="BoxMesh" id="BoxMesh_40mcg"]
+size = Vector3(0.02, 0.02, 0.06)
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_40mcg")
+
+[node name="projectile" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, 3.09086e-08, 9.27258e-08, 1, -0.707107, 0.707107, -4.37114e-08, 2.25846e-08, -0.504197, 0.00192308)
+mesh = SubResource("BoxMesh_2ep7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ep7l")
+
+[node name="colision" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 3
+
+[node name="sparks" type="GPUParticles3D" parent="."]
+transform = Transform3D(-0.0707993, 3.60016e-16, 7.29456e-09, 6.18947e-09, 4.11811e-09, 0.0834401, 0, 0.0942113, -3.64728e-09, -0.00203403, -1.02139, -0.00649035)
+material_override = SubResource("StandardMaterial3D_40mcg")
+cast_shadow = 0
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_40mcg")
+draw_pass_1 = SubResource("BoxMesh_40mcg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
