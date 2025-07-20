@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@onready var area: Area3D = $Area3D
+#@onready var area: Area3D = $Area3D
 
 const COLLECT_ITEM = preload("res://src/ui/collect_item.tscn")
 var collect_item_instance
@@ -23,7 +23,7 @@ func swap_parts() -> void:
 func _integrate_forces(state):
 	if collect_item_instance != null:
 		if Input.is_action_just_pressed("action"):
-			var FORCE = Vector3(rng.randi_range(-100, 100), 500, rng.randi_range(-100, 100))
+			var FORCE = Vector3(rng.randi_range(-2500, 2500), 40000, rng.randi_range(-2500, 2500))
 			state.apply_force(FORCE)
 			swap_parts()
 			pass
@@ -41,7 +41,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
-	var ent = area.get_parent()
+	#var ent = area.get_parent()
 	if collect_item_instance != null:
 		collect_item_instance.queue_free()
 		#collect_item_instance = null

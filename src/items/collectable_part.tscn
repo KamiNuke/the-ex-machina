@@ -15,6 +15,8 @@ shader_parameter/speed = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_kruww"]
 
 [node name="CollectablePart" type="RigidBody3D" groups=["collectable"]]
+mass = 50.0
+gravity_scale = 1.75
 script = ExtResource("1_kruww")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

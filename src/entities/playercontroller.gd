@@ -4,12 +4,16 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $head/Camera3D
 @onready var boost_left: Timer = $timers/boost_left
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
+@onready var cooldown_ui: CanvasLayer = $Cooldown
+
 
 var body_part = BodyParts.DEFAULT_LEGS
+
 
 var speed
 var WALK_SPEED = body_part
 const BOOST_SPEED = 5.0
+var boost_cooldown_time = BodyParts.legs_cooldown[BodyParts.DEFAULT_LEGS]
 
 const JUMP_VELOCITY = 6.5
 const SENSIVITY = 0.005
@@ -33,7 +37,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 
 func _process(delta: float) -> void:
-	WALK_SPEED = BodyParts.leg_types[body_part]
+	# set walk speed and boost cooldown every frame in case of it being changed
+	WALK_SPEED = BodyParts.legs_speed[body_part]
+	boost_cooldown.wait_time = BodyParts.legs_cooldown[body_part]
+	
+	update_cooldown_ui()
+
+func update_cooldown_ui():
+	var progress: float	
+	if boost_cooldown.is_stopped():
+		progress = 1.0
+	else:
+		var elapsed_time = boost_cooldown.wait_time - boost_cooldown.time_left
+		progress = elapsed_time / boost_cooldown.wait_time
+		progress = clamp(progress, 0.0, 1.0)
+	cooldown_ui.get_node("cooldown_texture").material.set_shader_parameter("cooldown_progress", progress)
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

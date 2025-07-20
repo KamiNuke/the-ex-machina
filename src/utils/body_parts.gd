@@ -9,8 +9,14 @@ enum
 	MAX_LEGS
 }
 
-const leg_types = {
+const legs_speed = {
 	DEFAULT_LEGS : 4.25, 
 	BASIC_LEGS : 7.25,
 	SYMBIOTIC_LEGS : 14.75
+}
+
+const legs_cooldown = {
+	DEFAULT_LEGS : 4.5, 
+	BASIC_LEGS : 3.75,
+	SYMBIOTIC_LEGS : 2
 }

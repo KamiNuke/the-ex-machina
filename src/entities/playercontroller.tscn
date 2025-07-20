@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=6 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
+[ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2lfla"]
 
@@ -38,6 +39,8 @@ wait_time = 2.5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableArea"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_co8hi")
+
+[node name="Cooldown" parent="." instance=ExtResource("2_3pnt3")]
 
 [connection signal="timeout" from="timers/boost_left" to="." method="_on_boost_left_timeout"]
 [connection signal="timeout" from="timers/boost_cooldown" to="." method="_on_boost_cooldown_timeout"]
