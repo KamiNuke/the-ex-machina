@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $head/Camera3D
 
 #DEBUG
-@onready var aim = $head/Camera3D/RayCast3D
+@onready var weapon = $head/Weapon
 var projectile = load("res://src/entities/projectile.tscn")
 var instance
 #DEBUG
@@ -29,9 +29,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and !Global.is_paused:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 		camera.rotate_x(-event.relative.y * SENSIVITY)
+		#DEBUG
+		weapon.rotate_x(-event.relative.y * SENSIVITY)
+		#DEBUG
 		const LIMIT_VIEW_DOWN = -25
 		const LIMIT_VIEW_UP = 35
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		weapon.rotation.x = clamp(weapon.rotation.x, deg_to_rad(0), deg_to_rad(0))
+		#DEBUG
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -75,14 +80,8 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
-	if Input.is_action_pressed("shoot"):
-		#DEBUG
-		instance = projectile.instantiate()
-		instance.global_transform = aim.global_transform.basis
-		instance.position = aim.global_position
-		#print_debug(aim.global_transform.basis)
-		get_parent().add_child(instance)
-		#DEBUG
+	#if Input.is_action_pressed("shoot"):
+		#if projectile.available
 	
 	
 	move_and_slide()

@@ -10,6 +10,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [node name="PlayerController" type="CharacterBody3D"]
 script = ExtResource("1_2lfla")
+BASE_FOV = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2lfla")
@@ -20,7 +21,7 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99043, 0.138015, 0, -0.138015, 0.99043, 1.12083, 0.695985, 2.0913)
 
-[node name="Weapon" parent="head" instance=ExtResource("2_3pnt3")]
-transform = Transform3D(-4.37114e-08, 0, -1, -0.138015, 0.99043, -9.15708e-09, 0.99043, 0.138015, -4.22542e-08, -0.504084, -0.400694, -2.16734)
-
 [node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="Weapon" parent="head/Camera3D" instance=ExtResource("2_3pnt3")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.138015, 0.99043, -9.15708e-09, 0.99043, 0.138015, -4.22542e-08, -0.504084, -0.400694, -2.16734)
