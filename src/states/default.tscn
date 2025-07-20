@@ -33,22 +33,27 @@ shadow_enabled = true
 environment = SubResource("Environment_feaac")
 
 [node name="Player" parent="." instance=ExtResource("1_2evji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00603819, 0, -0.00828028)
+BASE_FOV = 75.0
 
 [node name="balls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="balls"]
 transform = Transform3D(1, 0, 0, 0, 0.912421, 0.409254, 0, -0.409254, 0.912421, -0.729868, 5.68456, 16.1318)
+layers = 3
 mesh = SubResource("BoxMesh_hjvbs")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="balls"]
 transform = Transform3D(1, 0, 0, 0, 0.585552, 0.810635, 0, -0.810635, 0.585552, -0.729868, 5.76205, 28.2813)
+layers = 3
 mesh = SubResource("BoxMesh_hjvbs")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="balls"]
 transform = Transform3D(1, 0, 0, 0, -0.998905, -0.0467926, 0, 0.0467926, -0.998905, -0.729868, 23.3233, 22.727)
+layers = 3
 mesh = SubResource("BoxMesh_feaac")
 skeleton = NodePath("../..")
 

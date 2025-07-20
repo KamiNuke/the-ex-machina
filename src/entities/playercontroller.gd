@@ -3,6 +3,12 @@ extends CharacterBody3D
 @onready var head: Node3D = $"."
 @onready var camera: Camera3D = $head/Camera3D
 
+#DEBUG
+@onready var aim = $head/Camera3D/RayCast3D
+var projectile = load("res://src/entities/projectile.tscn")
+var instance
+#DEBUG
+
 var speed
 const WALK_SPEED = 2.5
 const SPRINT_SPEED = 5.0
@@ -68,6 +74,16 @@ func _physics_process(delta: float) -> void:
 	var target_fov = BASE_FOV + CHANGE_FOV * velocity_clamped
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
+	
+	if Input.is_action_pressed("shoot"):
+		#DEBUG
+		instance = projectile.instantiate()
+		instance.global_transform = aim.global_transform.basis
+		instance.position = aim.global_position
+		#print_debug(aim.global_transform.basis)
+		get_parent().add_child(instance)
+		#DEBUG
+	
 	
 	move_and_slide()
 
