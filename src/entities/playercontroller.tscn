@@ -20,3 +20,13 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 transform = Transform3D(1, 0, 0, 0, 0.99043, 0.138015, 0, -0.138015, 0.99043, 1.12083, 0.695985, 2.0913)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="timers" type="Node" parent="."]
+
+[node name="boost_left" type="Timer" parent="timers"]
+wait_time = 0.2
+
+[node name="boost_cooldown" type="Timer" parent="timers"]
+
+[connection signal="timeout" from="timers/boost_left" to="." method="_on_boost_left_timeout"]
+[connection signal="timeout" from="timers/boost_cooldown" to="." method="_on_boost_cooldown_timeout"]
