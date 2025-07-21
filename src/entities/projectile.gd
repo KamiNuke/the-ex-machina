@@ -6,6 +6,8 @@ extends Node3D
 @onready var ray = $colision
 @onready var particle = $sparks
 
+var current_damage = 0
+
 func _ready():
 	pass
 
@@ -14,9 +16,11 @@ func _process(delta: float) -> void:
 	if ray.is_colliding():
 		var collider_instance = ray.get_collider()
 		if collider_instance != null:
-			if collider_instance.is_in_group("enemy") or collider_instance.is_in_group("player"):
-				collider_instance.hit(5)
-				ray.enabled = false
+			var parent = get_parent()
+			if parent != null:
+				if collider_instance.is_in_group("player") or collider_instance.is_in_group("enemy"):
+					collider_instance.hit(current_damage)
+			ray.enabled = false
 		mesh.visible = false
 		particle.emitting = true
 		await get_tree().create_timer(1.0).timeout
@@ -27,3 +31,6 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	queue_free() 
+
+func set_damage(damage):
+	current_damage = damage

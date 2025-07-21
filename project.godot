@@ -19,10 +19,6 @@ config/icon="res://assets/icon.svg"
 
 Global="*res://src/global.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/stretch/mode="canvas_items"

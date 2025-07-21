@@ -16,6 +16,7 @@ var instance
 
 #STATUS VARIABLES
 @export var HP = 100
+@export var DAMAGE = 20
 
 var speed
 var WALK_SPEED = body_part
@@ -119,10 +120,12 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack"):
 		instance = projectile.instantiate()
+		instance.set_damage(DAMAGE)
 		instance.position = weapon.global_position
 		instance.transform.basis = weapon.global_transform.basis
 		
 		get_parent().add_child(instance)
+		#add_child(instance)
 	
 	
 	move_and_slide()
