@@ -117,7 +117,7 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_just_pressed("attack"):
 		instance = projectile.instantiate()
 		instance.position = weapon.global_position
 		instance.transform.basis = weapon.global_transform.basis

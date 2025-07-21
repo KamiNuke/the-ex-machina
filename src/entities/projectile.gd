@@ -10,9 +10,14 @@ func _ready():
 	pass
 
 func _process(delta: float) -> void:
+	#
+	var collider_instance = ray.get_collider()
+	if collider_instance != null:
+		if collider_instance.is_in_group("enemy") or collider_instance.is_in_group("player"):
+			collider_instance.hit(5)
+	
 	#print_debug(ray.position)
 	if ray.is_colliding():
-		print_debug("hit")
 		mesh.visible = false
 		particle.emitting = true
 		await get_tree().create_timer(1.0).timeout
