@@ -52,7 +52,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	# Health Points process
-	if HP <= 0:
+	if HP <= 20:
+		body_part = BodyParts.NO_LEGS
+	elif HP <= 0:
 		#death screen
 		pass
 	
@@ -83,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Handle sprint
-	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped():
+	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped() and body_part != BodyParts.NO_LEGS:
 		BOB_FREQ = 0.0 # remove camera shaking during boost
 		boost_left.start()
 		speed = BOOST_SPEED * WALK_SPEED
@@ -118,7 +120,7 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_pressed("attack"):
 		instance = projectile.instantiate()
 		instance.set_damage(DAMAGE)
 		instance.position = weapon.global_position
