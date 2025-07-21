@@ -34,6 +34,7 @@ shadow_enabled = true
 environment = SubResource("Environment_feaac")
 
 [node name="PlayerController" parent="." instance=ExtResource("1_2evji")]
+BASE_FOV = 75.0
 
 [node name="balls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

@@ -44,6 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		const LIMIT_VIEW_DOWN = -25
 		const LIMIT_VIEW_UP = 35
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		#DEBUG
 		weapon.rotation.x = clamp(weapon.rotation.x, deg_to_rad(0), deg_to_rad(0))
 		#DEBUG
 

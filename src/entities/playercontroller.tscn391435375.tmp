@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=6 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
 [ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
-[ext_resource type="PackedScene" uid="uid://curbxgrljodh6" path="res://src/entities/weapon.tscn" id="2_dklf8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2lfla"]
 
@@ -24,9 +23,6 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99043, 0.138015, 0, -0.138015, 0.99043, 1.12083, 0.695985, 2.0913)
-
-[node name="Weapon" parent="head" instance=ExtResource("2_dklf8")]
-transform = Transform3D(-4.09782e-08, -0.0410735, -0.999156, -0.138015, 0.989594, -0.0406804, 0.99043, 0.137899, -0.00566879, -0.224307, -0.08758, -2.31871)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
 
