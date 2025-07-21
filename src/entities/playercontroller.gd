@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 @onready var head: Node3D = $"."
-@onready var camera: Camera3D = $head/Camera3D
+@onready var camera: Camera3D = $head/spring/Camera3D
+@onready var spring: SpringArm3D = $head/spring
 @onready var boost_left: Timer = $timers/boost_left
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $Cooldown
@@ -9,9 +10,12 @@ extends CharacterBody3D
 
 var body_part = BodyParts.DEFAULT_LEGS
 
+@export var LIMIT_VIEW_DOWN: int = -65
+@export var LIMIT_VIEW_UP: int = 35
+
 
 #DEBUG
-@onready var weapon = $head/Weapon
+@onready var weapon: Node3D = $Weapon
 var projectile = load("res://src/entities/projectile.tscn")
 var instance
 #DEBUG
@@ -37,16 +41,11 @@ const CHANGE_FOV = 1.0
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and !Global.is_paused:
 		head.rotate_y(-event.relative.x * SENSIVITY)
-		camera.rotate_x(-event.relative.y * SENSIVITY)
-		#DEBUG
-		#weapon.rotate_x(-event.relative.y * SENSIVITY)
-		#DEBUG
-		const LIMIT_VIEW_DOWN = -25
-		const LIMIT_VIEW_UP = 35
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
-		#DEBUG
-		weapon.rotation.x = clamp(weapon.rotation.x, deg_to_rad(0), deg_to_rad(0))
-		#DEBUG
+		var rotation_delta = -event.relative.y * SENSIVITY
+		spring.rotation.x = clamp(rotation_delta + spring.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		
+		#Weapon view
+		weapon.rotation.x = clamp(rotation_delta + spring.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 
 func _process(delta: float) -> void:
 	# set walk speed and boost cooldown every frame in case of it being changed
