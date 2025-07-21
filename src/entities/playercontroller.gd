@@ -6,7 +6,8 @@ extends CharacterBody3D
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $Cooldown
 
-var body_part = BodyParts.DEFAULT_LEGS
+@export_enum("DEFAULT_LEGS", "NO_LEGS", 
+"BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
 
 #DEBUG
 @onready var weapon = $head/Camera3D/Weapon
@@ -19,7 +20,7 @@ var instance
 @export var DAMAGE = 20
 
 var speed
-var WALK_SPEED = body_part
+var WALK_SPEED = player_legs
 const BOOST_SPEED = 5.0
 var boost_cooldown_time = BodyParts.legs_cooldown[BodyParts.DEFAULT_LEGS]
 
@@ -53,14 +54,14 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	# Health Points process
 	if HP <= 20:
-		body_part = BodyParts.NO_LEGS
+		player_legs = BodyParts.NO_LEGS
 	elif HP <= 0:
 		#death screen
 		pass
 	
 	# set walk speed and boost cooldown every frame in case of it being changed
-	WALK_SPEED = BodyParts.legs_speed[body_part]
-	boost_cooldown.wait_time = BodyParts.legs_cooldown[body_part]
+	WALK_SPEED = BodyParts.legs_speed[player_legs]
+	boost_cooldown.wait_time = BodyParts.legs_cooldown[player_legs]
 	
 	update_cooldown_ui()
 
@@ -85,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Handle sprint
-	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped() and body_part != BodyParts.NO_LEGS:
+	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped() and player_legs != BodyParts.NO_LEGS:
 		BOB_FREQ = 0.0 # remove camera shaking during boost
 		boost_left.start()
 		speed = BOOST_SPEED * WALK_SPEED

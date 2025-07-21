@@ -16,8 +16,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func swap_parts() -> void:
-	var temp = player_instance.body_part
-	player_instance.body_part = body_part
+	var temp = player_instance.player_legs
+	player_instance.player_legs = body_part
 	body_part = temp
 
 func _integrate_forces(state):

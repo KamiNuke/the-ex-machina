@@ -6,6 +6,7 @@ enum
 	NO_LEGS,
 	BASIC_LEGS,
 	SYMBIOTIC_LEGS,
+	GOD_LEGS,
 	
 	MAX_LEGS
 }
@@ -14,12 +15,14 @@ const legs_speed = {
 	DEFAULT_LEGS : 4.25, 
 	NO_LEGS : 1.75,
 	BASIC_LEGS : 7.25,
-	SYMBIOTIC_LEGS : 14.75
+	SYMBIOTIC_LEGS : 14.75,
+	GOD_LEGS : 30.00
 }
 
 const legs_cooldown = {
 	DEFAULT_LEGS : 4.5,	
 	NO_LEGS : 99.99,
 	BASIC_LEGS : 3.75,
-	SYMBIOTIC_LEGS : 2
+	SYMBIOTIC_LEGS : 2,
+	GOD_LEGS : 0.01
 }
