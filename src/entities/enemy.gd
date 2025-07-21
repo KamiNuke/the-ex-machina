@@ -1,0 +1,30 @@
+extends CharacterBody3D
+
+### IMPORTANT
+# MESH(NOT CHARACTERBODY3D)
+# MUST BE ROTATED 180 DEGREE
+
+const SPEED = 4.0
+
+var player = null
+@export var player_path : NodePath
+
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+
+func _ready() -> void:
+	player = get_node(player_path)
+
+func _process(delta: float) -> void:
+	velocity = Vector3.ZERO
+
+	#if Input.is_action_just_pressed("attack"):
+		#player.hit(5)
+	
+	# NAVIGATION
+	nav_agent.set_target_position(player.global_position)
+	var next_nav_point = nav_agent.get_next_path_position()
+	velocity = (next_nav_point - global_position).normalized() * SPEED
+	
+	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+	
+	move_and_slide()

@@ -6,15 +6,16 @@ extends CharacterBody3D
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $Cooldown
 
-
 var body_part = BodyParts.DEFAULT_LEGS
-
 
 #DEBUG
 @onready var weapon = $head/Weapon
 var projectile = load("res://src/entities/projectile.tscn")
 var instance
 #DEBUG
+
+#STATUS VARIABLES
+@export var HP = 100
 
 var speed
 var WALK_SPEED = body_part
@@ -49,6 +50,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		#DEBUG
 
 func _process(delta: float) -> void:
+	# Health Points process
+	if HP <= 0:
+		#death screen
+		pass
+	
 	# set walk speed and boost cooldown every frame in case of it being changed
 	WALK_SPEED = BodyParts.legs_speed[body_part]
 	boost_cooldown.wait_time = BodyParts.legs_cooldown[body_part]
@@ -132,3 +138,6 @@ func _on_boost_left_timeout() -> void:
 
 func _on_boost_cooldown_timeout() -> void:
 	boost_cooldown.stop()
+
+func hit(damage_amount):
+	HP -= damage_amount

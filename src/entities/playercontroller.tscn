@@ -15,6 +15,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_2lfla")
+HP = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2lfla")
@@ -25,10 +26,8 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99043, 0.138015, 0, -0.138015, 0.99043, 1.12083, 0.695985, 2.0913)
 
-
 [node name="Weapon" parent="head" instance=ExtResource("2_dklf8")]
 transform = Transform3D(-4.09782e-08, -0.0410735, -0.999156, -0.138015, 0.989594, -0.0406804, 0.99043, 0.137899, -0.00566879, -0.224307, -0.08758, -2.31871)
-
 
 [node name="Camera3D" type="Camera3D" parent="head"]
 
