@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 		camera.rotate_x(-event.relative.y * SENSIVITY)
 		#DEBUG
-		weapon.rotate_x(-event.relative.y * SENSIVITY)
+		#weapon.rotate_x(-event.relative.y * SENSIVITY)
 		#DEBUG
 		const LIMIT_VIEW_DOWN = -25
 		const LIMIT_VIEW_UP = 35
