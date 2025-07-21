@@ -9,7 +9,7 @@ extends CharacterBody3D
 var body_part = BodyParts.DEFAULT_LEGS
 
 #DEBUG
-@onready var weapon = $head/Weapon
+@onready var weapon = $head/Camera3D/Weapon
 var projectile = load("res://src/entities/projectile.tscn")
 var instance
 #DEBUG
@@ -117,8 +117,12 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
-	#if Input.is_action_pressed("shoot"):
-		#if projectile.available
+	if Input.is_action_pressed("attack"):
+		instance = projectile.instantiate()
+		instance.position = weapon.global_position
+		instance.transform.basis = weapon.global_transform.basis
+		
+		get_parent().add_child(instance)
 	
 	
 	move_and_slide()

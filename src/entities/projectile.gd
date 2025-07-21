@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(1.0).timeout
 		queue_free()
 	else:
-		position += transform.basis * Vector3(0, -SPEED, 0) * delta
+		position += transform.basis * Vector3(-SPEED, 0, 0) * delta
 
 
 func _on_timer_timeout() -> void:
