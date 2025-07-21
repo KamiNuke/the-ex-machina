@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://66epy78oovs2"]
+
+[ext_resource type="Script" uid="uid://vmfmbkr7vna2" path="res://src/ui/pause_layer.gd" id="1_nep30"]
+[ext_resource type="Shader" uid="uid://dyk4tmp1jy4gy" path="res://src/shaders/simple_blur.gdshader" id="2_sejr8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxxk"]
+shader = ExtResource("2_sejr8")
+shader_parameter/lod = 2.5
+
+[node name="PauseLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_nep30")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dvxxk")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.0
+offset_top = 103.0
+offset_right = 113.0
+offset_bottom = 191.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 84
+text = "Paused"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 256.0
+offset_top = -4.0
+offset_right = -256.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="resume_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+
+[node name="exit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Exit"
+
+[connection signal="button_up" from="VBoxContainer/resume_button" to="." method="_on_resume_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/exit_button" to="." method="_on_exit_button_button_up"]

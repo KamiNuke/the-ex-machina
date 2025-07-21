@@ -36,7 +36,7 @@ var t_bob = 0.0 #don't touch
 const CHANGE_FOV = 1.0
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and !Global.is_paused:
+	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 		camera.rotate_x(-event.relative.y * SENSIVITY)
 		#DEBUG
