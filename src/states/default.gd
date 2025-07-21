@@ -1,5 +1,7 @@
 extends Node
 
+@onready var player: CharacterBody3D = $PlayerController
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,3 +17,6 @@ func _process(delta: float) -> void:
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			Global.is_paused = false
+			
+func _physics_process(delta: float) -> void:
+	get_tree().call_group("enemy", "update_target_location", player.global_position)
