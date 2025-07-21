@@ -11,7 +11,7 @@ extends CharacterBody3D
 
 #DEBUG
 @onready var weapon = $head/Camera3D/Weapon
-var projectile = load("res://src/entities/projectile.tscn")
+var projectile = preload("res://src/entities/projectile.tscn")
 var instance
 #DEBUG
 
@@ -55,6 +55,7 @@ func _process(delta: float) -> void:
 	# Health Points process
 	if HP <= 20:
 		player_legs = BodyParts.NO_LEGS
+		pass
 	elif HP <= 0:
 		#death screen
 		pass
@@ -124,6 +125,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("attack"):
 		instance = projectile.instantiate()
 		instance.set_damage(DAMAGE)
+		instance.set_shooter(self)
 		instance.position = weapon.global_position
 		instance.transform.basis = weapon.global_transform.basis
 		

@@ -34,7 +34,6 @@ size = Vector3(0.02, 0.02, 0.06)
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_40mcg")
-SPEED = 60
 
 [node name="projectile" type="MeshInstance3D" parent="."]
 transform = Transform3D(9.27259e-08, 9.27258e-08, 1, 0.707107, -0.707107, 3.55271e-15, 0.707107, 0.707107, -1.31134e-07, -0.514849, 0, -0.00128663)

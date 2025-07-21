@@ -1,12 +1,13 @@
 extends Node3D
 
-@export var SPEED: int = 20
+@export var SPEED: int = 60
 
 @onready var mesh = $projectile
 @onready var ray = $colision
 @onready var particle = $sparks
 
 var current_damage = 0
+var current_shooter = null
 
 func _ready():
 	pass
@@ -18,7 +19,7 @@ func _process(delta: float) -> void:
 		if collider_instance != null:
 			var parent = get_parent()
 			if parent != null:
-				if collider_instance.is_in_group("player") or collider_instance.is_in_group("enemy"):
+				if collider_instance != current_shooter and collider_instance.has_method("hit"):
 					collider_instance.hit(current_damage)
 			ray.enabled = false
 		mesh.visible = false
@@ -34,3 +35,6 @@ func _on_timer_timeout() -> void:
 
 func set_damage(damage):
 	current_damage = damage
+
+func set_shooter(shooter):
+	current_shooter = shooter
