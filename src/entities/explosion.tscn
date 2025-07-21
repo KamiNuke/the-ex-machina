@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvytxteoh16q0"]
+
+[ext_resource type="Script" uid="uid://b8nxwma4lueup" path="res://src/entities/explosion.gd" id="1_dyrug"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dpbsb"]
+radius = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_1rbqs"]
+radial_segments = 6
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twtk3"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_dyrug"]
+radius = 2.0
+height = 4.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyrug"]
+transparency = 1
+albedo_color = Color(1, 0.188235, 0, 0.180392)
+emission_enabled = true
+emission = Color(0.0518153, 0.0518153, 3.00817e-09, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rbqs"]
+albedo_color = Color(1, 1, 0.309804, 1)
+emission_enabled = true
+emission = Color(1, 0.65098, 0, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dyrug"]
+lifetime_randomness = 0.58
+direction = Vector3(0, 1, 0)
+spread = 100.0
+initial_velocity_min = 3.0
+initial_velocity_max = 24.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dyrug"]
+size = Vector3(0.03, 0.02, 0.03)
+
+[node name="Explosion" type="Area3D"]
+script = ExtResource("1_dyrug")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_dpbsb")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_1rbqs")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_twtk3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_dyrug")
+surface_material_override/0 = SubResource("StandardMaterial3D_dyrug")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_1rbqs")
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.86
+process_material = SubResource("ParticleProcessMaterial_dyrug")
+draw_pass_1 = SubResource("BoxMesh_dyrug")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

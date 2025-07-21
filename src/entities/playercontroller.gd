@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var head: Node3D = $"."
+@onready var aim: RayCast3D = $head/spring/RayCast3D
 @onready var camera: Camera3D = $head/spring/Camera3D
 @onready var spring: SpringArm3D = $head/spring
 @onready var boost_left: Timer = $timers/boost_left
@@ -16,8 +17,10 @@ var body_part = BodyParts.DEFAULT_LEGS
 
 #DEBUG
 @onready var weapon: Node3D = $Weapon
-var projectile = load("res://src/entities/projectile.tscn")
-var instance
+var projectile = load("res://src/entities/throwable/projectile.tscn")
+var explosion = load("res://src/entities/explosion.tscn")
+var projectile_instance
+var explosion_instance
 #DEBUG
 
 var speed
@@ -110,8 +113,12 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
-	#if Input.is_action_pressed("shoot"):
-		#if projectile.available
+	if Input.is_action_pressed("attack"):
+		projectile_instance = projectile.instantiate()
+		projectile_instance.position = weapon.global_position
+		projectile_instance.transform.basis = weapon.global_transform.basis
+		get_parent().add_child(projectile_instance)
+		spawn_explosion()
 	
 	
 	move_and_slide()
@@ -131,3 +138,9 @@ func _on_boost_left_timeout() -> void:
 
 func _on_boost_cooldown_timeout() -> void:
 	boost_cooldown.stop()
+
+func spawn_explosion():
+	print_debug("ASS")
+	explosion_instance = explosion.instantiate()
+	explosion_instance.position = aim.get_collision_point()
+	get_parent().add_child(explosion_instance)

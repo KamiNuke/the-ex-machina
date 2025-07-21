@@ -45,17 +45,17 @@ script = ExtResource("1_40mcg")
 SPEED = 8
 
 [node name="projectile" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, 0.707107, -0.707107, 7.10543e-15, 6.18172e-08, 6.18172e-08, 1, 2.25846e-08, 0.023012, -0.488903)
+transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, 0.707107, -0.707107, 7.10543e-15, 6.18172e-08, 6.18172e-08, 1, 2.25846e-08, 0.023012, -0.521682)
 mesh = SubResource("BoxMesh_2ep7l")
 surface_material_override/0 = SubResource("StandardMaterial3D_2ep7l")
 
 [node name="colision" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.0249351, -0.00240153)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.0249351, -0.017485)
 target_position = Vector3(0, 0, 1)
 collision_mask = 3
 
 [node name="sparks" type="GPUParticles3D" parent="."]
-transform = Transform3D(-0.0707993, 3.60016e-16, 7.29456e-09, -7.7361e-16, -0.0942113, -2.88658e-15, 6.18947e-09, 3.55271e-15, 0.0834401, -0.00203403, 0.0314254, -1.02573)
+transform = Transform3D(-0.0707993, 3.60016e-16, 7.29456e-09, -7.7361e-16, -0.0942113, -2.88658e-15, 6.18947e-09, 3.55271e-15, 0.0834401, -0.00203403, 0.0314254, -1.03887)
 material_override = SubResource("StandardMaterial3D_40mcg")
 cast_shadow = 0
 emitting = false
