@@ -4,10 +4,14 @@ extends CharacterBody3D
 # MESH(NOT CHARACTERBODY3D)
 # MUST BE ROTATED 180 DEGREE
 
+@export var HP = 100
 const SPEED = 4.0
 
+
 var player = null
-@export var player_path : NodePath
+
+#the only way i found is the hardcoded way
+@export var player_path : NodePath = "/root/default/PlayerController"
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -17,14 +21,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	velocity = Vector3.ZERO
 
-	#if Input.is_action_just_pressed("attack"):
-		#player.hit(5)
+	if Input.is_action_just_pressed("attack"):
+		hit(5)
+		
+	if HP <= 0:
+		queue_free()
 	
 	# NAVIGATION
 	nav_agent.set_target_position(player.global_position)
 	var next_nav_point = nav_agent.get_next_path_position()
 	velocity = (next_nav_point - global_position).normalized() * SPEED
-	
-	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+	rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
+	#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
 	
 	move_and_slide()
+
+func hit(damage_amount):
+	HP -= damage_amount
+	print(HP)
