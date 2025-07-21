@@ -40,6 +40,7 @@ wait_time = 0.2
 wait_time = 2.5
 
 [node name="CollectableArea" type="Area3D" parent="."]
+collision_layer = 256
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableArea"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
