@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://drvs5gp6oq6lx"]
+
+[ext_resource type="Script" uid="uid://cou1i8xakqxdl" path="res://src/ui/crosshair.gd" id="1_e0ilq"]
+
+[node name="Crosshair" type="CenterContainer" node_paths=PackedStringArray("RETICLE_LINES")]
+script = ExtResource("1_e0ilq")
+RETICLE_LINES = [NodePath("up"), NodePath("right"), NodePath("down"), NodePath("left")]
+
+[node name="up" type="Line2D" parent="."]
+points = PackedVector2Array(0, -2.5, 0, -7.5)
+width = 1.5
+
+[node name="right" type="Line2D" parent="."]
+points = PackedVector2Array(2.5, 0, 7.5, 0)
+width = 1.5
+
+[node name="left" type="Line2D" parent="."]
+points = PackedVector2Array(-7.5, 0, -2.5, 0)
+width = 1.5
+
+[node name="down" type="Line2D" parent="."]
+points = PackedVector2Array(0, 7.5, 0, 2.5)
+width = 1.5

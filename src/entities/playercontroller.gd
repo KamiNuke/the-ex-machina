@@ -4,7 +4,8 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $head/Camera3D
 @onready var boost_left: Timer = $timers/boost_left
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
-@onready var cooldown_ui: CanvasLayer = $Cooldown
+@onready var cooldown_ui: CanvasLayer = $UI/Cooldown
+@onready var crosshair: Control = $UI/Crosshair
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
 "BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
