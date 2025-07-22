@@ -12,4 +12,6 @@ up_direction = 3.5
 
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="_empty" from="." to="Weapon" method="_on_grenade_launcher__empty"]
+[connection signal="_fire" from="." to="Weapon" method="_on_grenade_launcher__fire"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

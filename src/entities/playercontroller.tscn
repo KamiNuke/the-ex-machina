@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=10 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
 [ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
 [ext_resource type="PackedScene" uid="uid://ctkv0cxdu136o" path="res://src/entities/guns/hitscan_weapon.tscn" id="2_dklf8"]
+[ext_resource type="PackedScene" uid="uid://cvwdxebxx1yi5" path="res://src/entities/weapon_manager.tscn" id="2_udtjk"]
+[ext_resource type="PackedScene" uid="uid://j0nas67m2oo5" path="res://src/entities/guns/grenade_launcher.tscn" id="4_p1m7e"]
+[ext_resource type="PackedScene" uid="uid://b5flwp06tvo7r" path="res://src/entities/guns/projectile_weapon.tscn" id="5_qsbkc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2lfla"]
 
@@ -22,8 +25,14 @@ mesh = SubResource("CapsuleMesh_2lfla")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_2lfla")
 
-[node name="HitscanWeapon" parent="." instance=ExtResource("2_dklf8")]
+[node name="WeaponManager2" parent="." instance=ExtResource("2_udtjk")]
+
+[node name="HitscanWeapon" parent="WeaponManager2" instance=ExtResource("2_dklf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.956224, 0, 0)
+
+[node name="GrenadeLauncher" parent="WeaponManager2" instance=ExtResource("4_p1m7e")]
+
+[node name="ProjectileWeapon" parent="WeaponManager2" instance=ExtResource("5_qsbkc")]
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997869, 0.0652464, 0, -0.0652464, 0.997869, -0.0310897, 1.15966, 0.0913)
@@ -56,6 +65,6 @@ shape = SubResource("CapsuleShape3D_co8hi")
 
 [node name="Cooldown" parent="." instance=ExtResource("2_3pnt3")]
 
-[connection signal="_attack" from="." to="HitscanWeapon" method="_on_player_controller__attack"]
+[connection signal="_attack" from="." to="WeaponManager2/HitscanWeapon" method="_on_player_controller__attack"]
 [connection signal="timeout" from="timers/boost_left" to="." method="_on_boost_left_timeout"]
 [connection signal="timeout" from="timers/boost_cooldown" to="." method="_on_boost_cooldown_timeout"]

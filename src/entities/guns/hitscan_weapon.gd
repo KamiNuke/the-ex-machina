@@ -23,23 +23,24 @@ var trail_instance
 
 var cool_down: bool = false
 var current_ammo: int = 0
-#var available: bool = false
+var available: bool = false
 
 
 func _on_player_controller__attack() -> void:
-	if !cool_down:
-		if current_ammo < ammo:
-			current_ammo += 1
-			trail_instance = trail.instantiate()
-			var pos
-			if aim_ray.get_collision_point():
-				pos = aim_ray.get_collision_point()
-			else:
-				pos = aim_ray_end.position
-			trail_instance.init(barrel.global_position, pos)
-			cool_down = true
-			timer.start(cool_down_count)
-			get_parent().get_parent().add_child(trail_instance)
+	if available:
+		if !cool_down:
+			if current_ammo < ammo:
+				current_ammo += 1
+				trail_instance = trail.instantiate()
+				var pos
+				if aim_ray.get_collision_point():
+					pos = aim_ray.get_collision_point()
+				else:
+					pos = aim_ray_end.position
+				trail_instance.init(barrel.global_position, pos)
+				cool_down = true
+				timer.start(cool_down_count)
+				get_parent().get_parent().add_child(trail_instance)
 
 func _on_timer_timeout() -> void:
 	cool_down = false

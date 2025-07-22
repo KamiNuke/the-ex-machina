@@ -19,7 +19,7 @@ var body_part = BodyParts.DEFAULT_LEGS
 
 signal _attack
 
-@onready var weapon: Node3D = $HitscanWeapon
+@onready var weapon: Node3D = $WeaponManager2
 #var projectile = load("res://src/entities/throwable/projectile.tscn")
 #var explosion = load("res://src/entities/explosion.tscn")
 #var projectile_instance
@@ -118,6 +118,15 @@ func _physics_process(delta: float) -> void:
 	var target_fov = BASE_FOV + CHANGE_FOV * velocity_clamped
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
+	
+	if Input.is_action_pressed("one"):
+		weapon.switch_weapon(0)
+	
+	if Input.is_action_pressed("two"):
+		weapon.switch_weapon(1)
+		
+	if Input.is_action_pressed("three"):
+		weapon.switch_weapon(2)
 	
 	if Input.is_action_pressed("attack"):
 		emit_signal("_attack")

@@ -19,16 +19,17 @@ var grenade_instance
 
 var cool_down: bool = false
 var current_ammo: int = 0
-#var available: bool = false
+var available: bool = false
 
 
 func _on_player_controller__attack() -> void:
-	if !cool_down:
-		if current_ammo < ammo:
-			current_ammo += 1
-			spawn_grenade()
-			cool_down = true
-			timer.start(cool_down_count)
+	if available:
+		if !cool_down:
+			if current_ammo < ammo:
+				current_ammo += 1
+				spawn_grenade()
+				cool_down = true
+				timer.start(cool_down_count)
 
 func spawn_grenade() -> void:
 	grenade_instance = grenade.instantiate()
