@@ -9,7 +9,8 @@ var player_instance
 # for physics after equipping an item
 var rng = RandomNumberGenerator.new()
 
-var body_part = BodyParts.NO_LEGS
+@export_enum("DEFAULT_LEGS", "NO_LEGS", 
+"BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var body_legs : int = BodyParts.GOD_LEGS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,8 +18,8 @@ func _ready() -> void:
 
 func swap_parts() -> void:
 	var temp = player_instance.player_legs
-	player_instance.player_legs = body_part
-	body_part = temp
+	player_instance.player_legs = body_legs
+	body_legs = temp
 
 func _integrate_forces(state):
 	if collect_item_instance != null:
@@ -26,7 +27,7 @@ func _integrate_forces(state):
 			var FORCE = Vector3(rng.randi_range(-2500, 2500), 40000, rng.randi_range(-2500, 2500))
 			state.apply_force(FORCE)
 			swap_parts()
-			if body_part == BodyParts.NO_LEGS:
+			if body_legs == BodyParts.NO_LEGS:
 				await get_tree().create_timer(.25).timeout
 				queue_free()
 
