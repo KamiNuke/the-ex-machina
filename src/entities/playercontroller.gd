@@ -19,10 +19,10 @@ var body_part = BodyParts.DEFAULT_LEGS
 
 signal _attack
 
-@onready var weapon: Node3D = $GrenadeLauncher
-var projectile = load("res://src/entities/throwable/projectile.tscn")
+@onready var weapon: Node3D = $HitscanWeapon
+#var projectile = load("res://src/entities/throwable/projectile.tscn")
 #var explosion = load("res://src/entities/explosion.tscn")
-var projectile_instance
+#var projectile_instance
 #var explosion_instance
 #DEBUG
 
