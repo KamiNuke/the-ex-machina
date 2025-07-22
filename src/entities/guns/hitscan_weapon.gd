@@ -1,8 +1,6 @@
 extends Node3D
 
 @export var ammo: int = 10
-@export var throw_force: float = -20.0
-@export var up_direction: float = 2
 @export var cool_down_count: float = 0.3
 #if c\d = 0 - laser modв
 #@export var damage: float = 5.0
@@ -40,7 +38,7 @@ func _on_player_controller__attack() -> void:
 				trail_instance.init(barrel.global_position, pos)
 				cool_down = true
 				timer.start(cool_down_count)
-				get_parent().get_parent().add_child(trail_instance)
+				get_parent().get_parent().get_parent().add_child(trail_instance)
 
 func _on_timer_timeout() -> void:
 	cool_down = false

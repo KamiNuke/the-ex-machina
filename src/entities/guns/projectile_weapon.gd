@@ -33,7 +33,7 @@ func spawn_projectile() -> void:
 	projectile_instance = projectile.instantiate()
 	projectile_instance.position = barrel.global_position
 	projectile_instance.transform.basis = barrel.global_transform.basis
-	get_parent().get_parent().add_child(projectile_instance)
+	get_parent().get_parent().get_parent().add_child(projectile_instance)
 
 func _on_timer_timeout() -> void:
 	cool_down = false

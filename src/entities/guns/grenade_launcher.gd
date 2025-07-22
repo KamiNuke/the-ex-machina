@@ -35,7 +35,7 @@ func spawn_grenade() -> void:
 	grenade_instance = grenade.instantiate()
 	grenade_instance.position = barrel.global_position
 	grenade_instance.transform.basis = weapon.global_transform.basis
-	get_parent().get_parent().add_child(grenade_instance)
+	get_parent().get_parent().get_parent().add_child(grenade_instance)
 	grenade_instance.apply_central_impulse(weapon.global_transform.basis.z.normalized() * throw_force + Vector3(0, up_direction, 0))
 
 func _on_timer_timeout() -> void:

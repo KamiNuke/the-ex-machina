@@ -120,13 +120,13 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
 	if Input.is_action_pressed("one"):
-		weapon.switch_weapon(0)
+		weapon.switch_weapon(1)
 	
 	if Input.is_action_pressed("two"):
-		weapon.switch_weapon(1)
+		weapon.switch_weapon(2)
 		
 	if Input.is_action_pressed("three"):
-		weapon.switch_weapon(2)
+		weapon.switch_weapon(3)
 	
 	if Input.is_action_pressed("attack"):
 		emit_signal("_attack")
