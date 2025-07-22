@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0iymp51kmco4"]
+[gd_scene load_steps=6 format=3 uid="uid://d0iymp51kmco4"]
+
+[ext_resource type="Script" uid="uid://dv0e1mc4478x3" path="res://src/entities/throwable/grenade.gd" id="1_ebjky"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lr60x"]
 bounce = 0.5
@@ -6,6 +8,8 @@ bounce = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_lr60x"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_lr60x"]
+radius = 0.15
+height = 0.3
 radial_segments = 6
 rings = 3
 
@@ -15,12 +19,16 @@ albedo_color = Color(0.20871, 0.20871, 0.20871, 1)
 [node name="Grenade" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_lr60x")
 continuous_cd = true
+script = ExtResource("1_ebjky")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 shape = SubResource("SphereShape3D_lr60x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("SphereMesh_lr60x")
 surface_material_override/0 = SubResource("StandardMaterial3D_lr60x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

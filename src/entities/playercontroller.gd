@@ -16,11 +16,14 @@ var body_part = BodyParts.DEFAULT_LEGS
 
 
 #DEBUG
-@onready var weapon: Node3D = $Weapon
+
+signal _attack
+
+@onready var weapon: Node3D = $GrenadeLauncher
 var projectile = load("res://src/entities/throwable/projectile.tscn")
-var explosion = load("res://src/entities/explosion.tscn")
+#var explosion = load("res://src/entities/explosion.tscn")
 var projectile_instance
-var explosion_instance
+#var explosion_instance
 #DEBUG
 
 var speed
@@ -72,7 +75,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	if aim.is_colliding():
+		weapon.look_at(aim.get_collision_point())
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -114,11 +120,8 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
 	if Input.is_action_pressed("attack"):
-		projectile_instance = projectile.instantiate()
-		projectile_instance.position = weapon.global_position
-		projectile_instance.transform.basis = weapon.global_transform.basis
-		get_parent().add_child(projectile_instance)
-		spawn_explosion()
+		emit_signal("_attack")
+		#spawn_explosion()
 	
 	
 	move_and_slide()
@@ -139,8 +142,8 @@ func _on_boost_left_timeout() -> void:
 func _on_boost_cooldown_timeout() -> void:
 	boost_cooldown.stop()
 
-func spawn_explosion():
-	print_debug("ASS")
-	explosion_instance = explosion.instantiate()
-	explosion_instance.position = aim.get_collision_point()
-	get_parent().add_child(explosion_instance)
+#func spawn_explosion():
+#	print_debug("ASS")
+#	explosion_instance = explosion.instantiate()
+#	explosion_instance.position = aim.get_collision_point()
+#	get_parent().add_child(explosion_instance)

@@ -51,6 +51,7 @@ script = ExtResource("1_dyrug")
 shape = SubResource("SphereShape3D_dpbsb")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 autostart = true
 
@@ -67,6 +68,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dyrug")
 material_override = SubResource("StandardMaterial3D_1rbqs")
 emitting = false
 amount = 16
+lifetime = 0.5
 one_shot = true
 explosiveness = 0.86
 process_material = SubResource("ParticleProcessMaterial_dyrug")

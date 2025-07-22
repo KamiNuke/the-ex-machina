@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwi3huxw7eb2g"]
+[gd_scene load_steps=11 format=3 uid="uid://cwi3huxw7eb2g"]
 
 [ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/playercontroller.tscn" id="1_2evji"]
 [ext_resource type="Script" uid="uid://hunogrnk236b" path="res://src/states/default.gd" id="1_hjvbs"]
@@ -22,6 +22,10 @@ size = Vector3(10, 10, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_feaac"]
 size = Vector3(10, 50, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i5v71"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_feaac"]
 
 [node name="default" type="Node"]
 script = ExtResource("1_hjvbs")
@@ -92,3 +96,21 @@ size = Vector3(2.7832, 0.166748, 15.106)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
 collision_layer = 9
 collision_mask = 9
+
+[node name="wall" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36294, -0.191938, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall"]
+mesh = SubResource("BoxMesh_i5v71")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall"]
+shape = SubResource("BoxShape3D_feaac")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["props"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37528, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_i5v71")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_feaac")
