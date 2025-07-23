@@ -12,27 +12,10 @@ collision_mask = 7
 
 [node name="ground" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-size = Vector3(200, 1, 200)
-
-[node name="borders" type="CSGCombiner3D" parent="CSGCombiner3D"]
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/borders"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -125, 12, 0)
-size = Vector3(200, 24, 50)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/borders"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 125, 12, 0)
-size = Vector3(200, 24, 50)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/borders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 125)
-size = Vector3(200, 24, 50)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/borders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, -125)
-size = Vector3(200, 24, 50)
+size = Vector3(250, 1, 450)
 
 [node name="cranes" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.965021, 0, -0.262172, 0, 1, 0, 0.262172, 0, 0.965021, 0, 23.5171, 0)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7191, 36.4832, 19.4417)
@@ -107,8 +90,8 @@ transform = Transform3D(0.79771, -0.106986, 0.593475, -0.0676387, 0.962053, 0.26
 size = Vector3(8, 13, 8)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-size = Vector3(50, 12, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.29688, 0)
+size = Vector3(50, 36.5938, 50)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 30.5, -20)
@@ -229,3 +212,321 @@ size = Vector3(4.71654, 9.59159, 0.1)
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
 transform = Transform3D(-0.720552, -0.693403, 0, 0.693403, -0.720552, 0, 0, 0, 1, -0.489, -39.577, -3.496)
 size = Vector3(4.71654, 9.59159, 0.1)
+
+[node name="boat" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.639868, 0, 0.768485, 0, 1, 0, -0.768485, 0, 0.639868, 29.0992, -1.14441e-05, -136.201)
+
+[node name="conteiner31" type="CSGBox3D" parent="CSGCombiner3D/boat"]
+transform = Transform3D(0.813266, -0.16231, 0.558796, 0.133775, 0.98674, 0.091917, -0.566306, 7.45058e-09, 0.824195, 1.78662, 0.590732, -2.0438)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner32" type="CSGBox3D" parent="CSGCombiner3D/boat"]
+transform = Transform3D(0.795923, -0.570498, -0.202579, 0.241034, -0.00833458, 0.970481, -0.555346, -0.821256, 0.130876, 5.36193, 3.08992, -3.53019)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner33" type="CSGBox3D" parent="CSGCombiner3D/boat"]
+transform = Transform3D(0.286534, 0.279125, -0.916508, 0.920424, 0.185327, 0.3442, 0.265929, -0.942201, -0.203811, 6.45553, 1.00284, -7.93426)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner34" type="CSGBox3D" parent="CSGCombiner3D/boat"]
+transform = Transform3D(-0.175336, 0.279125, -0.944111, 0.97454, 0.185327, -0.126196, 0.139745, -0.942201, -0.304513, 20.5015, 1.45255, -12.725)
+size = Vector3(4, 4, 8)
+
+[node name="boat_left" type="CSGCombiner3D" parent="CSGCombiner3D/boat"]
+transform = Transform3D(0.977825, 0.104702, 0.18137, -0.102946, 0.994504, -0.0190948, -0.182373, -1.86265e-09, 0.983229, -0.0716356, -2.35934, -60.1828)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.18008, 0)
+radius = 15.0
+height = 15.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.18008, 20)
+size = Vector3(30, 15, 40)
+
+[node name="rubka" type="Node3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 17, 0)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/boat/boat_left/rubka"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.33333)
+radius = 8.0
+height = 6.0
+sides = 16
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left/rubka"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.11497)
+size = Vector3(16, 6, 12.8966)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(-6.11959e-08, 0, -5.25, 0, 1, 0, 1.4, 0, -2.29485e-07, 1, 20, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 3, 2.1486, 0.0142555, 1, 0)
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.0743927, 0, -5.24258, 0, 1, 0, 1.39802, 0, 0.278973, -6, 20, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 3, 2.1486, 0.0142555, 1, 0)
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 7.79913, 1, 4.37114e-08, -3.40911e-07, -10.9033, 8.32328, 41.7033)
+polygon = PackedVector2Array(-2, -4, -2, 20, 1, 17, 1, -4)
+
+[node name="hole" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.999853, 0.0049438, 0.0164098, -4.65661e-10, 0.957491, -0.288464, -0.0171384, 0.288421, 0.95735, -11.3517, 15.0029, 29.3795)
+operation = 2
+size = Vector3(6.36328, 6.70125, 24.5401)
+
+[node name="hole7" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(-4.37114e-08, 0.203778, 0.979017, 0, 0.979017, -0.203778, -1, -8.90744e-09, -4.27942e-08, -2.18034, 9.8587, 41.4195)
+operation = 2
+size = Vector3(2.78223, 6.70125, 22.9731)
+
+[node name="hole2" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.999853, 0, 0.0171384, 0, 1, 0, -0.0171384, 0, 0.999853, 3.23848, 10.6492, 19.5006)
+operation = 2
+size = Vector3(20.1922, 6.41771, 37.781)
+
+[node name="hole8" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.999853, 0, 0.0171384, 0, 1, 0, -0.0171384, 0, 0.999853, 0.701305, 10.9686, 36.7237)
+operation = 2
+size = Vector3(25.8562, 5.01755, 4.74884)
+
+[node name="hole3" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.999853, 0, 0.0171384, 0, 1, 0, -0.0171384, 0, 0.999853, 9.61268, 7.05339, 20.501)
+operation = 2
+size = Vector3(7.47997, 12.1591, 40)
+
+[node name="hole4" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.800752, 0, 0.598996, 0, 1, 0, -0.598996, 0, 0.800752, 1.57353, 7.05338, 19.3676)
+operation = 2
+size = Vector3(8.97845, 12.1591, 22.8381)
+
+[node name="hole5" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(-0.0118506, 0, 0.99993, 0, 1, 0, -0.99993, 0, -0.0118506, -0.999311, 7.05338, 9.30526)
+operation = 2
+size = Vector3(17.1839, 12.1591, 15.7876)
+
+[node name="hole6" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(-0.0118506, 0, 0.99993, 0, 1, 0, -0.99993, 0, -0.0118506, -12.506, 4.92623, 5.31173)
+operation = 2
+size = Vector3(15.9399, 7.90484, 13.1576)
+
+[node name="conteiner" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.710271, 0, -0.703928, 0, 1, 0, 0.703928, 0, 0.710271, -12.101, 16.5675, 8.58731)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner14" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.999714, 0, -0.0239087, 0, 1, 0, 0.0239087, 0, 0.999714, -1.58732, 15.8679, 37.4791)
+size = Vector3(10.3907, 2.60087, 0.82756)
+
+[node name="conteiner8" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(-0.123197, 0.274448, 0.953678, -0.527911, 0.795618, -0.297158, -0.840317, -0.540066, 0.0468659, -5.3684, 2.48406, 17.2297)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner5" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.919266, 0, -0.393637, 0, 1, 0, 0.393637, 0, 0.919266, 11.861, 16.5675, 2.18899)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner2" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.980666, 0, 0.195689, 0, 1, 0, -0.195689, 0, 0.980666, 11.2516, 16.5675, 29.8247)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner10" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8494, 13.8988, 41.3254)
+size = Vector3(1.08386, 1.0293, 4.06067)
+
+[node name="conteiner11" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45997, 13.8988, 41.3254)
+size = Vector3(1.08386, 1.0293, 4.06067)
+
+[node name="conteiner12" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.739907, 13.8988, 41.3254)
+size = Vector3(1.08386, 1.0293, 4.06067)
+
+[node name="conteiner13" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3852, 13.8988, 41.3254)
+size = Vector3(1.08386, 1.0293, 4.06067)
+
+[node name="conteiner15" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3852, 5.97844, 43.3469)
+size = Vector3(1.08386, 1.0293, 4.06067)
+
+[node name="conteiner6" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.71129, 0, -0.702898, 0, 1, 0, 0.702898, 0, 0.71129, 5.45399, 16.5675, 18.0721)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner7" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.963849, 0, 0.266448, 0, 1, 0, -0.266448, 0, 0.963849, 12.0408, 16.5675, 18.8654)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner3" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.371562, 0, 0.928408, 0, 1, 0, -0.928408, 0, 0.371562, 4.82826, 16.5675, 25.014)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner9" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.851091, 0.321917, 0.414746, -0.0635355, 0.84731, -0.527285, -0.52116, 0.422416, 0.74159, 7.75673, 2.08528, 45.5688)
+size = Vector3(4, 0.452148, 8)
+
+[node name="conteiner4" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_left"]
+transform = Transform3D(0.969957, 0, 0.243276, 0, 1, 0, -0.243276, 0, 0.969957, 8.43825, 20.6461, 23.0229)
+size = Vector3(4, 4, 8)
+
+[node name="boat_right" type="CSGCombiner3D" parent="CSGCombiner3D/boat"]
+transform = Transform3D(0.997261, -0.0739693, 0, 0.0739693, 0.997261, 0, 0, 0, 1, 5.03065, -0.320733, 7.93285)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 17.446)
+size = Vector3(30, 15, 38.2285)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 36.34)
+radius = 15.0
+height = 15.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00092, 14.1268, 17.446)
+operation = 2
+size = Vector3(30.0018, 2.55078, 38.2285)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.788163, 9.05424, 18.8921)
+operation = 2
+size = Vector3(25.3347, 3.66992, 14.7279)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 0.85596, 0.517041, 0, -0.517041, 0.85596, -8.26304, 12.0442, 33.2166)
+operation = 2
+size = Vector3(6.09026, 9.67249, 19)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51249, 5.6, 17.4738)
+operation = 2
+size = Vector3(13.886, 10.3302, 38.2842)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.713079, 0, 0.701084, 0, 1, 0, -0.701084, 0, 0.713079, 5.92537, 3.84823, 26.0239)
+operation = 2
+size = Vector3(9.26208, 6.82666, 31.024)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.04749, 0, 0.998872, 0, 1, 0, -0.998872, 0, -0.04749, -10.5528, 3.84823, 23.7468)
+operation = 2
+size = Vector3(14.1975, 6.82666, 10.5011)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.04749, 0, 0.998872, 0, 1, 0, -0.998872, 0, -0.04749, -3.69104, 3.84823, 21.1855)
+operation = 2
+size = Vector3(9.73248, 6.82666, 9)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.1244, 36.34)
+operation = 2
+radius = 14.0
+height = 2.5459
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6449, 4.26267, 10.0208)
+size = Vector3(5.09277, 8, 2.46533)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57838, 5.99085, 10.0208)
+size = Vector3(9.50171, 2.49176, 2.46533)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4256, 11.7161, -3.25367)
+size = Vector3(2, 2, 5.38916)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6743, 11.7161, -3.25367)
+size = Vector3(2, 2, 5.38916)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.40807, 11.7161, -3.25367)
+size = Vector3(2, 2, 5.38916)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4182, 11.7161, -3.25367)
+size = Vector3(2, 2, 5.38916)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5566, 8.50587, 8.65917)
+size = Vector3(6.27686, 0.822266, 0.825073)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5566, 11.0198, 1.798)
+size = Vector3(6.27686, 0.822266, 0.825073)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 0.879541, -0.475824, 0, 0.475824, 0.879541, 16.9826, 2.60032, 19.5574)
+size = Vector3(5.01074, 1.44023, 12.9695)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.997898, -0.0171048, 0.0625039, 0.0426199, 0.899808, -0.4342, -0.0488147, 0.435951, 0.898646, 17.6924, 7.57993, 11.8265)
+size = Vector3(2.97107, 0.235741, 8.24402)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.999646, -0.0155977, -0.0215386, 0.00651061, 0.928824, -0.370463, 0.025784, 0.370192, 0.928597, 17.2445, 10.4909, 5.32866)
+size = Vector3(2.97107, 0.235741, 8.24402)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.986539, 0.156315, -0.0480203, -0.157979, 0.835241, -0.526702, -0.0422227, 0.527198, 0.848693, 16.4904, 12.0213, 1.11053)
+size = Vector3(2.97107, 0.235741, 3.05804)
+
+[node name="conteiner16" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.3102, 43.1856)
+size = Vector3(4, 3.06641, 3.3667)
+
+[node name="conteiner17" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.184552, 0, -0.982823, 0, 1, 0, 0.982823, 0, 0.184552, -9.03254, 14.777, 0.658099)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner22" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.0885987, 0, -0.996067, 0, 1, 0, 0.996067, 0, -0.0885987, -0.576643, 14.777, 0.440562)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner24" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.558295, 0, -0.829642, 0, 1, 0, 0.829642, 0, 0.558295, 7.91092, 14.7878, -0.196194)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner18" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.200445, 0, -0.979705, 0, 1, 0, 0.979705, 0, -0.200445, -8.88524, 14.777, 6.34275)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner19" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.918357, 0, 0.395754, 0, 1, 0, -0.395754, 0, -0.918357, -9.81609, 14.777, 13.0598)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner20" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.998236, 0, -0.0593761, 0, 1, 0, 0.0593761, 0, -0.998236, -10.7077, 14.777, 21.3507)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner27" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.855996, 0, -0.516982, 0, 1, 0, 0.516982, 0, -0.855996, -2.2437, 14.777, 27.1259)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner30" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.690453, 0, 0.723377, 0, 1, 0, -0.723377, 0, -0.690453, 12.3505, 14.777, 25.2251)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner28" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.110428, 0, -0.993884, 0, 1, 0, 0.993884, 0, -0.110428, -6.37651, 18.8378, 23.0197)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner29" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.849045, 0, -0.52832, 0, 1, 0, 0.52832, 0, -0.849045, -4.99599, 14.6909, 19.5405)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner21" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.998236, 0, -0.0593761, 0, 1, 0, 0.0593761, 0, -0.998236, -9.79817, 18.5929, 10.3242)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner25" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.0385417, -0.030325, -0.998797, 0.618353, 0.7859, -2.79397e-09, 0.784954, -0.61761, 0.0490415, -8.79159, -0.316328, 27.3996)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner26" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(0.0375085, -0.031594, -0.998797, 0.64423, 0.764831, -2.79397e-09, 0.763911, -0.643455, 0.0490415, -8.62173, 1.68496, 30.859)
+size = Vector3(4, 5, 8)
+
+[node name="conteiner23" type="CSGBox3D" parent="CSGCombiner3D/boat/boat_right"]
+transform = Transform3D(-0.720878, 0, -0.693062, 0, 1, 0, 0.693062, 0, -0.720878, -8.03217, 18.5929, 1.9917)
+size = Vector3(4, 4, 8)
