@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://curbxgrljodh6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vc4dk"]
+
+[node name="Weapon" type="Node3D"]
+
+[node name="model" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.557233, 0, 0, 0, 0.208185, 0, 0, 0, 0.191297, 0, 0, 0)
+mesh = SubResource("BoxMesh_vc4dk")
+
+[node name="aim" type="RayCast3D" parent="."]
+transform = Transform3D(-2.43574e-08, 0.557233, 0, -0.208185, -9.10006e-09, 0, 0, 0, 0.191297, -0.361, 0, 0)
