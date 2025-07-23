@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
 
 	#sine wave
 	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = headbob(t_bob)
+	cam_pivot.transform.origin = headbob(t_bob)
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, BOOST_SPEED * 2)

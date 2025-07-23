@@ -29,6 +29,5 @@ func switch_weapon(number: int) -> void:
 func _on_timer_timeout() -> void:
 	switch_cooldown = false
 
-
 func _on_player_controller__attack() -> void:
 	emit_signal("fire")

@@ -51,6 +51,7 @@ transform = Transform3D(0.906308, -3.14875e-09, -0.422618, 4.43143e-16, 1, -7.45
 
 [node name="RayCast3D" type="RayCast3D" parent="head/cam_pivot/cam_collision"]
 transform = Transform3D(0.906308, -9.44625e-09, -0.422618, 4.43143e-16, 1, -2.23517e-08, 0.422618, 2.02576e-08, 0.906308, 0, 0, 0)
+visible = false
 target_position = Vector3(0, 0, -10000)
 
 [node name="timers" type="Node" parent="."]
