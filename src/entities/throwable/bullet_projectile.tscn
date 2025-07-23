@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://e45vwngmqhid"]
 
-[ext_resource type="Script" uid="uid://uh2ofltj8n7h" path="res://src/entities/throwable/projectile.gd" id="1_40mcg"]
+[ext_resource type="Script" uid="uid://uh2ofltj8n7h" path="res://src/entities/throwable/bullet_projectile.gd" id="1_40mcg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ep7l"]
 size = Vector3(0.1, 0.1, 1)

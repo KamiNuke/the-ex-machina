@@ -28,10 +28,6 @@ size = Vector3(10, 10, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_feaac"]
 size = Vector3(10, 50, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_i5v71"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_feaac"]
-
 [node name="default" type="Node"]
 script = ExtResource("1_hjvbs")
 
@@ -43,7 +39,6 @@ shadow_enabled = true
 environment = SubResource("Environment_feaac")
 
 [node name="PlayerController" parent="." instance=ExtResource("1_2evji")]
-
 
 [node name="RobotPart" parent="." instance=ExtResource("3_feaac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
@@ -60,7 +55,6 @@ HP = 20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0.5, 10)
 HP = 20
 
-
 [node name="Enemy4" parent="." instance=ExtResource("4_i5v71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 12)
 HP = 20
@@ -73,24 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 2509.96, 0, 0, 0, 1, 0, 11.134, 0)
 use_collision = true
 collision_layer = 7
 collision_mask = 7
-
-[node name="balls" type="Node3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.000398413, 0, 0, 0, 1, 0, -0.00483434, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/balls"]
-transform = Transform3D(1, 0, 0, 0, 0.912421, 0.409254, 0, -0.409254, 0.912421, -0.729868, 5.68456, 16.1318)
-mesh = SubResource("BoxMesh_hjvbs")
-skeleton = NodePath("../../..")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CSGCombiner3D/balls"]
-transform = Transform3D(1, 0, 0, 0, 0.585552, 0.810635, 0, -0.810635, 0.585552, -0.729868, 5.76205, 28.2813)
-mesh = SubResource("BoxMesh_hjvbs")
-skeleton = NodePath("../../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CSGCombiner3D/balls"]
-transform = Transform3D(1, 0, 0, 0, -0.998905, -0.0467926, 0, 0.0467926, -0.998905, -0.729868, 23.3233, 22.727)
-mesh = SubResource("BoxMesh_feaac")
-skeleton = NodePath("../../..")
 
 [node name="floor" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 0.000398413, 0, 0, 0, 1, 0, -0.004865, 0)
@@ -121,7 +97,6 @@ use_collision = true
 collision_layer = 3
 size = Vector3(2.7832, 0.166748, 15.106)
 
-
 [node name="balls" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
@@ -143,3 +118,20 @@ layers = 3
 mesh = SubResource("BoxMesh_feaac")
 skeleton = NodePath("../../..")
 
+[node name="CSGCombiner3D#balls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.000398413, 0, 0, 0, 1, 0, -0.00483434, 0)
+
+[node name="CSGCombiner3D_balls#MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.912421, 0.409254, 0, -0.409254, 0.912421, -0.729868, 5.68456, 16.1318)
+mesh = SubResource("BoxMesh_hjvbs")
+skeleton = NodePath("../../..")
+
+[node name="CSGCombiner3D_balls#MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.585552, 0.810635, 0, -0.810635, 0.585552, -0.729868, 5.76205, 28.2813)
+mesh = SubResource("BoxMesh_hjvbs")
+skeleton = NodePath("../../..")
+
+[node name="CSGCombiner3D_balls#MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.998905, -0.0467926, 0, 0.0467926, -0.998905, -0.729868, 23.3233, 22.727)
+mesh = SubResource("BoxMesh_feaac")
+skeleton = NodePath("../../..")

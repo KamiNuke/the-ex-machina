@@ -1,15 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=11 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
 [ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
-
-[ext_resource type="PackedScene" uid="uid://drvs5gp6oq6lx" path="res://src/ui/crosshair.tscn" id="4_vm6si"]
-
 [ext_resource type="PackedScene" uid="uid://ctkv0cxdu136o" path="res://src/entities/guns/hitscan_weapon.tscn" id="2_dklf8"]
 [ext_resource type="PackedScene" uid="uid://cvwdxebxx1yi5" path="res://src/entities/weapon_manager.tscn" id="2_udtjk"]
 [ext_resource type="PackedScene" uid="uid://j0nas67m2oo5" path="res://src/entities/guns/grenade_launcher.tscn" id="4_p1m7e"]
+[ext_resource type="PackedScene" uid="uid://drvs5gp6oq6lx" path="res://src/ui/crosshair.tscn" id="4_vm6si"]
 [ext_resource type="PackedScene" uid="uid://b5flwp06tvo7r" path="res://src/entities/guns/projectile_weapon.tscn" id="5_qsbkc"]
-
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2lfla"]
 
@@ -42,15 +39,18 @@ throw_force = 20.0
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997869, 0.0652464, 0, -0.0652464, 0.997869, -0.0310897, 1.15966, 0.0913)
 
-[node name="spring" type="SpringArm3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+[node name="cam_pivot" type="Node3D" parent="head"]
+
+[node name="cam_collision" type="SpringArm3D" parent="head/cam_pivot"]
+transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, -7.45058e-09, 0.906308, 0, 0, 0)
 collision_mask = 3
 spring_length = 2.0
 
-[node name="Camera3D" type="Camera3D" parent="head/spring"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="head/cam_pivot/cam_collision"]
+transform = Transform3D(0.906308, -3.14875e-09, -0.422618, 4.43143e-16, 1, -7.45058e-09, 0.422618, 6.75252e-09, 0.906308, 0, 0, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="head/spring"]
+[node name="RayCast3D" type="RayCast3D" parent="head/cam_pivot/cam_collision"]
+transform = Transform3D(0.906308, -9.44625e-09, -0.422618, 4.43143e-16, 1, -2.23517e-08, 0.422618, 2.02576e-08, 0.906308, 0, 0, 0)
 target_position = Vector3(0, 0, -10000)
 
 [node name="timers" type="Node" parent="."]
@@ -62,10 +62,8 @@ wait_time = 0.2
 wait_time = 2.5
 
 [node name="CollectableArea" type="Area3D" parent="."]
-
 collision_layer = 8
 collision_mask = 8
-
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableArea"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)

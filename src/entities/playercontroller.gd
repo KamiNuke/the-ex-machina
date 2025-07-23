@@ -1,9 +1,10 @@
 extends CharacterBody3D
 
 @onready var head: Node3D = $"."
-@onready var aim: RayCast3D = $head/spring/RayCast3D
-@onready var camera: Camera3D = $head/spring/Camera3D
-@onready var spring: SpringArm3D = $head/spring
+@onready var aim: RayCast3D = $head/cam_pivot/cam_collision/RayCast3D
+@onready var camera: Camera3D = $head/cam_pivot/cam_collision/Camera3D
+#@onready var spring: SpringArm3D = $head/cam_pivot/cam_collision
+@onready var cam_pivot: Node3D = $head/cam_pivot
 @onready var boost_left: Timer = $timers/boost_left
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $UI/Cooldown
@@ -55,10 +56,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 
 		var rotation_delta = -event.relative.y * SENSIVITY
-		spring.rotation.x = clamp(rotation_delta + spring.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		cam_pivot.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 		
 		#Weapon view
-		weapon.rotation.x = clamp(rotation_delta + spring.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		weapon.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 
 
 func _process(delta: float) -> void:

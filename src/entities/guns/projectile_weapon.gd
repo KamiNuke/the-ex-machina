@@ -12,7 +12,7 @@ signal _destroyed
 @onready var timer: Timer = $Timer
 @onready var weapon: Node3D = $Weapon
 @onready var barrel: RayCast3D = weapon.barrel
-var projectile = load("res://src/entities/throwable/projectile.tscn")
+var projectile = load("res://src/entities/throwable/bullet_projectile.tscn")
 var projectile_instance
 
 var cool_down: bool = false
