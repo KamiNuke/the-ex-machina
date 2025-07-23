@@ -1,70 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://drta2q1wjv5t8"]
+[gd_scene load_steps=3 format=3 uid="uid://drta2q1wjv5t8"]
 
 [ext_resource type="PackedScene" uid="uid://bbdmirch1iumj" path="res://src/levels/prefabs/crane_arrow.tscn" id="1_nsn0k"]
 [ext_resource type="PackedScene" uid="uid://cipjop8ting1d" path="res://src/levels/prefabs/crane_pillar.tscn" id="2_wjlqk"]
-
-[sub_resource type="Gradient" id="Gradient_wjlqk"]
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_8myco"]
-noise_type = 2
-frequency = 0.03
-cellular_jitter = 3.0
-cellular_return_type = 0
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_amplitude = 50.0
-domain_warp_fractal_type = 2
-domain_warp_fractal_lacunarity = 1.5
-domain_warp_fractal_gain = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pm2yd"]
-seamless = true
-color_ramp = SubResource("Gradient_wjlqk")
-noise = SubResource("FastNoiseLite_8myco")
-
-[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_mbwpx"]
-_shader_parameters = {
-&"bias_distance": 512.0,
-&"blend_sharpness": 0.5,
-&"depth_blur": 0.0,
-&"enable_macro_variation": true,
-&"enable_projection": true,
-&"flat_terrain_normals": false,
-&"macro_variation1": Color(1, 1, 1, 1),
-&"macro_variation2": Color(1, 1, 1, 1),
-&"macro_variation_slope": 0.333,
-&"mipmap_bias": 1.0,
-&"noise1_angle": 0.0,
-&"noise1_offset": Vector2(0.5, 0.5),
-&"noise1_scale": 0.04,
-&"noise2_scale": 0.076,
-&"noise_texture": SubResource("NoiseTexture2D_pm2yd"),
-&"projection_threshold": 0.8
-}
-show_checkered = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt4ah"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_r107u"]
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_lt4ah")
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_tev22"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_r107u")])
 
 [node name="Coliseum" type="Node3D"]
 
@@ -292,10 +229,3 @@ size = Vector3(4.71654, 9.59159, 0.1)
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
 transform = Transform3D(-0.720552, -0.693403, 0, 0.693403, -0.720552, 0, 0, 0, 1, -0.489, -39.577, -3.496)
 size = Vector3(4.71654, 9.59159, 0.1)
-
-[node name="Terrain3D" type="Terrain3D" parent="CSGCombiner3D"]
-material = SubResource("Terrain3DMaterial_mbwpx")
-assets = SubResource("Terrain3DAssets_tev22")
-show_checkered = true
-top_level = true
-metadata/_edit_lock_ = true
