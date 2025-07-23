@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=7 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
 [ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
-[ext_resource type="PackedScene" uid="uid://curbxgrljodh6" path="res://src/entities/weapon.tscn" id="2_dklf8"]
 [ext_resource type="PackedScene" uid="uid://drvs5gp6oq6lx" path="res://src/ui/crosshair.tscn" id="4_vm6si"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2lfla"]
@@ -27,9 +26,6 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 transform = Transform3D(1, 0, 0, 0, 0.99043, 0.138015, 0, -0.138015, 0.99043, 1.12083, 0.695985, 2.0913)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
-
-[node name="Weapon" parent="head/Camera3D" instance=ExtResource("2_dklf8")]
-transform = Transform3D(-4.47035e-08, 0.00746993, -0.999972, -0.138015, 0.990402, 0.00739845, 0.99043, 0.138011, 0.00103092, -0.177859, -0.173386, -2.06405)
 
 [node name="timers" type="Node" parent="."]
 
