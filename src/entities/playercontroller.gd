@@ -10,11 +10,7 @@ extends CharacterBody3D
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
 "BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
 
-#DEBUG
-@onready var weapon = $head/Camera3D/Weapon
-var projectile = preload("res://src/entities/projectile.tscn")
-var instance
-#DEBUG
+
 
 #STATUS VARIABLES
 @export var HP = 100
@@ -42,15 +38,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 		camera.rotate_x(-event.relative.y * SENSIVITY)
-		#DEBUG
-		#weapon.rotate_x(-event.relative.y * SENSIVITY)
-		#DEBUG
 		const LIMIT_VIEW_DOWN = -25
 		const LIMIT_VIEW_UP = 35
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
-		#DEBUG
-		weapon.rotation.x = clamp(weapon.rotation.x, deg_to_rad(0), deg_to_rad(0))
-		#DEBUG
 
 func _process(delta: float) -> void:
 	# Health Points process
@@ -122,16 +112,6 @@ func _physics_process(delta: float) -> void:
 	var target_fov = BASE_FOV + CHANGE_FOV * velocity_clamped
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
-	
-	if Input.is_action_pressed("attack"):
-		instance = projectile.instantiate()
-		instance.set_damage(DAMAGE)
-		instance.set_shooter(self)
-		instance.position = weapon.global_position
-		instance.transform.basis = weapon.global_transform.basis
-		
-		get_parent().add_child(instance)
-		#add_child(instance)
 	
 	
 	move_and_slide()
