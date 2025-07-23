@@ -1,32 +1,301 @@
-[gd_scene load_steps=4 format=3 uid="uid://drta2q1wjv5t8"]
+[gd_scene load_steps=10 format=3 uid="uid://drta2q1wjv5t8"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ydpf4"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[ext_resource type="PackedScene" uid="uid://bbdmirch1iumj" path="res://src/levels/prefabs/crane_arrow.tscn" id="1_nsn0k"]
+[ext_resource type="PackedScene" uid="uid://cipjop8ting1d" path="res://src/levels/prefabs/crane_pillar.tscn" id="2_wjlqk"]
 
-[sub_resource type="Sky" id="Sky_hjvbs"]
-sky_material = SubResource("ProceduralSkyMaterial_ydpf4")
+[sub_resource type="Gradient" id="Gradient_wjlqk"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="Environment" id="Environment_nsn0k"]
-background_mode = 2
-sky = SubResource("Sky_hjvbs")
-tonemap_mode = 2
-glow_enabled = true
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8myco"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pm2yd"]
+seamless = true
+color_ramp = SubResource("Gradient_wjlqk")
+noise = SubResource("FastNoiseLite_8myco")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_mbwpx"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": false,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_pm2yd"),
+&"projection_threshold": 0.8
+}
+show_checkered = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt4ah"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_r107u"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_lt4ah")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_tev22"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_r107u")])
 
 [node name="Coliseum" type="Node3D"]
-
-[node name="SUN" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.500003, -0.75, 0.43301, 0, 0.499998, 0.866026, -0.866024, -0.433016, 0.250001, 0, 59, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_nsn0k")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 collision_layer = 7
 collision_mask = 7
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="ground" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-size = Vector3(400, 1, 400)
+size = Vector3(200, 1, 200)
+
+[node name="borders" type="CSGCombiner3D" parent="CSGCombiner3D"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/borders"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -125, 12, 0)
+size = Vector3(200, 24, 50)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/borders"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 125, 12, 0)
+size = Vector3(200, 24, 50)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 125)
+size = Vector3(200, 24, 50)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, -125)
+size = Vector3(200, 24, 50)
+
+[node name="cranes" type="CSGCombiner3D" parent="CSGCombiner3D"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7191, 36.4832, 19.4417)
+size = Vector3(8, 50, 8)
+
+[node name="conteiner" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(0.919266, 0, -0.393637, 0, 1, 0, 0.393637, 0, 0.919266, -0.999676, 13.9603, 22.165)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner2" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.672793, 0, 0.739831, 0, 1, 0, -0.739831, 0, -0.672793, 9.17128, 13.9603, 12.2198)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner4" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.97054, 0, 0.240939, 0, 1, 0, -0.240939, 0, -0.97054, 10.6295, 17.9603, 8.89072)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner5" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.834078, 0, 0.551646, 0, 1, 0, -0.551646, 0, -0.834078, 3.56937, 17.9603, 16.784)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner6" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.14104, 16.2352, -0.0411558)
+size = Vector3(8, 8, 8)
+
+[node name="conteiner3" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.988084, 0, -0.153917, 0, 1, 0, 0.153917, 0, -0.988084, 10.9773, 13.9603, 4.23524)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner7" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.793948, 0, 0.607986, 0, 1, 0, -0.607986, 0, -0.793948, 0.550799, 13.9603, -5.1341)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner8" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.793948, 0, 0.607986, 0, 1, 0, -0.607986, 0, -0.793948, 5.21242, 13.9603, -11.9266)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner9" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.793948, 0, 0.607986, 0, 1, 0, -0.607986, 0, -0.793948, 11.1789, 13.9603, -12.6427)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner10" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.793948, 0, 0.607986, 0, 1, 0, -0.607986, 0, -0.793948, 6.29078, 13.9603, -20.053)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner11" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.737148, 0, 0.675732, 0, 1, 0, -0.675732, 0, -0.737148, 6.75069, 17.9603, -18.9717)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner12" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.905843, 0, 0.423614, 0, 1, 0, -0.423614, 0, -0.905843, 4.0492, 17.9603, -10.9469)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner14" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.978253, 0, 0.207416, 0, 1, 0, -0.207416, 0, -0.978253, 4.42725, 21.9603, -13.4319)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner15" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.659372, 0, 0.751817, 0, 1, 0, -0.751817, 0, -0.659372, -1.38045, 21.9603, -6.25259)
+size = Vector3(4, 4, 8)
+
+[node name="conteiner13" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.993787, 0, -0.111296, 0, 1, 0, 0.111296, 0, -0.993787, -1.1286, 17.9603, -4.83538)
+size = Vector3(4, 4, 8)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-2.11737e-08, -0.484397, 0.874848, 1, -4.37114e-08, 0, 3.82408e-08, 0.874848, 0.484397, -12.7211, 65.4832, 7.33411)
+size = Vector3(8, 94.7965, 8)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(0.79771, -0.106986, 0.593475, -0.0676387, 0.962053, 0.264346, -0.599236, -0.251013, 0.760203, -21.7066, 18.6109, -22.4074)
+size = Vector3(8, 13, 8)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+size = Vector3(50, 12, 50)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 30.5, -20)
+size = Vector3(8, 37, 8)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(0.949014, 0, 0.315235, 0, 1, 0, -0.315235, 0, 0.949014, -6.9747, 41.6028, -0.153485)
+height = 43.4196
+sides = 3
+
+[node name="Arrow1" type="Node3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(0.935549, 0.353197, 0, -0.353197, 0.935549, 0, 0, 0, 1, 47.023, 4.83482, 0)
+
+[node name="CraneArrow" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="CraneArrow2" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="CraneArrow3" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="CraneArrow4" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="CraneArrow5" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="CraneArrow8" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
+
+[node name="CraneArrow6" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="CraneArrow7" parent="CSGCombiner3D/cranes/Arrow1" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
+
+[node name="Arrow2" type="Node3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(0.173478, 0.0166671, 0.984697, -0.263477, -0.962625, 0.0627112, 0.948939, -0.270323, -0.162603, -8.78681, 13.2369, 43.4554)
+
+[node name="CraneArrow" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="CraneArrow2" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="CraneArrow3" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="CraneArrow4" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="CraneArrow5" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="CraneArrow8" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
+
+[node name="CraneArrow6" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="CraneArrow7" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
+
+[node name="CraneArrow9" parent="CSGCombiner3D/cranes/Arrow2" instance=ExtResource("1_nsn0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 0)
+
+[node name="pillars" type="Node3D" parent="CSGCombiner3D/cranes"]
+transform = Transform3D(-0.755076, 0.655582, 0.00849836, 0.261381, 0.289111, 0.920921, 0.601282, 0.697587, -0.389657, -46.0976, 17.1463, -50.6572)
+
+[node name="CranePillar" parent="CSGCombiner3D/cranes/pillars" instance=ExtResource("2_wjlqk")]
+
+[node name="CranePillar2" parent="CSGCombiner3D/cranes/pillars" instance=ExtResource("2_wjlqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="CranePillar5" parent="CSGCombiner3D/cranes/pillars" instance=ExtResource("2_wjlqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, 0)
+
+[node name="CranePillar3" parent="CSGCombiner3D/cranes/pillars" instance=ExtResource("2_wjlqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
+
+[node name="CranePillar4" parent="CSGCombiner3D/cranes/pillars" instance=ExtResource("2_wjlqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, -32, 0)
+
+[node name="road" type="CSGCombiner3D" parent="CSGCombiner3D/cranes/pillars"]
+use_collision = true
+collision_layer = 7
+collision_mask = 7
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.976672, -0.214735, -6.70552e-07, 0.214735, 0.976673, 6.25849e-07, -2.98023e-08, -3.57628e-07, 1, -0.150715, -2.35794, -3.552)
+size = Vector3(5, 13.4429, 0.1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.969872, 0.243615, 0, -0.243615, 0.969873, 0, 0, 0, 1, 0.235, 7.717, -3.552)
+size = Vector3(6.10547, 5.74683, 0.1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.989276, -0.146083, 0, 0.146084, 0.989273, 0, 0, 0, 1, 0.421, 19.019, -3.552)
+size = Vector3(3.89734, 16.064, 0.1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.955797, 0.294041, -4.91738e-07, -0.294042, 0.955794, 4.47035e-07, -1.04308e-07, -1.78814e-07, 1, -0.153431, 31.8754, -3.552)
+size = Vector3(5.13312, 8.13989, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.907778, 0.419452, -7.45058e-08, -0.419452, 0.907778, 1.19209e-07, 3.72529e-08, -5.96046e-08, 1, 0.302147, -13.8861, -3.46069)
+size = Vector3(5, 10.7008, 0.1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.999816, -0.0191975, 0, 0.0191974, 0.999817, 2.98023e-08, 0, -2.98023e-08, 1, 0.302002, -22.816, -3.496)
+size = Vector3(5.645, 5.951, 0.1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(0.919823, -0.392338, 0, 0.392338, 0.919823, 0, 0, 0, 1, 0.731, -29.327, -3.496)
+size = Vector3(4.71654, 9.59159, 0.1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/cranes/pillars/road"]
+transform = Transform3D(-0.720552, -0.693403, 0, 0.693403, -0.720552, 0, 0, 0, 1, -0.489, -39.577, -3.496)
+size = Vector3(4.71654, 9.59159, 0.1)
+
+[node name="Terrain3D" type="Terrain3D" parent="CSGCombiner3D"]
+material = SubResource("Terrain3DMaterial_mbwpx")
+assets = SubResource("Terrain3DAssets_tev22")
+show_checkered = true
+top_level = true
+metadata/_edit_lock_ = true

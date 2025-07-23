@@ -21,6 +21,7 @@ collision_mask = 4
 script = ExtResource("1_2lfla")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
 mesh = SubResource("CapsuleMesh_2lfla")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -46,7 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 0.997869, 0.0652464, 0, -0.0652464, 0.997869
 
 [node name="cam_collision" type="SpringArm3D" parent="head/cam_pivot"]
 transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, -7.45058e-09, 0.906308, 0, 0, 0)
-collision_mask = 3
 spring_length = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="head/cam_pivot/cam_collision"]

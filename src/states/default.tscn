@@ -1,20 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwi3huxw7eb2g"]
+[gd_scene load_steps=12 format=3 uid="uid://cwi3huxw7eb2g"]
 
 [ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/playercontroller.tscn" id="1_2evji"]
 [ext_resource type="Script" uid="uid://hunogrnk236b" path="res://src/states/default.gd" id="1_hjvbs"]
 [ext_resource type="PackedScene" uid="uid://cv8cfkuu60gff" path="res://src/items/collectable_part.tscn" id="3_feaac"]
 [ext_resource type="PackedScene" uid="uid://bnmicqvsnupvr" path="res://src/entities/enemy.tscn" id="4_i5v71"]
+[ext_resource type="PackedScene" uid="uid://drta2q1wjv5t8" path="res://src/levels/coliseum.tscn" id="5_iwx0s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2evji"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_hjvbs"]
+[sub_resource type="Sky" id="Sky_1tgr7"]
 sky_material = SubResource("ProceduralSkyMaterial_2evji")
 
 [sub_resource type="Environment" id="Environment_feaac"]
 background_mode = 2
-sky = SubResource("Sky_hjvbs")
+sky = SubResource("Sky_1tgr7")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -39,6 +40,7 @@ shadow_enabled = true
 environment = SubResource("Environment_feaac")
 
 [node name="PlayerController" parent="." instance=ExtResource("1_2evji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 6
 
 [node name="RobotPart" parent="." instance=ExtResource("3_feaac")]
@@ -75,17 +77,6 @@ use_collision = true
 radius = 100.0
 height = 0.01
 
-[node name="wall" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCombiner3D"]
-use_collision = true
-radius = 100.0
-height = 0.01
-
-[node name="wall_wall" type="CSGCylinder3D" parent="NavigationRegion3D/CSGCombiner3D/wall"]
-operation = 2
-use_collision = true
-radius = 95.9331
-height = 0.01
-
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(9.30287, 0, 0, 0, 0.00370638, 0, 0, 0, 1, -8.29446, -0.00248819, -8.94122)
 use_collision = true
@@ -97,6 +88,9 @@ transform = Transform3D(9.30287, 0, 0, 0, 0.00370638, 0, 0, 0, 1, 19.9406, -0.00
 use_collision = true
 collision_layer = 3
 size = Vector3(2.7832, 0.166748, 15.106)
+
+[node name="Coliseum" parent="NavigationRegion3D/CSGCombiner3D" instance=ExtResource("5_iwx0s")]
+transform = Transform3D(1, 0, 0, 0, 0.000398413, 0, 0, 0, 1, -7.63857, -0.00483329, -33.3786)
 
 [node name="CSGCombiner3D#balls" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.000398413, 0, 0, 0, 1, 0, -0.00483434, 0)

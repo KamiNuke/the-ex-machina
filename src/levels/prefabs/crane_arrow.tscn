@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bbdmirch1iumj"]
+
+[node name="CraneArrow" type="CSGCombiner3D"]
+use_collision = true
+collision_layer = 7
+collision_mask = 7
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.438999, 0.898488, 0, -0.898488, -0.438999, -0.214071, 3.04917, 2.42163)
+size = Vector3(2.42456, 0.2, 6.73587)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.472089, 0.881551, 0, -0.881551, 0.472089, -0.213135, 3.03661, -2.4995)
+size = Vector3(2.42627, 0.2, 6.63004)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9, 0)
+size = Vector3(6, 0.2, 2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+size = Vector3(6, 0.2, 8)

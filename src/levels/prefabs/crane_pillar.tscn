@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cipjop8ting1d"]
+
+[node name="CranePillar" type="CSGCombiner3D"]
+use_collision = true
+collision_layer = 7
+collision_mask = 7
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 4)
+radius = 0.25
+height = 16.0
+sides = 3
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, -4)
+radius = 0.25
+height = 16.0
+sides = 3
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+radius = 0.4
+height = 16.0
+sides = 3
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-0.646949, 0.762533, 0, -0.762533, -0.646949, 0, 0, 0, 1, 0, -4, 4)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.646949, -0.762533, -8.74228e-08, -0.762533, -0.646949, 0, -5.65581e-08, 6.66627e-08, -1, 0, -4, -4)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="."]
+transform = Transform3D(2.82791e-08, -3.33314e-08, 1, -0.762533, -0.646949, 0, 0.646949, -0.762533, -4.37114e-08, 4, -4, 0)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-8.48372e-08, 9.99941e-08, -1, -0.762533, -0.646949, 0, -0.646949, 0.762533, 1.31134e-07, -4, -4, 0)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-0.642788, -0.766044, 0, 0.766044, -0.642788, 0, 0, 0, 1, 0, 4, 4)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.642788, 0.766044, 8.74228e-08, 0.766044, -0.642788, 0, 5.61943e-08, 6.69697e-08, -1, 0, 4, -4)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="."]
+transform = Transform3D(2.80971e-08, 3.34849e-08, 1, 0.766044, -0.642788, 0, 0.642788, 0.766044, -4.37114e-08, 4, 4, 0)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="."]
+transform = Transform3D(2.80971e-08, 3.34849e-08, -1, 0.766044, -0.642788, 0, -0.642788, -0.766044, -4.37114e-08, -4, 4, 0)
+radius = 0.4
+height = 10.0
+sides = 3
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+radius = 0.4
+height = 16.0
+sides = 3
