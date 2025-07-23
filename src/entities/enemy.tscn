@@ -15,7 +15,7 @@ albedo_texture = ExtResource("2_ckup4")
 material = SubResource("StandardMaterial3D_l3u0p")
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("1_3nioo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
