@@ -19,6 +19,7 @@ var cool_down: bool = false
 var current_ammo: int = 0
 var available: bool = false
 
+@export var shooter : CharacterBody3D
 
 func _on_weapon_manager_2_fire() -> void:
 	if available:
@@ -31,6 +32,7 @@ func _on_weapon_manager_2_fire() -> void:
 
 func spawn_projectile() -> void:
 	projectile_instance = projectile.instantiate()
+	projectile_instance.shooter = shooter
 	projectile_instance.position = barrel.global_position
 	projectile_instance.transform.basis = barrel.global_transform.basis
 	get_parent().get_parent().get_parent().add_child(projectile_instance)

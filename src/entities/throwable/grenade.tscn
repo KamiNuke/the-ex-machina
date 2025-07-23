@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0iymp51kmco4"]
+[gd_scene load_steps=7 format=3 uid="uid://d0iymp51kmco4"]
 
 [ext_resource type="Script" uid="uid://dv0e1mc4478x3" path="res://src/entities/throwable/grenade.gd" id="1_ebjky"]
 
@@ -16,6 +16,8 @@ rings = 3
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr60x"]
 albedo_color = Color(0.20871, 0.20871, 0.20871, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ebjky"]
+
 [node name="Grenade" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_lr60x")
 continuous_cd = true
@@ -31,4 +33,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lr60x")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ebjky")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

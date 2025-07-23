@@ -23,6 +23,8 @@ var cool_down: bool = false
 var current_ammo: int = 0
 var available: bool = false
 
+@export var damage = 5
+@export var shooter : CharacterBody3D
 
 func _on_weapon_manager_2_fire() -> void:
 	if available:
@@ -33,6 +35,13 @@ func _on_weapon_manager_2_fire() -> void:
 				var pos
 				if aim_ray.get_collision_point():
 					pos = aim_ray.get_collision_point()
+					
+					#damage using laser
+					if aim_ray.is_colliding():
+						var collider_instance = aim_ray.get_collider()
+						if collider_instance != null:
+							if collider_instance != shooter and collider_instance.has_method("hit"):
+								collider_instance.hit(damage)
 				else:
 					pos = aim_ray_end.position
 				trail_instance.init(barrel.global_position, pos)

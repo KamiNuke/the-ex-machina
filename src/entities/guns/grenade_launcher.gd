@@ -21,6 +21,7 @@ var cool_down: bool = false
 var current_ammo: int = 0
 var available: bool = false
 
+@export var shooter : CharacterBody3D
 
 func _on_weapon_manager_2_fire() -> void:
 	if available:
@@ -33,6 +34,7 @@ func _on_weapon_manager_2_fire() -> void:
 
 func spawn_grenade() -> void:
 	grenade_instance = grenade.instantiate()
+	grenade_instance.shooter = shooter
 	grenade_instance.position = barrel.global_position
 	grenade_instance.transform.basis = weapon.global_transform.basis
 	get_parent().get_parent().get_parent().add_child(grenade_instance)

@@ -15,6 +15,9 @@ extends Area3D
 var alpha: float = 1.0
 const TIME: float = 1.0
 
+var damage = 1
+var shooter = null
+
 func _ready() -> void:
 	#coolision_sphere.scale = Vector3(blast_radius, blast_radius, blast_radius)
 	#mesh.scale = Vector3(outer_radius, outer_radius, outer_radius)
@@ -39,7 +42,17 @@ func _on_body_entered(body: Node3D) -> void:
 	var collision = space.intersect_ray(query)
 	if collision and collision.collider and collision.collider.is_in_group("props"):
 		body.linear_velocity = knockback_direction * knockback_amount
+	
+	# damage entity
+	if body.has_method("hit") and body != self:
+		body.hit(damage)
 
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+func set_shooter(current_shooter):
+	shooter = current_shooter
+	
+func set_damage(current_damage):
+	damage = current_damage

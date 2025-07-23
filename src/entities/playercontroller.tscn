@@ -29,12 +29,15 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 [node name="WeaponManager2" parent="." instance=ExtResource("2_udtjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.882099, 0, 0)
 
-[node name="GrenadeLauncher" parent="WeaponManager2" instance=ExtResource("4_p1m7e")]
+[node name="GrenadeLauncher" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("4_p1m7e")]
 throw_force = 20.0
+shooter = NodePath("../..")
 
-[node name="HitscanWeapon" parent="WeaponManager2" instance=ExtResource("2_dklf8")]
+[node name="HitscanWeapon" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("2_dklf8")]
+shooter = NodePath("../..")
 
-[node name="ProjectileWeapon" parent="WeaponManager2" instance=ExtResource("5_qsbkc")]
+[node name="ProjectileWeapon" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("5_qsbkc")]
+shooter = NodePath("../..")
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997869, 0.0652464, 0, -0.0652464, 0.997869, -0.0310897, 1.15966, 0.0913)
