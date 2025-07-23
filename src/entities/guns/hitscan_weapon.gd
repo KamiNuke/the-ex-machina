@@ -24,7 +24,7 @@ var current_ammo: int = 0
 var available: bool = false
 
 
-func _on_player_controller__attack() -> void:
+func _on_weapon_manager_2_fire() -> void:
 	if available:
 		if !cool_down:
 			if current_ammo < ammo:

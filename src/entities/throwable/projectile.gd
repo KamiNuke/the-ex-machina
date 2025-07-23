@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		queue_free()
 	else:
 		cur_gravity += delta * GRAVITY
-		position += transform.basis * Vector3(0, -cur_gravity, -SPEED) * delta
+		position += transform.basis * Vector3(cur_gravity, -SPEED, 0) * delta
 
 
 func _on_timer_timeout() -> void:

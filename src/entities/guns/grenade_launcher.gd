@@ -22,7 +22,7 @@ var current_ammo: int = 0
 var available: bool = false
 
 
-func _on_player_controller__attack() -> void:
+func _on_weapon_manager_2_fire() -> void:
 	if available:
 		if !cool_down:
 			if current_ammo < ammo:
@@ -36,7 +36,7 @@ func spawn_grenade() -> void:
 	grenade_instance.position = barrel.global_position
 	grenade_instance.transform.basis = weapon.global_transform.basis
 	get_parent().get_parent().get_parent().add_child(grenade_instance)
-	grenade_instance.apply_central_impulse(weapon.global_transform.basis.z.normalized() * throw_force + Vector3(0, up_direction, 0))
+	grenade_instance.apply_central_impulse(-weapon.global_transform.basis.z.normalized() * throw_force + Vector3(0, up_direction, 0))
 
 func _on_timer_timeout() -> void:
 	cool_down = false
