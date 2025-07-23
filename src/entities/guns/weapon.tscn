@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://curbxgrljodh6"]
+
+[ext_resource type="Script" uid="uid://v3n1ywno6ssq" path="res://src/entities/guns/weapon_base.gd" id="1_3va8b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vc4dk"]
+size = Vector3(0.2, 0.2, 0.6)
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_3va8b")
+
+[node name="model" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vc4dk")
+
+[node name="barrel" type="RayCast3D" parent="."]
+transform = Transform3D(1.0647e-15, -2.43574e-08, -0.191297, -0.208185, -9.10006e-09, 0, -2.43574e-08, 0.557233, -8.36186e-09, 0, 0, -0.360399)

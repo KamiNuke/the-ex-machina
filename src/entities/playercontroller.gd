@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
 @onready var head: Node3D = $"."
-@onready var camera: Camera3D = $head/Camera3D
+@onready var aim: RayCast3D = $head/spring/RayCast3D
+@onready var camera: Camera3D = $head/spring/Camera3D
+@onready var spring: SpringArm3D = $head/spring
 @onready var boost_left: Timer = $timers/boost_left
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $UI/Cooldown
@@ -15,6 +17,20 @@ extends CharacterBody3D
 #STATUS VARIABLES
 @export var HP = 100
 @export var DAMAGE = 20
+@export var LIMIT_VIEW_DOWN: int = -65
+@export var LIMIT_VIEW_UP: int = 35
+
+
+#DEBUG
+
+signal _attack
+
+@onready var weapon: Node3D = $WeaponManager2
+#var projectile = load("res://src/entities/throwable/projectile.tscn")
+#var explosion = load("res://src/entities/explosion.tscn")
+#var projectile_instance
+#var explosion_instance
+#DEBUG
 
 var speed
 var WALK_SPEED = player_legs
@@ -37,10 +53,13 @@ const CHANGE_FOV = 1.0
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSIVITY)
-		camera.rotate_x(-event.relative.y * SENSIVITY)
-		const LIMIT_VIEW_DOWN = -25
-		const LIMIT_VIEW_UP = 35
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+
+		var rotation_delta = -event.relative.y * SENSIVITY
+		spring.rotation.x = clamp(rotation_delta + spring.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+		
+		#Weapon view
+		weapon.rotation.x = clamp(rotation_delta + spring.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
+
 
 func _process(delta: float) -> void:
 	# Health Points process
@@ -72,7 +91,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	if aim.is_colliding():
+		weapon.look_at(aim.get_collision_point())
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -113,6 +135,21 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
+
+	if Input.is_action_pressed("one"):
+		weapon.switch_weapon(1)
+	
+	if Input.is_action_pressed("two"):
+		weapon.switch_weapon(2)
+		
+	if Input.is_action_pressed("three"):
+		weapon.switch_weapon(3)
+	
+	if Input.is_action_pressed("attack"):
+		emit_signal("_attack")
+		#spawn_explosion()
+	
+
 	
 	move_and_slide()
 
@@ -131,6 +168,7 @@ func _on_boost_left_timeout() -> void:
 
 func _on_boost_cooldown_timeout() -> void:
 	boost_cooldown.stop()
+
 
 func hit(damage_amount):
 	HP -= damage_amount
