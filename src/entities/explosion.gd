@@ -44,8 +44,13 @@ func _on_body_entered(body: Node3D) -> void:
 		body.linear_velocity = knockback_direction * knockback_amount
 	
 	# damage entity
-	if body.has_method("hit") and body != self:
-		body.hit(damage)
+	if is_instance_valid(body) and is_instance_valid(shooter):
+		if body != shooter and body.has_method("hit"):
+			var enemy_conflict = body.is_in_group("enemy") != shooter.is_in_group("enemy")
+			var player_conflict = body.is_in_group("player") != shooter.is_in_group("player")
+			if enemy_conflict or player_conflict:
+				body.call_deferred("hit", damage)
+
 
 
 func _on_timer_timeout() -> void:

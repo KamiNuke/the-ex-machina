@@ -16,10 +16,15 @@ const SCATTER_DISTANCE = 50
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var jump_timer: Timer = $timers/jump_timer
 
+@onready var weapon: Node3D = $WeaponManager
+signal _attack
+@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+
 
 var target_location := Vector3.ZERO
 const DISTANCE_FROM_PLAYER = 10.0
 var circle_angle = 0.0
+@export var ROTATION_SPEED = 5.0
 
 var is_circling = false
 var is_following = false
@@ -29,6 +34,7 @@ const JUMP_VELOCITY = 6.5
 
 func _ready() -> void:
 	scatter_timer.wait_time = randf_range(2.0, 4.0)
+	weapon.switch_weapon(randi_range(1, 3))
 
 func _process(delta: float) -> void:
 	if HP <= 0:
@@ -51,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
 	
 	if is_following:
+		emit_signal("_attack")
+		
+		weapon.look_at(navigation_agent_3d.get_target_position())
+		
 		var to_target = target_location - global_position
 		var distance = to_target.length()
 		var next_nav_point = nav_agent.get_next_path_position()
@@ -70,7 +80,10 @@ func _physics_process(delta: float) -> void:
 			velocity.x = to_circle.normalized().x * SPEED
 			velocity.z = to_circle.normalized().z * SPEED
 			
-		look_at(Vector3(target_location.x, global_position.y, target_location.z), Vector3.UP)
+		to_target.y = 0 
+		var target_angle = atan2(-to_target.x, -to_target.z)
+		rotation.y = lerp_angle(rotation.y, target_angle, delta * ROTATION_SPEED)
+		#look_at(Vector3(target_location.x, global_position.y, target_location.z), Vector3.UP)
 	else:
 		var next_nav_point = nav_agent.get_next_path_position()
 		var desired_velocity = (next_nav_point - global_position).normalized() * SCATTER_SPEED
@@ -89,7 +102,7 @@ func update_target_location(new_target_location):
 
 func hit(damage_amount):
 	HP -= damage_amount
-	print_debug(HP)
+	print("Enemy: ", HP)
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_jumping and not is_circling:

@@ -69,6 +69,7 @@ func _process(delta: float) -> void:
 		pass
 	elif HP <= 0:
 		#death screen
+		#queue_free()
 		pass
 	
 	# set walk speed and boost cooldown every frame in case of it being changed
@@ -172,4 +173,5 @@ func _on_boost_cooldown_timeout() -> void:
 
 
 func hit(damage_amount):
+	print("Player: ", HP)
 	HP -= damage_amount

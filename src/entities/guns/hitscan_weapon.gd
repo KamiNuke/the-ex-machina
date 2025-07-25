@@ -39,9 +39,12 @@ func _on_weapon_manager_2_fire() -> void:
 					#damage using laser
 					if aim_ray.is_colliding():
 						var collider_instance = aim_ray.get_collider()
-						if collider_instance != null:
+						if is_instance_valid(collider_instance) and is_instance_valid(shooter):
 							if collider_instance != shooter and collider_instance.has_method("hit"):
-								collider_instance.hit(damage)
+								var enemy_conflict = collider_instance.is_in_group("enemy") != shooter.is_in_group("enemy")
+								var player_conflict = collider_instance.is_in_group("player") != shooter.is_in_group("player")
+								if enemy_conflict or player_conflict:
+									collider_instance.call_deferred("hit", damage)
 				else:
 					pos = aim_ray_end.position
 				trail_instance.init(barrel.global_position, pos)

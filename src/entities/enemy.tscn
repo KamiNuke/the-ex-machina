@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnmicqvsnupvr"]
+[gd_scene load_steps=11 format=3 uid="uid://bnmicqvsnupvr"]
 
 [ext_resource type="Script" uid="uid://bv6b38a5q73n6" path="res://src/entities/enemy.gd" id="1_3nioo"]
 [ext_resource type="Texture2D" uid="uid://7784j8dvft7l" path="res://assets/icon.svg" id="2_ckup4"]
+[ext_resource type="PackedScene" uid="uid://cvwdxebxx1yi5" path="res://src/entities/weapon_manager.tscn" id="3_h6j4r"]
+[ext_resource type="PackedScene" uid="uid://j0nas67m2oo5" path="res://src/entities/guns/grenade_launcher.tscn" id="4_rt1vh"]
+[ext_resource type="PackedScene" uid="uid://ctkv0cxdu136o" path="res://src/entities/guns/hitscan_weapon.tscn" id="5_6j36w"]
+[ext_resource type="PackedScene" uid="uid://b5flwp06tvo7r" path="res://src/entities/guns/projectile_weapon.tscn" id="6_ttpmo"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3nioo"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
@@ -15,6 +19,7 @@ albedo_texture = ExtResource("2_ckup4")
 material = SubResource("StandardMaterial3D_l3u0p")
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 5
 collision_mask = 4
 script = ExtResource("1_3nioo")
 
@@ -51,8 +56,30 @@ autostart = true
 [node name="jump_timer" type="Timer" parent="timers"]
 one_shot = true
 
+[node name="WeaponManager" parent="." instance=ExtResource("3_h6j4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.854268, 0, 0)
+
+[node name="GrenadeLauncher" parent="WeaponManager" node_paths=PackedStringArray("shooter") instance=ExtResource("4_rt1vh")]
+ammo = 999
+throw_force = 10.0
+cool_down_count = 3.0
+shooter = NodePath("../..")
+
+[node name="HitscanWeapon" parent="WeaponManager" node_paths=PackedStringArray("shooter") instance=ExtResource("5_6j36w")]
+ammo = 999
+shooter = NodePath("../..")
+
+[node name="ProjectileWeapon" parent="WeaponManager" node_paths=PackedStringArray("shooter") instance=ExtResource("6_ttpmo")]
+ammo = 999
+cool_down_count = 0.5
+shooter = NodePath("../..")
+
+[connection signal="_attack" from="." to="WeaponManager" method="_on_player_controller__attack"]
 [connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="timers/scatter_timer" to="." method="scatter"]
+[connection signal="fire" from="WeaponManager" to="WeaponManager/GrenadeLauncher" method="_on_weapon_manager_2_fire"]
+[connection signal="fire" from="WeaponManager" to="WeaponManager/HitscanWeapon" method="_on_weapon_manager_2_fire"]
+[connection signal="fire" from="WeaponManager" to="WeaponManager/ProjectileWeapon" method="_on_weapon_manager_2_fire"]
