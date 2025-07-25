@@ -28,6 +28,7 @@ func _integrate_forces(state):
 			state.apply_force(FORCE)
 			swap_parts()
 			if body_legs == BodyParts.NO_LEGS:
+				player_instance.add_hp(20)
 				await get_tree().create_timer(.25).timeout
 				queue_free()
 

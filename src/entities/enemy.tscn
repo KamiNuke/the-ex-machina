@@ -67,11 +67,12 @@ shooter = NodePath("../..")
 
 [node name="HitscanWeapon" parent="WeaponManager" node_paths=PackedStringArray("shooter") instance=ExtResource("5_6j36w")]
 ammo = 999
+cool_down_count = 0.7
 shooter = NodePath("../..")
 
 [node name="ProjectileWeapon" parent="WeaponManager" node_paths=PackedStringArray("shooter") instance=ExtResource("6_ttpmo")]
 ammo = 999
-cool_down_count = 0.5
+cool_down_count = 1.0
 shooter = NodePath("../..")
 
 [connection signal="_attack" from="." to="WeaponManager" method="_on_player_controller__attack"]

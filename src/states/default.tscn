@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwi3huxw7eb2g"]
+[gd_scene load_steps=13 format=3 uid="uid://cwi3huxw7eb2g"]
 
 [ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/playercontroller.tscn" id="1_2evji"]
 [ext_resource type="Script" uid="uid://hunogrnk236b" path="res://src/states/default.gd" id="1_hjvbs"]
 [ext_resource type="PackedScene" uid="uid://cv8cfkuu60gff" path="res://src/items/collectable_part.tscn" id="3_feaac"]
 [ext_resource type="PackedScene" uid="uid://bnmicqvsnupvr" path="res://src/entities/enemy.tscn" id="4_i5v71"]
 [ext_resource type="PackedScene" uid="uid://drta2q1wjv5t8" path="res://src/levels/coliseum.tscn" id="5_iwx0s"]
+[ext_resource type="PackedScene" uid="uid://c7q1i4qv0h7nr" path="res://src/states/death_screen.tscn" id="6_1tgr7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2evji"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -31,6 +32,24 @@ size = Vector3(10, 50, 10)
 
 [node name="default" type="Node"]
 script = ExtResource("1_hjvbs")
+
+[node name="DeathScreen" parent="." instance=ExtResource("6_1tgr7")]
+visible = false
+
+[node name="ColorRect" parent="DeathScreen" index="0"]
+layout_mode = 0
+
+[node name="text" parent="DeathScreen" index="1"]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 538.0
+
+[node name="Buttons" parent="DeathScreen" index="2"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 136.0
+offset_right = 1024.0
+offset_bottom = 648.0
 
 [node name="SUN" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.500003, -0.749999, 0.43301, 0, 0.499998, 0.866027, -0.866024, -0.433016, 0.250001, 0, 27, 0)
@@ -105,3 +124,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6447, 8, 130.824)
 [node name="CollectablePart" parent="." instance=ExtResource("3_feaac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.6447, 12, 115.824)
 body_legs = 4
+
+[connection signal="button_up" from="DeathScreen/Buttons/Reborn" to="." method="_on_reborn_button_up"]
+[connection signal="button_up" from="DeathScreen/Buttons/Escape" to="." method="_on_escape_button_up"]
+[connection signal="player_death" from="PlayerController" to="." method="_on_player_controller_player_death"]
+
+[editable path="DeathScreen"]

@@ -21,10 +21,13 @@ extends CharacterBody3D
 @export var LIMIT_VIEW_DOWN: int = -65
 @export var LIMIT_VIEW_UP: int = 35
 
+var is_alive = true
+@onready var model_3d: MeshInstance3D = $MeshInstance3D
 
 #DEBUG
 
 signal _attack
+signal player_death
 
 @onready var weapon: Node3D = $WeaponManager2
 #var projectile = load("res://src/entities/throwable/projectile.tscn")
@@ -52,7 +55,7 @@ var t_bob = 0.0 #don't touch
 const CHANGE_FOV = 1.0
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and is_alive:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 
 		var rotation_delta = -event.relative.y * SENSIVITY
@@ -64,12 +67,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	# Health Points process
-	if HP <= 20:
-		player_legs = BodyParts.NO_LEGS
-		pass
-	elif HP <= 0:
+	if HP <= 0 and is_alive:
+		print("cooked")
+		disable_collision()
+		is_alive = false
+		model_3d.visible = false
+		emit_signal("player_death")
+	elif HP < 20:
 		#death screen
-		#queue_free()
+		player_legs = BodyParts.NO_LEGS
 		pass
 	
 	# set walk speed and boost cooldown every frame in case of it being changed
@@ -91,7 +97,7 @@ func update_cooldown_ui():
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and is_alive:
 		velocity += get_gravity() * delta
 	
 	if aim.is_colliding():
@@ -175,3 +181,18 @@ func _on_boost_cooldown_timeout() -> void:
 func hit(damage_amount):
 	print("Player: ", HP)
 	HP -= damage_amount
+
+func add_hp(hp_amount):
+	HP += hp_amount
+
+func restore_model_visibility():
+	model_3d.visible = true
+
+func disable_collision():
+	$CollisionShape3D.disabled = true
+	$CollectableArea/CollisionShape3D.disabled = true
+	
+func enable_collision():
+	$CollisionShape3D.disabled = false
+	$CollectableArea/CollisionShape3D.disabled = false
+	
