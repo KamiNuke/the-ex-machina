@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7q1i4qv0h7nr"]
+
+[ext_resource type="Shader" uid="uid://dyk4tmp1jy4gy" path="res://src/shaders/simple_blur.gdshader" id="1_f6wm3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ks4u"]
+shader = ExtResource("1_f6wm3")
+shader_parameter/lod = 2.5
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1ks4u")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="text" type="VBoxContainer" parent="."]
+offset_top = 108.0
+offset_right = 1150.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="text"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "You are dead"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+offset_left = 320.0
+offset_top = 272.0
+offset_right = 832.0
+offset_bottom = 632.0
+alignment = 1
+
+[node name="Reborn" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Reborn"
+
+[node name="Escape" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Escape"

@@ -19,6 +19,8 @@ albedo_color = Color(0.20871, 0.20871, 0.20871, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ebjky"]
 
 [node name="Grenade" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_lr60x")
 continuous_cd = true
 script = ExtResource("1_ebjky")

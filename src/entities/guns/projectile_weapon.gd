@@ -30,6 +30,7 @@ func _on_weapon_manager_2_fire() -> void:
 				cool_down = true
 				timer.start(cool_down_count)
 
+
 func spawn_projectile() -> void:
 	projectile_instance = projectile.instantiate()
 	projectile_instance.shooter = shooter

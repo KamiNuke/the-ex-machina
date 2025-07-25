@@ -39,6 +39,7 @@ scale_curve = SubResource("CurveTexture_f66dg")
 size = Vector3(0.02, 0.02, 0.06)
 
 [node name="Hitscan" type="MeshInstance3D"]
+layers = 5
 material_override = SubResource("StandardMaterial3D_j7i5e")
 script = ExtResource("1_j7i5e")
 
@@ -47,6 +48,7 @@ wait_time = 3.0
 
 [node name="sparks" type="GPUParticles3D" parent="."]
 transform = Transform3D(-0.0707993, 3.60016e-16, 7.29456e-09, 6.18947e-09, 4.11811e-09, 0.0834401, 0, 0.0942113, -3.64728e-09, 0, 0, 0)
+layers = 5
 material_override = SubResource("StandardMaterial3D_f66dg")
 cast_shadow = 0
 emitting = false

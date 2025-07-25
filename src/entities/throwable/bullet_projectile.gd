@@ -21,11 +21,13 @@ func _process(delta: float) -> void:
 	#print_debug(ray.position)
 	if ray.is_colliding():
 		var collider_instance = ray.get_collider()
-		if collider_instance != null:
-			var parent = get_parent()
-			if parent != null:
-				if collider_instance != shooter and collider_instance.has_method("hit"):
-					collider_instance.hit(damage)
+		if is_instance_valid(collider_instance) and is_instance_valid(shooter):
+			if collider_instance != shooter and collider_instance.has_method("hit"):
+				var enemy_conflict = collider_instance.is_in_group("enemy") != shooter.is_in_group("enemy")
+				var player_conflict = collider_instance.is_in_group("player") != shooter.is_in_group("player")
+				if enemy_conflict or player_conflict:
+					collider_instance.call_deferred("hit", damage)
+
 			ray.enabled = false
 		#print_debug("hit")
 		mesh.visible = false
