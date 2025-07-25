@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbqnhbf0kqjrt"
-path="res://.godot/imported/basement_metal.glb-18ce3cd00e71f4d7a7b9bd86cf412f7a.scn"
+uid="uid://bpf72r7627v0m"
+path="res://.godot/imported/pillar_destroyed.glb-0a8d10523a784140e4150dbe12b2ded6.scn"
 
 [deps]
 
-source_file="res://assets/models/crane/cranes/basement_metal.glb"
-dest_files=["res://.godot/imported/basement_metal.glb-18ce3cd00e71f4d7a7b9bd86cf412f7a.scn"]
+source_file="res://assets/models/cranes/raw/pillar_destroyed.glb"
+dest_files=["res://.godot/imported/pillar_destroyed.glb-0a8d10523a784140e4150dbe12b2ded6.scn"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bbdmirch1iumj" path="res://src/levels/prefabs/crane_arrow.tscn" id="1_nsn0k"]
 [ext_resource type="PackedScene" uid="uid://cipjop8ting1d" path="res://src/levels/prefabs/crane_pillar.tscn" id="2_wjlqk"]
-[ext_resource type="PackedScene" uid="uid://dbqnhbf0kqjrt" path="res://assets/models/crane/cranes/basement_metal.glb" id="3_8myco"]
+[ext_resource type="PackedScene" uid="uid://bleeu4wslro6k" path="res://assets/models/cranes/basement_metal.tscn" id="3_8myco"]
 
 [node name="Coliseum" type="Node3D"]
 
@@ -240,7 +240,7 @@ transform = Transform3D(0.993715, 0.111937, 0, -0.111937, 0.993715, 0, 0, 0, 1, 
 transform = Transform3D(0.997685, -0.0677492, -0.00580935, 0.0672688, 0.995857, -0.0611919, 0.00993099, 0.0606595, 0.998109, -1.9156, -12.5654, -0.576758)
 
 [node name="basement_metal" parent="CSGCombiner3D/cranes" instance=ExtResource("3_8myco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.46891, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.55561, 0)
 
 [node name="boat" type="CSGCombiner3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.49426, 0, 0.869314, 0, 1, 0, -0.869314, 0, 0.49426, 29.8709, -1.14441e-05, -127.751)
