@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=4 uid="uid://cmfgb32bagf6l"]
+
+[ext_resource type="Texture2D" uid="uid://cm1qs4641nnba" path="res://assets/materials/metal/crane_body.png" id="2_hbn3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndpmr"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wf0xw"]
+_surfaces = [{
+"aabb": AABB(-4, 0, -4, 8, 16, 8),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUABwAEAAYABwAGAAUACAAJAAoACgAJAAsACAAMAAkACgALAA0ADgAMAAgADQALAA8ADgAPAAwADQAPAA4A"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAA//8AAP////8AAAAA////////AAD//wAAAAAAAH4EAACA+wAAfgT//34EAAB+BAAAfgQAAID7//9+BAAAfgT//4D7AACA+wAAfgQAAID7AACA+wAAgPv//4D7AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8d5sd"]
+resource_name = "pillar_16_Cube_004"
+_surfaces = [{
+"aabb": AABB(-4, 0, -4, 8, 16, 8),
+"attribute_data": PackedByteArray("/1////8//7//X/+//z////8///+GIP+//z//v4Yg//+GIP//AAD/v4Yg/78AAP///3////9f/7//f/+//1////+f////v/+//7////+f/7//v////9//v//f////v/+//9///////7///////9//v/9/////n/+//5////9//78="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
+"material": SubResource("StandardMaterial3D_ndpmr"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("AAAAAP///78AAP//AAD/vwAA//////+/AAAAAAAA/78AAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAP+//////////7//////AAD/v///AAD///+///8AAP//AIAAAP////8AgP///////wCAAAAAAP//AIB+BAAAgPv/v34E//9+BP+/fgQAAH4E/79+BP//gPv/v34EAAB+BACAgPv//34EAICA+wAAfgQAgH4E//9+BACAgPsAAH4E/7+A+///gPv/v4D7AACA+/+/gPv//34E/7+A+wAAgPv//34E//+A+///fgQAAID7//+A+///gPv///9/////f////3////9/////f////3////9/////f////38AAP9/AAD/fwAA/38AAP9/////f////3////9/////fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wf0xw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al7p0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_hbn3l")
+metallic_specular = 0.0
+uv1_scale = Vector3(8, 4, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3l18f"]
+size = Vector3(8, 16, 8)
+
+[node name="pillar_16" type="StaticBody3D"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Cube_004" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_8d5sd")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_al7p0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+shape = SubResource("BoxShape3D_3l18f")

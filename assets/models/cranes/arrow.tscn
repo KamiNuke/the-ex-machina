@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=4 uid="uid://bavlvxs8aa0gd"]
+
+[ext_resource type="Texture2D" uid="uid://cm1qs4641nnba" path="res://assets/materials/metal/crane_body.png" id="2_yhj2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8klpa"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vsgap"]
+_surfaces = [{
+"aabb": AABB(-4, 0.012265, -28.5, 8, 7, 60),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAQAAAAQAAQAEAAMAAAACAAUAAAAFAAQAAgADAAUABAAFAAMABgAHAAgABwAJAAgACAAKAAYACAAJAAoABgALAAcABwALAAkABgAKAAsACgAJAAsA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAAAAP//AAD/f/7/qeoAAP//AAD//wAA/3///1UVAAAAAAAAAAAAAP//AAAAAAAAIgfBBMf9AADc+MEEx/0AAP9/fPbQ6AAA/3989i4XAAAiB8EENwIAANz4wQQ3AgAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_668v0"]
+resource_name = "arrow_Plane_001"
+_surfaces = [{
+"aabb": AABB(-4, 0.012265, -28.5, 8, 7, 60),
+"attribute_data": PackedByteArray("7l4KQP9vDTAQgQpA7l7nHxCB5x//bw0w/z8AAP9fqer/P////19VFf8fAAD/P////x////8/AAAAAFUV/x///wAAqer/HwAA7l4KQBCBCkD/bw0w7l7nH/9vDTAQgecf/z8AAP9fqer/X1UV/z////8fAAD/P////z8AAP8f//8AAFUV/x////8fAAAAAKnq"),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgABgAJAAcACgALAAwACgANAAsADgAPABAADgARAA8AEgATABQAFQAWABcAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEA"),
+"material": SubResource("StandardMaterial3D_8klpa"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAAAAP//RJn/f/7/qepEmf//AAD//0SZAAAAAAAAueb//wAAAAC55v9///9VFbnm//8AAP//buL/f///VRVu4v//AAAAAG7i/3/+/6nqbuIAAAAA////v///AAAAAP+/AAAAAAAA/7///wAA////v/9//v+p6m7iAAAAAAAAbuL/f///VRVu4gAAAAD//27iIgfBBMf9Cxrc+MEEx/0LGv9/fPbQ6AsaIgfBBDcC9GX/f3z2Lhf0Zdz4wQQ3AvRl3PjBBMf9kB3/f3z2LheQHf9/fPbQ6JAd3PjBBDcCkB0iB8EEx/3/P9z4wQQ3Av8/3PjBBMf9/z8iB8EENwL/P/9/fPbQ6JAdIgfBBDcCkB0iB8EEx/2QHf9/fPYuF5Ad////f////3////9/////f////3////9/mjHJHJoxyRyaMckcmjHJHAAA/38AAP9/AAD/fwAA/381Y5qxNWOasTVjmrE1Y5qxAAD/fwAA/38AAP9/AAD/fwAA/38AAP9/ZM4142TONeNkzjXjZM414////3////9/////f////3/JnGROyZxkTsmcZE7JnGRO")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vsgap")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v77xl"]
+transparency = 2
+alpha_scissor_threshold = 0.1
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_yhj2g")
+uv1_scale = Vector3(8, 4, 8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tfu1a"]
+data = PackedVector3Array(-4, 0.0123, 31.5, -0.0001, 7.0122, 26.4993, 4, 0.0123, 31.5, -4, 0.0123, -28.5, 4, 0.0123, -28.5, -0.0001, 7.0123, -23.5002, 4, 0.0123, 31.5, -0.0001, 7.0123, -23.5002, 4, 0.0123, -28.5, 4, 0.0123, 31.5, -0.0001, 7.0122, 26.4993, -0.0001, 7.0123, -23.5002, -4, 0.0123, 31.5, 4, 0.0123, -28.5, -4, 0.0123, -28.5, -4, 0.0123, 31.5, 4, 0.0123, 31.5, 4, 0.0123, -28.5, -0.0001, 7.0122, 26.4993, -4, 0.0123, -28.5, -0.0001, 7.0123, -23.5002, -0.0001, 7.0122, 26.4993, -4, 0.0123, 31.5, -4, 0.0123, -28.5)
+
+[node name="arrow" type="StaticBody3D"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Plane_003" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_668v0")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_v77xl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_tfu1a")

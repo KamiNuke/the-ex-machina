@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://drta2q1wjv5t8"]
+[gd_scene load_steps=13 format=3 uid="uid://drta2q1wjv5t8"]
 
+[ext_resource type="PackedScene" uid="uid://bey6khmknn3i3" path="res://assets/models/cranes/pillar_32.tscn" id="1_tvx8i"]
 [ext_resource type="PackedScene" uid="uid://bleeu4wslro6k" path="res://assets/models/cranes/basement_metal.tscn" id="3_8myco"]
 [ext_resource type="PackedScene" uid="uid://1n6p2v7bvlav" path="res://assets/models/props/conteiner_blue.tscn" id="4_mbwpx"]
 [ext_resource type="PackedScene" uid="uid://uovbhf71d8xg" path="res://assets/models/props/conteiner_red.tscn" id="5_lt4ah"]
 [ext_resource type="PackedScene" uid="uid://easbg5stgfi" path="res://assets/models/terrain/terrain2.tscn" id="6_lt4ah"]
+[ext_resource type="PackedScene" uid="uid://cmfgb32bagf6l" path="res://assets/models/cranes/pillar_16.tscn" id="7_4h858"]
 [ext_resource type="PackedScene" uid="uid://r1pq1gwlei4h" path="res://assets/models/terrain/lake.tscn" id="7_r107u"]
 [ext_resource type="PackedScene" uid="uid://carosy2hjhjtc" path="res://assets/models/cranes/pillar_destroyed.tscn" id="7_tev22"]
-[ext_resource type="PackedScene" uid="uid://b3w3r7761tu70" path="res://assets/models/cranes/arrow_destroyed_down.tscn" id="8_nescs"]
-[ext_resource type="PackedScene" uid="uid://bbr4fs0x00ag8" path="res://assets/models/cranes/arrow_destroyed_up.tscn" id="8_tev22"]
+[ext_resource type="PackedScene" uid="uid://b325x3rtukbb8" path="res://assets/models/cranes/arrow_destroyed_down.tscn" id="8_nescs"]
+[ext_resource type="PackedScene" uid="uid://dbe8563qqssgh" path="res://assets/models/cranes/arrow_destroyed_up.tscn" id="8_tev22"]
+[ext_resource type="PackedScene" uid="uid://c2oojhhhem8m6" path="res://assets/models/cranes/pillar_48.tscn" id="9_486vg"]
+[ext_resource type="PackedScene" uid="uid://bavlvxs8aa0gd" path="res://assets/models/cranes/arrow.tscn" id="10_4h858"]
 
 [node name="Coliseum" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -20,92 +24,91 @@ collision_mask = 7
 [node name="cranes" type="CSGCombiner3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.965021, 0, -0.262172, 0, 1, 0, 0.262172, 0, 0.965021, -18.2108, 23.5171, 0.0805119)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7191, 36.4832, 19.4417)
-size = Vector3(8, 50, 8)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(-2.11737e-08, -0.484397, 0.874848, 1, -4.37114e-08, 0, 3.82408e-08, 0.874848, 0.484397, -12.7211, 65.4832, 7.33411)
-size = Vector3(8, 94.7965, 8)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(0.712617, 0.470491, 0.520409, 0.0100178, 0.734887, -0.678121, -0.701492, 0.488446, 0.518979, -22.887, 12.8424, -25.1991)
-size = Vector3(8, 7.16064, 5.64502)
+[node name="pillar_32" parent="CSGCombiner3D/cranes" instance=ExtResource("1_tvx8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 12, -20)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.29688, 0)
 size = Vector3(50, 36.5938, 50)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 28.3052, -20)
-size = Vector3(8, 32.6105, 8)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(0.966842, -0.255378, 0, 0.245112, 0.927975, -0.280684, 0.0716805, 0.271376, 0.959802, 17.5706, 51.0885, -17.4532)
-size = Vector3(8, 15.0356, 8)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/cranes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 17.7187, 20)
-size = Vector3(8, 11.4374, 8)
 
 [node name="basement_metal" parent="CSGCombiner3D/cranes" instance=ExtResource("3_8myco")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.55561, 0)
 collision_layer = 7
 collision_mask = 7
 
-[node name="conteiner16" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiners" type="Node3D" parent="CSGCombiner3D/cranes"]
+
+[node name="conteiner16" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(0.547884, 0, -0.836555, 0, 1, 0, 0.836555, 0, 0.547884, 4.28164, 12.0544, 20.992)
 
-[node name="conteiner24" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiner24" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(0.135449, -0.129055, -0.982346, 0.746819, 0.664846, 0.0156299, 0.651091, -0.735748, 0.186433, -21.7689, 14.8613, 8.59264)
 
-[node name="conteiner30" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiner30" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(-0.426397, 0, -0.904539, 0, 1, 0, 0.904539, 0, -0.426397, -2.11545, 16.0399, -16.0206)
 
-[node name="conteiner33" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiner33" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(0.204718, 0, -0.978823, 0, 1, 0, 0.978823, 0, 0.204718, -10.1519, 16.0399, -6.09577)
 
-[node name="conteiner26" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiner26" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(-0.467253, 0, -0.884127, 0, 1, 0, 0.884127, 0, -0.467253, 1.71742, 12.0586, -21.9371)
 
-[node name="conteiner25" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiner25" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(0.0132126, 0, 0.999916, 0, 1, 0, -0.999916, 0, 0.0132126, -11.7057, 11.9852, -6.1716)
 
-[node name="conteiner20" parent="CSGCombiner3D/cranes" instance=ExtResource("4_mbwpx")]
+[node name="conteiner20" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("4_mbwpx")]
 transform = Transform3D(0.0187511, -0.0402153, 0.999018, -0.999802, 0.00598942, 0.0190066, -0.00674953, -0.999175, -0.0400943, 21.7812, 15.8775, 16.4887)
 
-[node name="conteiner17" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner17" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(0.349919, 0.801812, -0.484414, -0.927726, 0.368328, -0.0604828, 0.129928, 0.470568, 0.872747, 14.5761, 15.403, 3.77199)
 
-[node name="conteiner18" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner18" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.61179, 0, -0.791021, 0, 1, 0, 0.791021, 0, -0.61179, 11.9097, 12.0143, 3.868)
 
-[node name="conteiner19" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner19" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.983086, 0, -0.183145, 0, 1, 0, 0.183145, 0, -0.983086, 5.52268, 12.0143, 9.9606)
 
-[node name="conteiner27" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner27" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.665452, 0, 0.746442, 0, 1, 0, -0.746442, 0, -0.665452, -22.0025, 12.0143, -2.16196)
 
-[node name="conteiner31" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner31" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.822453, 0, 0.568836, 0, 1, 0, -0.568836, 0, -0.822453, -4.54669, 16.1092, -10.0028)
 
-[node name="conteiner32" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner32" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(0.816956, 0, 0.576704, 0, 1, 0, -0.576704, 0, 0.816956, -16.4177, 16.1092, -2.89211)
 
-[node name="conteiner28" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner28" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.862241, 0, -0.5065, 0, 1, 0, 0.5065, 0, -0.862241, -5.37578, 12.0143, -11.0648)
 
-[node name="conteiner29" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner29" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.862241, 0, -0.5065, 0, 1, 0, 0.5065, 0, -0.862241, -5.25117, 12.0143, -6.58505)
 
-[node name="conteiner23" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner23" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.954194, 0, -0.299191, 0, 1, 0, 0.299191, 0, -0.954194, -19.7428, 12.0143, 11.8628)
 
-[node name="conteiner22" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner22" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.134868, 0, 0.990865, 0, 1, 0, -0.990865, 0, -0.134868, 4.27325, 16.0611, 14.8285)
 
-[node name="conteiner21" parent="CSGCombiner3D/cranes" instance=ExtResource("5_lt4ah")]
+[node name="conteiner21" parent="CSGCombiner3D/cranes/conteiners" instance=ExtResource("5_lt4ah")]
 transform = Transform3D(-0.828159, 0, -0.560495, 0, 1, 0, 0.560495, 0, -0.828159, 7.7277, 16.4211, 7.46273)
+
+[node name="pillar_destroyed" parent="CSGCombiner3D/cranes" instance=ExtResource("7_tev22")]
+transform = Transform3D(-0.728513, -0.214051, -0.650732, 0.0259898, 0.940608, -0.3385, 0.684539, -0.263513, -0.679682, -44.4529, 10.8594, -45.705)
+
+[node name="arrow_destroyed_up" parent="CSGCombiner3D/cranes" instance=ExtResource("8_tev22")]
+transform = Transform3D(-0.0297468, 0.20749, 0.977786, 0.106358, 0.973321, -0.203307, -0.993883, 0.0979471, -0.0510217, 29.1936, 11.5848, -6.00453)
+
+[node name="arrow_destroyed_down" parent="CSGCombiner3D/cranes" instance=ExtResource("8_nescs")]
+transform = Transform3D(0.989563, -0.138082, -0.0412319, -0.118778, -0.943551, 0.309197, -0.0815999, -0.301072, -0.950104, -4.93095, -6.6484, 84.5553)
+
+[node name="pillar_16" parent="CSGCombiner3D/cranes" instance=ExtResource("7_4h858")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.57, 12, 20)
+
+[node name="pillar_48" parent="CSGCombiner3D/cranes" instance=ExtResource("9_486vg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 12, 20)
+
+[node name="pillar_17" parent="CSGCombiner3D/cranes" instance=ExtResource("7_4h858")]
+transform = Transform3D(0.949103, -0.314903, 0.006448, 0.300164, 0.8981, -0.321431, 0.0954286, 0.307007, 0.946912, 19.8588, 40.8806, -20.1664)
 
 [node name="boat" type="CSGCombiner3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.49426, 0, 0.869314, 0, 1, 0, -0.869314, 0, 0.49426, 23.3963, 1.81557, -130.063)
@@ -768,11 +771,8 @@ sides = 16
 [node name="lake" parent="." instance=ExtResource("7_r107u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.144, -1, 7.41066)
 
-[node name="pillar_destroyed" parent="." instance=ExtResource("7_tev22")]
-transform = Transform3D(-0.882497, -0.137478, -0.449776, 0.0259898, 0.940608, -0.3385, 0.469599, -0.310414, -0.826511, -49.1262, 34.3765, -55.6801)
+[node name="arrow" parent="." instance=ExtResource("10_4h858")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -17.9606, 85.0003, -0.294488)
 
-[node name="arrow_destroyed_up" parent="." instance=ExtResource("8_tev22")]
-transform = Transform3D(0.231862, 0.174553, 0.95696, 0.106358, 0.973321, -0.203307, -0.966917, 0.148919, 0.207111, 11.5359, 35.1019, 1.93977)
-
-[node name="arrow_destroyed_down" parent="." instance=ExtResource("8_nescs")]
-transform = Transform3D(0.976342, -0.0543189, 0.209301, -0.118778, -0.943551, 0.309197, 0.18069, -0.326742, -0.92768, -45.1373, 16.8687, 80.3854)
+[node name="pillar_16" parent="." instance=ExtResource("7_4h858")]
+transform = Transform3D(-0.382396, -0.258819, 0.88701, -0.589573, 0.807503, -0.0185492, -0.711461, -0.53005, -0.461378, -31.759, 25.4434, -23.706)
