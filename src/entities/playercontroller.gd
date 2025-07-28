@@ -9,6 +9,9 @@ extends CharacterBody3D
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $UI/Cooldown
 @onready var crosshair: Control = $UI/Crosshair
+@onready var step_timer: Timer = $timers/step_timer
+@onready var weapon_switch_sound: Timer = $timers/weapon_switch_sound
+
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
 "BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
@@ -120,6 +123,13 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	var is_moving := input_dir.length() > 0.1
+	
+	if is_on_floor() and is_moving:
+		if step_timer.is_stopped():
+			step_timer.start()
+			$AudioStreamPlayer3D.play()
+	
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * speed
@@ -146,18 +156,27 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("one"):
 		weapon.switch_weapon(1)
+		if weapon_switch_sound.is_stopped():
+			$WeaponSwitch.play()
+			weapon_switch_sound.start()
 	
 	if Input.is_action_pressed("two"):
 		weapon.switch_weapon(2)
+		if weapon_switch_sound.is_stopped():
+			$WeaponSwitch.play()
+			weapon_switch_sound.start()
 		
 	if Input.is_action_pressed("three"):
 		weapon.switch_weapon(3)
-	
+		
+		if weapon_switch_sound.is_stopped():
+			$WeaponSwitch.play()
+			weapon_switch_sound.start()
+
 	if Input.is_action_pressed("attack"):
 		emit_signal("_attack")
 		#spawn_explosion()
 	
-
 	
 	move_and_slide()
 
@@ -196,3 +215,11 @@ func enable_collision():
 	$CollisionShape3D.disabled = false
 	$CollectableArea/CollisionShape3D.disabled = false
 	
+
+
+func _on_step_sound_timeout() -> void:
+	step_timer.stop()
+
+
+func _on_weapon_switch_sound_timeout() -> void:
+	weapon_switch_sound.stop()

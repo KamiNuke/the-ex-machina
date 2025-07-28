@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://e45vwngmqhid"]
+[gd_scene load_steps=10 format=3 uid="uid://e45vwngmqhid"]
 
 [ext_resource type="Script" uid="uid://uh2ofltj8n7h" path="res://src/entities/throwable/bullet_projectile.gd" id="1_40mcg"]
+[ext_resource type="AudioStream" uid="uid://bpkcb6ol5vj4i" path="res://assets/sound/22 Pistol.wav" id="2_k3xij"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ep7l"]
 size = Vector3(0.1, 0.1, 1)
@@ -69,5 +70,11 @@ draw_pass_1 = SubResource("BoxMesh_40mcg")
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_k3xij")
+volume_db = 50.0
+unit_size = 20.0
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

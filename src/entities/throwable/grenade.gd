@@ -21,6 +21,8 @@ func _on_timer_timeout() -> void:
 	explosion_instance.position = mesh.global_position
 	explosion_instance.transform.basis = mesh.global_transform.basis
 	
+	$AudioStreamPlayer3D.play()
+	
 	mesh.visible = false
 	get_parent().add_child(explosion_instance)
 	await get_tree().create_timer(1.0).timeout

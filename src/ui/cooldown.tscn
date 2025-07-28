@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://y1yojrkdm0jh"]
 
 [ext_resource type="Shader" uid="uid://cm6q3rtgvtjop" path="res://src/shaders/cooldown.gdshader" id="1_xfi88"]
-[ext_resource type="Texture2D" uid="uid://7784j8dvft7l" path="res://assets/icon.svg" id="2_i2jdk"]
+[ext_resource type="Texture2D" uid="uid://bgcd42tbhs5k" path="res://assets/models/piratejam_booster.png" id="2_i2jdk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i2jdk"]
 shader = ExtResource("1_xfi88")
@@ -16,7 +16,8 @@ material = SubResource("ShaderMaterial_i2jdk")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -76.0
+offset_right = 90.0
 grow_vertical = 0
 texture = ExtResource("2_i2jdk")
+expand_mode = 1

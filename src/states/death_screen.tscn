@@ -17,10 +17,12 @@ mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_1ks4u")
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="text" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_top = 108.0
 offset_right = 1150.0
 offset_bottom = 646.0
@@ -32,6 +34,7 @@ text = "You are dead"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 320.0
 offset_top = 272.0
 offset_right = 832.0

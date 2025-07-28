@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv8cfkuu60gff"]
+[gd_scene load_steps=8 format=3 uid="uid://cv8cfkuu60gff"]
 
 [ext_resource type="Script" uid="uid://d2wycykdx0yy0" path="res://src/items/collectable_part.gd" id="1_kruww"]
 [ext_resource type="Shader" uid="uid://405syu7thor4" path="res://src/shaders/rotation.gdshader" id="2_hmhu7"]
 [ext_resource type="Texture2D" uid="uid://7784j8dvft7l" path="res://assets/icon.svg" id="3_6b78l"]
+[ext_resource type="AudioStream" uid="uid://jbsvip8kw0kk" path="res://assets/sound/action1.wav" id="4_hmhu7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2hqrv"]
 render_priority = 0
@@ -37,6 +38,10 @@ shape = SubResource("BoxShape3D_6kldq")
 [node name="hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_kruww")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_hmhu7")
+volume_db = 50.0
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
