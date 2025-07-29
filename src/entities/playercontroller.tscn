@@ -33,13 +33,16 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.882099, 0, 0)
 
 [node name="GrenadeLauncher" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("4_p1m7e")]
+ammo = 20
 throw_force = 20.0
 shooter = NodePath("../..")
 
 [node name="HitscanWeapon" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("2_dklf8")]
+ammo = 30
 shooter = NodePath("../..")
 
 [node name="ProjectileWeapon" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("5_qsbkc")]
+ammo = 60
 shooter = NodePath("../..")
 
 [node name="head" type="Node3D" parent="."]
@@ -117,6 +120,9 @@ volume_db = 20.0
 [node name="WeaponSwitch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_0syf7")
 volume_db = -5.0
+
+[node name="win_camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.999207, 0.0342393, 0.0203039, 0.0396909, 0.895851, 0.442578, -0.00303573, 0.443033, -0.8965, 0, 1.33761, -1.93907)
 
 [connection signal="_attack" from="." to="WeaponManager2" method="_on_player_controller__attack"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/GrenadeLauncher" method="_on_weapon_manager_2_fire"]

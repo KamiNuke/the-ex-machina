@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://qsfeyj43qa85"]
+
+[ext_resource type="Script" uid="uid://cg10ahagg638" path="res://src/ui/win_layer.gd" id="1_ravj2"]
+[ext_resource type="Shader" uid="uid://dyk4tmp1jy4gy" path="res://src/shaders/simple_blur.gdshader" id="2_aqneb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6p6fy"]
+shader = ExtResource("2_aqneb")
+shader_parameter/lod = 2.5
+
+[node name="WinLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ravj2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6p6fy")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.0
+offset_top = 103.0
+offset_right = 113.0
+offset_bottom = 191.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 84
+text = "You won"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 256.0
+offset_top = -4.0
+offset_right = -256.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="return_to_menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Go to menu"
+
+[node name="exit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Exit"
+
+[connection signal="button_up" from="VBoxContainer/return_to_menu" to="." method="_on_return_to_menu_button_up"]
+[connection signal="button_up" from="VBoxContainer/exit_button" to="." method="_on_exit_button_button_up"]

@@ -1,11 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwi3huxw7eb2g"]
+[gd_scene load_steps=18 format=3 uid="uid://cwi3huxw7eb2g"]
 
 [ext_resource type="PackedScene" uid="uid://lr4ib5iyid5g" path="res://src/entities/playercontroller.tscn" id="1_2evji"]
 [ext_resource type="Script" uid="uid://hunogrnk236b" path="res://src/states/default.gd" id="1_hjvbs"]
+[ext_resource type="PackedScene" uid="uid://qsfeyj43qa85" path="res://src/ui/win_layer.tscn" id="2_ft2l6"]
+[ext_resource type="Shader" uid="uid://cfmbiwlf8h7tu" path="res://src/shaders/noises.gdshader" id="2_h54ht"]
+[ext_resource type="Texture2D" uid="uid://7784j8dvft7l" path="res://assets/icon.svg" id="3_1s68r"]
 [ext_resource type="PackedScene" uid="uid://cv8cfkuu60gff" path="res://src/items/collectable_part.tscn" id="3_feaac"]
 [ext_resource type="PackedScene" uid="uid://bnmicqvsnupvr" path="res://src/entities/enemy.tscn" id="4_i5v71"]
 [ext_resource type="PackedScene" uid="uid://drta2q1wjv5t8" path="res://src/levels/coliseum.tscn" id="5_iwx0s"]
 [ext_resource type="PackedScene" uid="uid://c7q1i4qv0h7nr" path="res://src/states/death_screen.tscn" id="6_1tgr7"]
+[ext_resource type="AudioStream" uid="uid://dwdsc6snoqvqr" path="res://assets/sound/applause_after_winning.wav" id="7_aexy1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s68r"]
+shader = ExtResource("2_h54ht")
+shader_parameter/VerticalLines = false
+shader_parameter/Speed = 0.2
+shader_parameter/TextureStretchValue = 5.0
+shader_parameter/NoiseTexture = ExtResource("3_1s68r")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2evji"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -32,6 +43,14 @@ size = Vector3(10, 50, 10)
 
 [node name="default" type="Node"]
 script = ExtResource("1_hjvbs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1s68r")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="WinLayer" parent="." instance=ExtResource("2_ft2l6")]
+visible = false
 
 [node name="DeathScreen" parent="." instance=ExtResource("6_1tgr7")]
 visible = false
@@ -63,18 +82,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.4672, 61.4122, 131.25)
 
 [node name="Enemy" parent="." instance=ExtResource("4_i5v71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.7915, 62.4122, 94.0237)
-HP = 20
-
-[node name="Enemy2" parent="." instance=ExtResource("4_i5v71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.7915, 62.4122, 88.0237)
-HP = 20
-
-[node name="Enemy3" parent="." instance=ExtResource("4_i5v71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.7915, 62.4122, 92.0237)
-HP = 20
-
-[node name="Enemy4" parent="." instance=ExtResource("4_i5v71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.7915, 62.4122, 94.0237)
 HP = 20
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -113,15 +120,23 @@ transform = Transform3D(1, 0, 0, 0, -0.998905, -0.0467926, 0, 0.0467926, -0.9989
 mesh = SubResource("BoxMesh_feaac")
 skeleton = NodePath("../../..")
 
-[node name="Enemy5" parent="." instance=ExtResource("4_i5v71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6447, 68.9122, 130.824)
-
 [node name="CollectablePart" parent="." instance=ExtResource("3_feaac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.6447, 72.9122, 115.824)
 body_legs = 4
 
+[node name="audio" type="Node" parent="."]
+
+[node name="winning" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("7_aexy1")
+volume_db = 24.0
+
+[node name="Enemy2" parent="." instance=ExtResource("4_i5v71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 4, 163)
+
+[connection signal="win" from="." to="PlayerController" method="_on_default_win"]
 [connection signal="button_up" from="DeathScreen/Buttons/Reborn" to="." method="_on_reborn_button_up"]
 [connection signal="button_up" from="DeathScreen/Buttons/Escape" to="." method="_on_escape_button_up"]
 [connection signal="player_death" from="PlayerController" to="." method="_on_player_controller_player_death"]
+[connection signal="finished" from="audio/winning" to="." method="_on_winning_finished"]
 
 [editable path="DeathScreen"]

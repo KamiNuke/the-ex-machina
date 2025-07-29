@@ -21,6 +21,7 @@ signal _attack
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var step_timer: Timer = $timers/step_timer
 
+signal dying_applause_signal
 
 var target_location := Vector3.ZERO
 const DISTANCE_FROM_PLAYER = 10.0
@@ -36,6 +37,8 @@ const JUMP_VELOCITY = 6.5
 func _ready() -> void:
 	scatter_timer.wait_time = randf_range(2.0, 4.0)
 	weapon.switch_weapon(randi_range(1, 3))
+	
+	dying_applause_signal.connect(Global.play_applause_on_enemy_death)
 
 func _process(delta: float) -> void:
 	if HP <= 0:
@@ -149,3 +152,7 @@ func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 
 func _on_step_timer_timeout() -> void:
 	step_timer.stop()
+
+
+func _on_tree_exiting() -> void:
+	emit_signal("dying_applause_signal")

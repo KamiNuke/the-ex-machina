@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var crosshair: Control = $UI/Crosshair
 @onready var step_timer: Timer = $timers/step_timer
 @onready var weapon_switch_sound: Timer = $timers/weapon_switch_sound
+@onready var win_camera: Camera3D = $win_camera
 
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
@@ -26,6 +27,12 @@ extends CharacterBody3D
 
 var is_alive = true
 @onready var model_3d: MeshInstance3D = $MeshInstance3D
+
+var is_win = false
+var win_cam_angle := 0.0
+const win_cam_radius := 5.0
+const win_cam_height := 2.0
+
 
 #DEBUG
 
@@ -58,7 +65,7 @@ var t_bob = 0.0 #don't touch
 const CHANGE_FOV = 1.0
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive:
+	if event is InputEventMouseMotion and is_alive and !is_win:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 
 		var rotation_delta = -event.relative.y * SENSIVITY
@@ -153,6 +160,16 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
+	if is_win:
+		win_cam_angle += delta * 1.0
+		var offset = Vector3(
+			cos(win_cam_angle) * win_cam_radius,
+			win_cam_height,
+			sin(win_cam_angle) * win_cam_radius
+		)
+		win_camera.global_position = global_position + offset
+		win_camera.look_at(global_position + Vector3(0, 1.5, 0), Vector3.UP)
+
 
 	if Input.is_action_pressed("one"):
 		weapon.switch_weapon(1)
@@ -223,3 +240,8 @@ func _on_step_sound_timeout() -> void:
 
 func _on_weapon_switch_sound_timeout() -> void:
 	weapon_switch_sound.stop()
+
+
+func _on_default_win() -> void:
+	is_win = true
+	win_camera.current = true

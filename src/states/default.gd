@@ -2,8 +2,14 @@ extends Node
 
 @onready var player: CharacterBody3D = $PlayerController
 @onready var death_screen: Control = $DeathScreen
+@onready var win_layer: Control = $WinLayer
 
 const PAUSE_LAYER = preload("res://src/ui/pause_layer.tscn")
+
+signal win
+
+var is_winning_audio_playing = false
+var revives_left = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +20,19 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		var pause_instance = PAUSE_LAYER.instantiate()
 		add_child(pause_instance)
+	
+	var enemy_count = 0
+	for node in get_children():
+		if node.is_in_group("enemy"):
+			enemy_count += 1
+	if enemy_count == 0:
+		if !is_winning_audio_playing:
+			is_winning_audio_playing = true
+			$audio/winning.play()
+		win_layer.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		emit_signal("win")
+		
 			
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(player):
@@ -33,12 +52,15 @@ func _on_player_controller_player_death() -> void:
 func _on_reborn_button_up() -> void:
 	var enemy_pos
 	var is_enemy_found = false
-	for child in get_children():
-		if child.is_in_group("enemy"):
-			enemy_pos = child.position
-			is_enemy_found = true
-			child.queue_free()
-			break;
+	if revives_left > 0:
+		for child in get_children():
+			if child.is_in_group("enemy"):
+				revives_left = revives_left - 1
+				enemy_pos = child.position
+				is_enemy_found = true
+				child.queue_free()
+				break;
+	
 	
 	if is_enemy_found:
 		player.is_alive = true
@@ -49,6 +71,8 @@ func _on_reborn_button_up() -> void:
 		player.enable_collision()
 		death_screen.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif revives_left <= 0:
+		$DeathScreen/text/Label.text = "No revives left"
 	else:
 		#say that no robots left
 		$DeathScreen/text/Label.text = "No robots left"
@@ -56,3 +80,7 @@ func _on_reborn_button_up() -> void:
 
 func _on_escape_button_up() -> void:
 	get_tree().quit()
+
+
+func _on_winning_finished() -> void:
+	is_winning_audio_playing = false

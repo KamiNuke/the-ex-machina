@@ -31,6 +31,7 @@ func _on_weapon_manager_2_fire() -> void:
 				spawn_grenade()
 				cool_down = true
 				timer.start(cool_down_count)
+				$AudioStreamPlayer3D.play()
 
 func spawn_grenade() -> void:
 	grenade_instance = grenade.instantiate()
