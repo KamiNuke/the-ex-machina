@@ -12,6 +12,8 @@ extends CharacterBody3D
 @onready var step_timer: Timer = $timers/step_timer
 @onready var weapon_switch_sound: Timer = $timers/weapon_switch_sound
 @onready var win_camera: Camera3D = $win_camera
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
@@ -63,6 +65,9 @@ var t_bob = 0.0 #don't touch
 #FOV
 @export var BASE_FOV = 75.0
 const CHANGE_FOV = 1.0
+
+func _ready() -> void:
+	animation_player.play("start_catscene")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and !is_win:
@@ -245,3 +250,8 @@ func _on_weapon_switch_sound_timeout() -> void:
 func _on_default_win() -> void:
 	is_win = true
 	win_camera.current = true
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "start_catscene":
+		$start_camera.current = false
