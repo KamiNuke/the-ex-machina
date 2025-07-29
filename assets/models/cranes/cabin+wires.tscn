@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=4 uid="uid://bnpg4eu27xhfs"]
+
+[ext_resource type="Texture2D" uid="uid://bqrrnsxr03sep" path="res://assets/materials/props/crane/cabin+wires.png" id="2_qpp37"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erqux"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vhd3a"]
+_surfaces = [{
+"aabb": AABB(-3.6, -5, -63.8101, 12.9333, 24.0504, 93.8101),
+"format": 34896613377,
+"index_count": 114,
+"index_data": PackedByteArray("GgAbAAMAHAADABsAHAACAAMAHQAcABsAGgAdABsAHgACABwAHQAeABwAHwADAAIAHwAaAAMAHgAfAAIAAAAdABoAIAAfAB4AIQAeAB0AIQAgAB4AAAAhAB0AIAABAB8AAQAaAB8AIQABACAAAQAAABoAIQAAAAEABAAFAAYABQAHAAgABQAJAAoACwAMAA0ADQAOAA8ADQAQABEAEgATABQAEgAUABUAEgAWABMAFAAXABUAFAATABcAEgAVABgAFgASABgAGAAVABcAEwAWABkAFgAYABkAEwAZABcAGAAXABkA"),
+"lods": [3.00343, PackedByteArray("AAABAAIAAQADAAIAAAACAAMAAQAAAAMABAAFAAYABQAHAAgABQAJAAoACwAMAA0ADQAOAA8ADQAQABEAEgATABQAEgAUABUAEgAWABMAFAAXABUAFAATABcAEgAVABgAFgASABgAGAAVABcAEwAWABkAFgAYABkAEwAZABcAGAAXABkA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 34,
+"vertex_data": PackedByteArray("0rBJFZazAAD//0kVlrMAAP//3T+WswAA0rDdP5azAAAAAMxf//8AAEFH/v+7owAAbpbMX///AAB5Elk13VEAAG6WWTXdUQAAeRJZNQAAAABullk1AAAAAAAAzF///wAAbpbMX///AABBR///u6MAAG6WWTXdUQAAeRJZNd1RAABullk1AAAAAHkSWTUAAAAACnzMX2/nAAB5EsxfRP0AAHkSzF9v5wAAeRIAAG/nAAAKfMxfRP0AAHkSAABE/QAACnwAAG/nAAAKfAAARP0AANKwODWWswAA0rDdP6yoAAD//90/rKgAANKwODVOpwAA//84NU6nAAD//zg1lrMAAP//SRWsqAAA0rBJFayoAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_do3e6"]
+resource_name = "cabin+wires_Cube_007"
+_surfaces = [{
+"aabb": AABB(-3.6, -5, -63.8101, 12.9333, 24.0504, 93.8101),
+"attribute_data": PackedByteArray("pD9///Uff//1Hy6fpD8un/Uff3+kPy6f9R8un6Q/f39UYtf/oGl4pLtx1/84ZGVTu3FlUzhkHQC7cR0AVGLX/7tx1/+gaXiku3FlUzhkZVO7cR0AOGQdAP9T/1P/P/9z/z//U/9T/3P/C/9T/x//c/8L/3P/H/9T/z//U/8f/3P/H/9T/z//c/8//z//H/9T/x//P/8//1P/P/8f/x//P/8f/x//P/8//z//C/8f/x//H/8L/z//H2hXf/9TX8/fU19//2hX2tukP3//pD/P36Q/uMf1H92+pD/dvvUfuMekP8/f9R/P3zII2ttGAH//RgDP3zIIf//1H8/f9R9///UfQpekP0KXoGl4pKBpeKSgaXikoGl4pA=="),
+"format": 34896613399,
+"index_count": 114,
+"index_data": PackedByteArray("LgAvADAALgAxAC8AMgAxAC4AMgAzADEANAA1ADYANQADADYANQACAAMANAA3ADUAOAA3ADQAOAA5ADcAOAABADkAOAAAAAEAOgA7ADwAOgA9ADsAPgA9ADoAPgA/AD0AQAAFAAYAQABBAAUABABBAEAABAAHAEEACABCAAoAQwANAA4ACQALAAwADwAQAEQARQAUABUAEQASABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKgAtACsA"),
+"lods": [3.00343, PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAHAAUACAAJAAoACQALAAwACQANAA4ADwAQABEAEQASABMAEQAUABUAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKgAtACsA")],
+"material": SubResource("StandardMaterial3D_erqux"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 70,
+"vertex_data": PackedByteArray("0rBJFZaz/////0kVlrP/////3T+Ws///0rDdP5az/////0kVlrP//9Kw3T+Ws//////dP5az///SsEkVlrP//wAAzF///+6uQUf+/7ujCddulsxf///urnkSWTXdUQnXbpZZNd1RCdd5Elk1AACDzG6WWTUAAIPMAADMX///7y5ulsxf///vLkFH//+7owlXbpZZNd1RCVd5Elk13VEJV26WWTUAAINMeRJZNQAAg0wKfMxfb+f/v3kSzF9E/f+/eRLMX2/n/78KfMxfRP3/vwp8AABv5///eRIAAET9//8KfAAARP3//3kSAABv5///eRLMX2/nVNV5EgAARP1U1XkSAABv51TVeRLMX0T9VNUKfMxfb+f//3kSAABv5///CnwAAG/n//95Esxfb+f//wp8zF9E/VTVCnwAAG/nVNUKfAAARP1U1Qp8zF9v51TVeRLMX0T9/78KfAAARP3/v3kSAABE/f+/CnzMX0T9/7/SsDg1lrNU1dKw3T+sqFTV0rDdP5azVNXSsDg1TqdU1dKwSRWWs1TV0rBJFayoVNXSsDg1Tqf/////3T+sqP//0rDdP6yo/////zg1Tqf//9KwSRWsqP////9JFayo/////zg1TqdU1f//3T+Ws1TV///dP6yoVNX//zg1lrNU1f//SRWsqFTV//9JFZazVNX//zg1lrP//9KwODWWs///QUf+/7uj7q5BR/7/u6ODzEFH//+7o+8uQUf//7ujg0z/f/8//3//P/9//7//f/+//3//f/9//3//f/9//3//f////3////9/////f////3////9/////f////38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/////f////3////9/////f/9//z//f/8//3//P/9//z9U1VTVVNVU1VTVVNVU1VTV/7//v/+//7//v/+//7//v6oqqiqqKqoqqiqqKqoqqir/////////////////////VNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTV/38X9/9/LdL/fy3S/38X94io//+IqP//qqpUVaqqVFWqqlRVqqpUVaqqVFWqqlRV/3//f/9//3////9/////fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vhd3a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3vm5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_qpp37")
+metallic_specular = 0.0
+uv1_scale = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3vm5"]
+size = Vector3(11, 26, 81)
+
+[node name="cabin+wires" type="StaticBody3D"]
+
+[node name="Cube_006" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_do3e6")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_i3vm5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -11.5)
+shape = SubResource("BoxShape3D_i3vm5")

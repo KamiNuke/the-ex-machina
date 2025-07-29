@@ -89,7 +89,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0.418422, 0.418422, 0.418422, 1, 0.235626,
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tlolt"]
 noise_type = 2
-seed = 1
 frequency = 1.0
 fractal_type = 0
 cellular_jitter = 0.45
@@ -375,6 +374,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-456.535, -396.667)
 nodes/fragment/0/position = Vector2(1380, 100)
 nodes/fragment/6/node = SubResource("VisualShaderNodeMix_akcu4")
 nodes/fragment/6/position = Vector2(180, 100)

@@ -1,7 +1,7 @@
-[gd_resource type="VisualShader" load_steps=43 format=3 uid="uid://cei6d50hvarlx"]
+[gd_resource type="VisualShader" load_steps=43 format=3 uid="uid://foi7cxktunhj"]
 
-[ext_resource type="Texture2D" uid="uid://c1c84km078wwb" path="res://assets/materials/ground/mud_cracked.jpg" id="1_i6kjt"]
-[ext_resource type="Texture2D" uid="uid://dsm80p74jewmd" path="res://assets/materials/ground/sand_1.jpg" id="2_i6kjt"]
+[ext_resource type="Texture2D" uid="uid://w7vgi1dohabr" path="res://assets/materials/concrete/cracked.jpg" id="1_mafce"]
+[ext_resource type="Texture2D" uid="uid://dt5v3fvuecm1o" path="res://assets/materials/concrete/cracked_clay.jpg" id="2_mog6n"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j62lu"]
 noise_type = 0
@@ -28,7 +28,7 @@ default_input_values = [0, 0.0, 1, 0.15]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qgv0a"]
 seed = 5
-frequency = 0.0574
+frequency = 0.0101
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tlolt"]
 noise = SubResource("FastNoiseLite_qgv0a")
@@ -37,7 +37,7 @@ noise = SubResource("FastNoiseLite_qgv0a")
 texture = SubResource("NoiseTexture2D_tlolt")
 
 [sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_n1s72"]
-default_input_values = [1, 0.0, 2, 1.0, 3, -0.04, 4, 0.01]
+default_input_values = [1, 0.0, 2, 1.0, 3, -0.1, 4, -0.01]
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_0nnjm"]
 size = Vector2(540, 320)
@@ -58,13 +58,13 @@ constant = Vector2(0.5, 0.5)
 input_name = "uv"
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_qgv0a"]
-constant = 35.0
+constant = 10.0
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_tlolt"]
 function = 1
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_n1s72"]
-texture = ExtResource("1_i6kjt")
+texture = ExtResource("1_mafce")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0nnjm"]
 noise_type = 2
@@ -103,7 +103,7 @@ noise = SubResource("FastNoiseLite_tlolt")
 texture = SubResource("NoiseTexture2D_j62lu")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0nnjm"]
-texture = ExtResource("1_i6kjt")
+texture = ExtResource("1_mafce")
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_qgv0a"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
@@ -113,13 +113,13 @@ op_type = 3
 input_name = "uv"
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_tlolt"]
-constant = 62.5
+constant = 10.0
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_sohuc"]
-texture = ExtResource("2_i6kjt")
+texture = ExtResource("2_mog6n")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_u86f4"]
-texture = ExtResource("2_i6kjt")
+texture = ExtResource("2_mog6n")
 
 [sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_akcu4"]
 default_input_values = [1, 0.0, 2, 1.0, 3, 0.0, 4, 300.0, 0, 0.0]
@@ -180,7 +180,7 @@ void fragment() {
 
 
 // FloatConstant:24
-	float n_out24p0 = 35.000000;
+	float n_out24p0 = 10.000000;
 
 
 // UVFunc:25
@@ -246,7 +246,7 @@ void fragment() {
 
 
 // FloatConstant:33
-	float n_out33p0 = 62.500000;
+	float n_out33p0 = 10.000000;
 
 
 // UVFunc:41
@@ -342,8 +342,8 @@ void fragment() {
 // Remap:18
 	float n_in18p1 = 0.00000;
 	float n_in18p2 = 1.00000;
-	float n_in18p3 = -0.04000;
-	float n_in18p4 = 0.01000;
+	float n_in18p3 = -0.10000;
+	float n_in18p4 = -0.01000;
 	{
 		float __input_range = n_in18p2 - n_in18p1;
 		float __output_range = n_in18p4 - n_in18p3;
@@ -375,6 +375,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-391.993, 141.746)
 nodes/fragment/0/position = Vector2(1380, 100)
 nodes/fragment/6/node = SubResource("VisualShaderNodeMix_akcu4")
 nodes/fragment/6/position = Vector2(180, 100)
@@ -462,4 +463,4 @@ uv_out.x = uv_in.x * c + uv_in.y * s;
 uv_out.y = uv_in.y * c + uv_in.x * s;
 
 uv_out += pivot;"
-nodes/fragment/connections = PackedInt32Array(11, 0, 6, 2, 12, 0, 15, 0, 6, 0, 12, 0, 17, 0, 18, 0, 18, 0, 16, 1, 20, 0, 19, 1, 23, 0, 25, 0, 24, 0, 25, 1, 19, 0, 26, 0, 28, 0, 19, 2, 27, 0, 28, 0, 25, 0, 30, 0, 26, 0, 31, 0, 30, 0, 31, 1, 14, 0, 13, 0, 29, 0, 31, 2, 25, 0, 19, 0, 37, 0, 42, 1, 32, 0, 41, 0, 33, 0, 41, 1, 42, 0, 34, 0, 36, 0, 42, 2, 40, 0, 36, 0, 41, 0, 35, 0, 34, 0, 38, 0, 35, 0, 38, 1, 39, 0, 38, 2, 41, 0, 42, 0, 38, 0, 6, 1, 31, 0, 6, 0, 13, 0, 0, 0, 15, 1, 14, 1, 15, 0, 14, 0, 15, 2, 16, 0, 16, 0, 14, 2)
+nodes/fragment/connections = PackedInt32Array(11, 0, 6, 2, 12, 0, 15, 0, 15, 0, 14, 0, 6, 0, 12, 0, 17, 0, 18, 0, 18, 0, 16, 1, 20, 0, 19, 1, 23, 0, 25, 0, 24, 0, 25, 1, 19, 0, 26, 0, 28, 0, 19, 2, 27, 0, 28, 0, 25, 0, 30, 0, 26, 0, 31, 0, 30, 0, 31, 1, 14, 0, 13, 0, 29, 0, 31, 2, 25, 0, 19, 0, 37, 0, 42, 1, 32, 0, 41, 0, 33, 0, 41, 1, 42, 0, 34, 0, 36, 0, 42, 2, 40, 0, 36, 0, 41, 0, 35, 0, 34, 0, 38, 0, 35, 0, 38, 1, 39, 0, 38, 2, 41, 0, 42, 0, 13, 0, 0, 0, 31, 0, 6, 0, 38, 0, 6, 1, 15, 1, 14, 1, 15, 2, 16, 0, 16, 0, 14, 2)
