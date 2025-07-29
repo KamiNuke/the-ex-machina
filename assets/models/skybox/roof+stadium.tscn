@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca762qyv0o51"]
+
+[ext_resource type="PackedScene" uid="uid://hor7wos2ytkx" path="res://assets/models/skybox/raw/roof+stadium.glb" id="1_8lxws"]
+
+[node name="roof+stadium" instance=ExtResource("1_8lxws")]

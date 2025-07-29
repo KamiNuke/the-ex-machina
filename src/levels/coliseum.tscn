@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://drta2q1wjv5t8"]
+[gd_scene load_steps=29 format=3 uid="uid://drta2q1wjv5t8"]
 
 [ext_resource type="PackedScene" uid="uid://bey6khmknn3i3" path="res://assets/models/cranes/pillar_32.tscn" id="1_tvx8i"]
 [ext_resource type="Shader" uid="uid://2eevk65wovxy" path="res://assets/materials/terrain/concrete_base.tres" id="2_qeeio"]
@@ -16,6 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://cmqo0uxidcbv2" path="res://assets/models/cranes/pillar_base.tscn" id="12_47cqb"]
 [ext_resource type="PackedScene" uid="uid://c0c3gcnnt3gfa" path="res://assets/models/cranes/arrow+tail.tscn" id="13_qrkjc"]
 [ext_resource type="PackedScene" uid="uid://bnpg4eu27xhfs" path="res://assets/models/cranes/cabin+wires.tscn" id="14_adkyy"]
+[ext_resource type="PackedScene" uid="uid://dvfs25xn3mu0y" path="res://assets/models/airplane/chair.tscn" id="15_ojgs1"]
+[ext_resource type="PackedScene" uid="uid://ccxcp140ngp6t" path="res://assets/models/airplane/face.tscn" id="16_eue7f"]
+[ext_resource type="PackedScene" uid="uid://c4cjfe6dsha0c" path="res://assets/models/airplane/wing_ramp.tscn" id="17_0oaaa"]
+[ext_resource type="PackedScene" uid="uid://cjea53wok0fx7" path="res://assets/models/airplane/fuzilaj_1.tscn" id="17_7x6dg"]
+[ext_resource type="PackedScene" uid="uid://ca762qyv0o51" path="res://assets/models/skybox/roof+stadium.tscn" id="17_adkyy"]
+[ext_resource type="PackedScene" uid="uid://ceakx6y5gd0yj" path="res://assets/models/skybox/raw/fence+area.glb" id="17_srdrx"]
+[ext_resource type="PackedScene" uid="uid://c215wqvsm46cp" path="res://assets/models/airplane/wing_wall.tscn" id="18_5jqir"]
+[ext_resource type="PackedScene" uid="uid://yth2wy61qlc" path="res://assets/models/airplane/tail.tscn" id="19_0jqhp"]
+[ext_resource type="PackedScene" uid="uid://dllh3ksuqwv4j" path="res://assets/models/airplane/fuzilaj_2.tscn" id="20_4cgti"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_47cqb"]
 render_priority = 0
@@ -24,6 +33,12 @@ shader = ExtResource("2_qeeio")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrkjc"]
 render_priority = 0
 shader = ExtResource("3_8i1ho")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srdrx"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+albedo_color = Color(1, 1, 1, 0)
 
 [node name="Coliseum" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -35,6 +50,9 @@ collision_mask = 7
 
 [node name="cranes" type="CSGCombiner3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.965021, 0, -0.262172, 0, 1, 0, 0.262172, 0, 0.965021, -18.2108, 23.5171, 0.0805119)
+
+[node name="pillar_18" parent="CSGCombiner3D/cranes" instance=ExtResource("7_4h858")]
+transform = Transform3D(-0.555546, -0.38873, 0.735023, -0.589573, 0.807503, -0.0185492, -0.586321, -0.443654, -0.677789, -19.3105, 1.9263, -19.4025)
 
 [node name="pillar_32" parent="CSGCombiner3D/cranes" instance=ExtResource("1_tvx8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 12, -20)
@@ -467,345 +485,62 @@ size = Vector3(4, 4, 8)
 [node name="airplane" type="CSGCombiner3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.898296, 0, -0.439391, 0, 1, 0, 0.439391, 0, 0.898296, -51.1841, -0.709864, 148.878)
 
-[node name="fuzilaj_1" type="CSGCombiner3D" parent="CSGCombiner3D/airplane"]
-transform = Transform3D(0.9472, 0.0779611, -0.311021, -0.0525435, 0.994618, 0.0892941, 0.316309, -0.0682373, 0.946199, -1.14905, -2.32711, 3.32269)
+[node name="conteiner" parent="CSGCombiner3D/airplane" instance=ExtResource("4_mbwpx")]
+transform = Transform3D(0.402928, 0.0809764, 0.911642, 0.260402, 0.944768, -0.199011, -0.877404, 0.31758, 0.359586, 3.54214, 1.0017, -32.7087)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -15.5, 7, 0)
-radius = 5.0
-height = 19.0
-sides = 16
+[node name="chair" parent="CSGCombiner3D/airplane" instance=ExtResource("15_ojgs1")]
+transform = Transform3D(0.350401, -0.251642, 0.90216, -0.404685, 0.827997, 0.388137, -0.844657, -0.501096, 0.188295, -21.4656, 2.7249, -18.3083)
 
-[node name="hole" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -15.635, 7, 0)
-operation = 2
-radius = 4.5
-height = 20.73
-sides = 16
+[node name="face2" parent="CSGCombiner3D/airplane" instance=ExtResource("16_eue7f")]
+transform = Transform3D(0.988277, 0.152653, 0.00163519, -0.152173, 0.985917, -0.0693678, -0.0122014, 0.0683059, 0.997588, -32.3285, 2.83272, -3.18123)
 
-[node name="hole2" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-0.992635, 0, -0.121142, -0.121142, -4.37114e-08, 0.992635, -5.29528e-09, 1, 4.33895e-08, -15.7274, 7.76282, 5.4234)
-operation = 2
-size = Vector3(4.62903, 3.53644, 3.84956)
+[node name="wing_ramp2" parent="CSGCombiner3D/airplane" instance=ExtResource("17_0oaaa")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -17.5035, 6.23914, -14.0195)
 
-[node name="hole3" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-0.789855, 0, 0.613293, 0.613293, -4.37114e-08, 0.789855, 2.68079e-08, 1, 3.45257e-08, -16.4146, 8.29639, 4.28456)
-operation = 2
-size = Vector3(3.32889, 5.81412, 3.84956)
+[node name="wing_wall2" parent="CSGCombiner3D/airplane" instance=ExtResource("18_5jqir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7815, 0, -12.4682)
 
-[node name="hole4" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-1, 1.49012e-07, -0.00207738, -0.00207694, -2.75671e-07, 1, -8.64267e-07, 1, -1.11759e-07, -20.327, 8.08839, -3.51963)
-operation = 2
-size = Vector3(2.83881, 3.8422, 3.30883)
+[node name="tail2" parent="CSGCombiner3D/airplane" instance=ExtResource("19_0jqhp")]
+transform = Transform3D(0.797923, -0.582296, -0.155722, 0.162833, -0.0405048, 0.985822, -0.580347, -0.811966, 0.062497, -11.8439, -2.23096, 2.05899)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6416, 6, 0)
-size = Vector3(18.7168, 0.6, 9)
+[node name="fuzilaj2" parent="CSGCombiner3D/airplane" instance=ExtResource("20_4cgti")]
+transform = Transform3D(-0.221813, -0.0379206, 0.97435, 0.221366, 0.971195, 0.0881922, -0.949628, 0.235251, -0.20703, 11.8916, 1.56038, -17.4474)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8081, 9.99128, 0)
-size = Vector3(18.3838, 0.582556, 7)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(0.974902, -0.0244292, 0.221288, 0.0787363, 0.967558, -0.240065, -0.208245, 0.251464, 0.945198, -13.6162, 7.49352, -2.6254)
-size = Vector3(5, 3, 1.92725)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(0.827443, 0, -0.561549, 0, 1, 0, 0.561549, 0, 0.827443, -20.9438, 7.81006, 2.2384)
-size = Vector3(0.668213, 3, 3.99854)
-
-[node name="CSGBox3D17" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8397, 4.30658, -3.34474)
-size = Vector3(7.57043, 3.37213, 4.01991)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 5.01519, -1.291)
-size = Vector3(0.25, 4.61017, 0.441)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -24, 6.91182, -2.79625)
-size = Vector3(0.25, 2.96313, 0.441)
-
-[node name="CSGBox3D20" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 1.49012e-07, 1.8999e-07, -2.6077e-08, -2.75671e-07, -1, 7.7486e-07, 1, -1.93715e-07, -24.9763, 5.16007, -4.31714)
-size = Vector3(2.20264, 0.319946, 0.203898)
-
-[node name="CSGBox3D21" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(0.97034, -0.241753, 3.94881e-07, -0.0371057, -0.148934, -0.988151, 0.238889, 0.958841, -0.153486, -26.367, 3.39372, -4.59632)
-size = Vector3(3.16626, 1.75313, 3.69551)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(0.933013, -0.25, -0.258819, 0.00307089, 0.72476, -0.688994, 0.35983, 0.642046, 0.676978, -24.0442, 4.1973, -2.23287)
-size = Vector3(0.25, 1.76381, 2.67871)
-
-[node name="CSGBox3D18" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-0.250992, -0.934825, -0.251215, 0.81258, -0.0624424, -0.579497, 0.526041, -0.34958, 0.77529, -28.0894, 3.36757, -1.05614)
-size = Vector3(0.0662842, 1.76381, 6.46454)
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(-0.535857, 0.15843, -0.829312, 0.843851, 0.0681379, -0.532235, -0.0278138, -0.985018, -0.170203, -25.9598, 5.6883, -3.91781)
-size = Vector3(0.0662842, 1.76381, 2.09943)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -24, 5.08197, 2.70278)
-size = Vector3(0.25, 2.96313, 1.24882)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 0.268331, -0.963327, 0, 0.963327, 0.268331, -24, 7.28187, 2.78497)
-size = Vector3(0.25, 2.96313, 0.441)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 6.2101, 1.352)
-size = Vector3(0.25, 7, 0.441)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08444, 6.2101, -1.291)
-size = Vector3(0.25, 7, 0.441)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -9.08444, 8.08759, 2.6843)
-size = Vector3(0.25, 2.96313, 3.19521)
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(0.489414, -0.530112, -0.692428, -0.816611, -2.98023e-08, -0.577188, 0.305974, 0.847928, -0.432895, -7.68187, 6.88042, -2.45726)
-size = Vector3(0.25, 2.96313, 0.441)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, -0.636334, -0.771414, 0, 0.771414, -0.636334, -9.08444, 3.96943, -2.79625)
-size = Vector3(0.25, 2.96313, 0.441)
-
-[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, -0.264243, -0.964456, 0, 0.964456, -0.264243, -9.08444, 4.67806, 2.79179)
-size = Vector3(0.25, 2.96313, 0.441)
-
-[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08444, 6.2101, 1.352)
-size = Vector3(0.25, 7, 0.441)
-
-[node name="fuzilaj_2" type="CSGCombiner3D" parent="CSGCombiner3D/airplane"]
-transform = Transform3D(0.0665873, 0, -0.997781, 0, 1, 0, 0.997781, 0, 0.0665873, 3.02483, -1.51992e-06, -25.7884)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -2.62268e-07, 6, 0)
-radius = 5.0
-height = 20.0
-sides = 16
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0904538, 6, 0)
-operation = 2
-radius = 4.5
-height = 21.0471
-sides = 16
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
-size = Vector3(20, 0.6, 7)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0646362, 5, 3.06372)
-size = Vector3(19.8707, 0.6, 2.87256)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.453864, 0.125703, -0.88216, -0.0833929, 0.991647, 0.0983993, 0.88716, 0.0289061, 0.460555, 12.907, 1.88985, 4.5539)
-size = Vector3(8, 4, 4)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.895867, 0.444322, 0, -0.444322, 0.895867, 0, 0, 0, 1, 11.0373, 4.73134, 3.06372)
-size = Vector3(2.95709, 0.0496582, 2.87256)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.672971, 0.435727, 0.597706, -0.435085, 0.886681, -0.156517, -0.598173, -0.154721, 0.786289, 18.1126, 2.08628, 3.55648)
-size = Vector3(7.47896, 0.0496582, 2.31042)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.692, 5.149, -1.35)
-size = Vector3(0.25, 6.983, 0.6)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 5.96046e-08, 0, 2.98023e-08, 1, -4.65661e-10, 0, -4.65661e-09, 1, 8.692, 5.312, 1.47754)
-size = Vector3(0.25, 7.309, 0.344922)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 8.19564e-08, 0, 4.09782e-08, 1, -4.65661e-10, 0, -4.65661e-09, 1, -6.85104, 5.149, -1.52881)
-size = Vector3(0.25, 6.983, 0.242383)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.85104, 5.312, 1.35)
-size = Vector3(0.25, 7.309, 0.6)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.867805, -0.318111, 0.381733, 0.342532, 0.939497, 0.0042268, -0.359981, 0.127088, 0.924263, -6.10057, 3.00681, 2.19988)
-size = Vector3(0.25, 3.0129, 1.56514)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7415, 4.34936, -2.72526)
-size = Vector3(4, 5.69427, 3.51117)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.931179, 0.163496, -0.325845, -0.139434, 0.985562, 0.0960497, 0.336844, -0.0440055, 0.940531, -4.56195, 6.12869, 2.36611)
-size = Vector3(5.58643, 1.20361, 0.36377)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.783965, 0.331002, -0.525201, -0.248741, 0.942604, 0.222771, 0.568794, -0.0440055, 0.821302, -4.48253, 7.53967, 2.38363)
-size = Vector3(5.58643, 2, 0.36377)
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(-0.229264, 0.331002, -0.915356, 0.12557, 0.942604, 0.309404, 0.965231, -0.0440055, -0.257669, -7.50965, 7.22106, 1.66143)
-size = Vector3(5.67261, 2.87939, 0.36377)
-
-[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.491638, -0.542066, -0.681509, 0.481738, 0.821264, -0.305703, 0.725408, -0.178014, 0.664899, -0.739473, 9.7781, 0.511342)
-operation = 2
-size = Vector3(5, 7.59204, 3.30273)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/fuzilaj_2"]
-transform = Transform3D(0.980627, 0.195878, 0, -0.195878, 0.980628, -4.65661e-10, -2.68221e-07, -1.86265e-09, 1, -0.421848, 9.0111, -0.33291)
-operation = 2
-radius = 2.19922
-height = 4.9292
-
-[node name="wing1" type="CSGCombiner3D" parent="CSGCombiner3D/airplane"]
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/wing1"]
-transform = Transform3D(0.238691, 0.206085, -0.793078, 1.17509, -4.09782e-08, 0.16824, 0.0502696, -0.978534, -0.167027, -22.0412, 3, -11.2928)
-polygon = PackedVector2Array(-1, -2, -1, 17, 3, 17, 7, -2)
-
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/wing1"]
-transform = Transform3D(0.0602211, -0.410138, -0.583284, 0.682615, 0.0485699, 0.0337766, 0.0205839, -0.410786, 0.586358, -19.481, 2.13552, -29.1194)
-polygon = PackedVector2Array(-1, -2, -1, 17, 3, 17, 7, -2)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/wing1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6436, 4.30905, -17.9731)
-radius = 2.0
-height = 8.0
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/wing1"]
-transform = Transform3D(0.978444, -0.191631, 0.0769766, 0.20255, 0.963183, -0.176781, -0.0402658, 0.188562, 0.981236, -16.1892, 2.99364, -28.4289)
-radius = 2.0
-height = 8.0
-
-[node name="wing2" type="CSGCombiner3D" parent="CSGCombiner3D/airplane"]
-transform = Transform3D(0.029643, 0.882816, 0.468783, 0.991521, -0.085333, 0.0980018, 0.12652, 0.461903, -0.87786, -18.2179, 27.3937, -5.19476)
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/wing2"]
-transform = Transform3D(-0.143836, 0.162855, 0.810655, -1.18485, 0.0844454, -0.111631, -0.125612, -0.983029, 0.124709, -20.7778, 6.44887, -10.4536)
-polygon = PackedVector2Array(-1, -2, -1, 13, 4, 12, 7, -2)
-
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/wing2"]
-transform = Transform3D(-0.108564, -0.148386, 0.789641, -0.672541, 0.0875895, -0.101557, -0.0769139, -0.556441, -0.22656, -18.9288, 6.67822, -24.1902)
-polygon = PackedVector2Array(-1, -2, -1, 17, 3, 17, 7, -2)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/wing2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8724, 5.88836, -17.9731)
-radius = 2.0
-height = 8.0
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/wing2"]
-transform = Transform3D(0.976788, 0.0808728, -0.198356, -0.189365, 0.758865, -0.62311, 0.100133, 0.646207, 0.756564, -22.3533, 4.02151, -23.9111)
-radius = 2.0
-height = 8.0
-
-[node name="tail" type="CSGCombiner3D" parent="CSGCombiner3D/airplane"]
-transform = Transform3D(-0.979803, 0.198993, 0.0197078, 1.11759e-08, -0.0985555, 0.995132, 0.199967, 0.975033, 0.096565, 67.2898, 4.58673, -20.3299)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(-4.37115e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 30, 8, 0)
-radius = 5.0
-height = 40.0
-sides = 16
-cone = true
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(-4.37115e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 30, 8, 0)
-operation = 2
-radius = 4.5
-height = 40.0
-sides = 16
-cone = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2975, 8.96174, 0)
-operation = 2
-size = Vector3(43.6328, 10, 10)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(0.973576, -0.228368, 0, 0.228368, 0.973576, 0, 0, 0, 1, 43.5331, 4.96087, 0.837646)
-operation = 2
-size = Vector3(3.99646, 5.01175, 8.32471)
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(-2.08616e-07, -1, -1.15463e-14, 1, -2.08616e-07, 0, -3.19744e-14, 1.06581e-14, 1, 56.5628, 8, -4.76837e-07)
-radius = 5.0
-height = 14.6123
-sides = 16
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(-7.45058e-08, -1, -8.88178e-15, 1, -7.45058e-08, 0, -2.84217e-14, 3.55271e-15, 1, 56.1604, 8.00001, -4.76837e-07)
-operation = 2
-radius = 4.5
-height = 17.3564
-sides = 16
-
-[node name="tail" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(0.990745, -0.0267868, 0.133063, 0.0375292, 0.996177, -0.0788907, -0.130441, 0.0831545, 0.987963, 43.9844, 11.8223, 0.437525)
-polygon = PackedVector2Array(0, 0, 0, 9, 2, 9, 7, 0)
-
-[node name="tail2" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(0.986214, -0.158612, 0.0471617, 0.0578189, 0.0632591, -0.996321, 0.155045, 0.985312, 0.0715579, 45.2398, 7.36202, 3.39998)
-polygon = PackedVector2Array(0, 0, 0, 9, 2, 9, 7, 0)
-
-[node name="tail3" type="CSGPolygon3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(0.988283, -0.0505705, 0.144008, 0.0844504, 0.967106, -0.239944, -0.127137, 0.249294, 0.960046, 44.4882, 9.57988, -2.90417)
-polygon = PackedVector2Array(0, 0, 0, 9, 2, 9, 7, 0)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(1, 3.55271e-15, 3.57628e-07, 3.72529e-07, -4.37115e-08, -1, -2.4869e-14, 1, -4.37113e-08, 59.5908, 5.67413, -0.066366)
-size = Vector3(8.01025, 8.09375, 3.95621)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.4016, 7.92784, -1.68752)
-size = Vector3(0.25, 9, 0.6)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(0.97497, 0.144606, -0.168892, -0.141816, 0.989483, 0.0285347, 0.171242, -0.00386898, 0.985223, 52.781, 7.99235, -2.84976)
-size = Vector3(3.82214, 8.0249, 3.44976)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(0.987996, 0.0760169, 0.134498, -0.0243792, 0.93638, -0.350149, -0.152558, 0.342667, 0.926989, 44.0591, 10.5749, -0.303293)
-size = Vector3(3.82214, 4.55249, 7.67801)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/airplane/tail"]
-transform = Transform3D(-0.174163, -0.830293, 0.529418, 0.983207, -0.11684, 0.140205, -0.0545539, 0.544945, 0.836697, 56.9341, 9.45569, -2.39241)
-size = Vector3(2.92181, 5.55493, 0.290149)
-
-[node name="cabin" type="CSGCombiner3D" parent="CSGCombiner3D/airplane"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20224, 0)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/cabin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2109, 1.40966, -7.21466)
-radius = 5.0
-height = 5.19482
-sides = 16
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/cabin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2109, 7.99874, -7.21466)
-radius = 5.0
-height = 8.12207
-sides = 16
-cone = true
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/airplane/cabin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2109, 11.0137, -7.21466)
-operation = 2
-radius = 5.0
-height = 5.76123
-sides = 16
+[node name="fuzilaj1" parent="CSGCombiner3D/airplane" instance=ExtResource("17_7x6dg")]
+transform = Transform3D(0.999394, 0.0322844, 0.0129993, -0.0337396, 0.990367, 0.134296, -0.00853825, -0.134654, 0.990855, -19.4772, 6.25938, -13.6671)
 
 [node name="terrain" parent="." instance=ExtResource("6_lt4ah")]
 
 [node name="lake" parent="." instance=ExtResource("7_r107u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.144, -1, 7.41066)
 
-[node name="pillar_16" parent="." instance=ExtResource("7_4h858")]
-transform = Transform3D(-0.382396, -0.258819, 0.88701, -0.589573, 0.807503, -0.0185492, -0.711461, -0.53005, -0.461378, -31.759, 25.4434, -23.706)
+[node name="skybox" type="Node3D" parent="."]
+
+[node name="fence+area" parent="skybox" instance=ExtResource("17_srdrx")]
+
+[node name="roof+stadium" parent="skybox" instance=ExtResource("17_adkyy")]
+
+[node name="barier" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 7
+collision_mask = 7
+
+[node name="CSGBox3D" type="CSGBox3D" parent="barier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 200)
+size = Vector3(250, 100, 1)
+material = SubResource("StandardMaterial3D_srdrx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="barier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, -200)
+size = Vector3(250, 100, 1)
+material = SubResource("StandardMaterial3D_srdrx")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="barier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 50, 0)
+size = Vector3(1, 100, 400)
+material = SubResource("StandardMaterial3D_srdrx")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="barier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 50, 0)
+size = Vector3(1, 100, 400)
+material = SubResource("StandardMaterial3D_srdrx")

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8g24tjbkqfuk"]
+
+[ext_resource type="PackedScene" uid="uid://ceakx6y5gd0yj" path="res://assets/models/skybox/raw/fence+area.glb" id="1_ewimp"]
+
+[node name="fence+area" instance=ExtResource("1_ewimp")]
