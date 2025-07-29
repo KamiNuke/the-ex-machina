@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=16 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
 [ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://j0nas67m2oo5" path="res://src/entities/guns/grenade_launcher.tscn" id="4_p1m7e"]
 [ext_resource type="PackedScene" uid="uid://drvs5gp6oq6lx" path="res://src/ui/crosshair.tscn" id="4_vm6si"]
 [ext_resource type="PackedScene" uid="uid://b5flwp06tvo7r" path="res://src/entities/guns/projectile_weapon.tscn" id="5_qsbkc"]
+[ext_resource type="AudioStream" uid="uid://dn340sv4vik52" path="res://assets/sound/01-footstep.wav" id="8_qsbkc"]
+[ext_resource type="AudioStream" uid="uid://ccy6qvafx2gyc" path="res://assets/sound/switch_weapon.wav" id="9_0syf7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2lfla"]
 
@@ -14,6 +16,67 @@
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_co8hi"]
+
+[sub_resource type="Animation" id="Animation_ed3pp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/cam_pivot/cam_collision/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/cam_pivot/cam_collision/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(7.45058e-09, -0.436332, 4.43143e-16)]
+}
+
+[sub_resource type="Animation" id="Animation_0syf7"]
+resource_name = "start_catscene"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/cam_pivot/cam_collision/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.743398, 0.480325, 4.87643), Vector3(0, 0, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/cam_pivot/cam_collision/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.00339993, -0.112451, 0.0208104), Vector3(7.45058e-09, -0.436332, 4.43143e-16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vucfn"]
+_data = {
+&"RESET": SubResource("Animation_ed3pp"),
+&"start_catscene": SubResource("Animation_0syf7")
+}
 
 [node name="PlayerController" type="CharacterBody3D" groups=["player"]]
 collision_layer = 4
@@ -31,13 +94,16 @@ shape = SubResource("ConvexPolygonShape3D_2lfla")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.882099, 0, 0)
 
 [node name="GrenadeLauncher" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("4_p1m7e")]
+ammo = 20
 throw_force = 20.0
 shooter = NodePath("../..")
 
 [node name="HitscanWeapon" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("2_dklf8")]
+ammo = 30
 shooter = NodePath("../..")
 
 [node name="ProjectileWeapon" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("5_qsbkc")]
+ammo = 60
 shooter = NodePath("../..")
 
 [node name="head" type="Node3D" parent="."]
@@ -50,7 +116,7 @@ transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, -7.45058e-09,
 spring_length = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="head/cam_pivot/cam_collision"]
-transform = Transform3D(0.906308, -3.14875e-09, -0.422618, 4.43143e-16, 1, -7.45058e-09, 0.422618, 6.75252e-09, 0.906308, 0, 0, 0)
+transform = Transform3D(0.906308, -3.14875e-09, -0.422618, 4.43143e-16, 1, -7.45058e-09, 0.422618, 6.75252e-09, 0.906308, 0, 0, 2)
 
 [node name="RayCast3D" type="RayCast3D" parent="head/cam_pivot/cam_collision"]
 transform = Transform3D(0.906308, -9.44625e-09, -0.422618, 4.43143e-16, 1, -2.23517e-08, 0.422618, 2.02576e-08, 0.906308, 0, 0, 0)
@@ -64,6 +130,12 @@ wait_time = 0.2
 
 [node name="boost_cooldown" type="Timer" parent="timers"]
 wait_time = 2.5
+
+[node name="step_timer" type="Timer" parent="timers"]
+wait_time = 0.4
+
+[node name="weapon_switch_sound" type="Timer" parent="timers"]
+wait_time = 0.4
 
 [node name="CollectableArea" type="Area3D" parent="."]
 collision_layer = 8
@@ -102,9 +174,28 @@ grow_vertical = 2
 PLAYER_CONTROLLER = NodePath("../..")
 RETICLE_DISTANCE = 0.75
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_qsbkc")
+volume_db = 20.0
+
+[node name="WeaponSwitch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_0syf7")
+volume_db = -5.0
+
+[node name="win_camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.999207, 0.0342393, 0.020304, 0.0396909, 0.895851, 0.442578, -0.00303578, 0.443033, -0.8965, 0, 1.33761, -1.93907)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vucfn")
+}
+
 [connection signal="_attack" from="." to="WeaponManager2" method="_on_player_controller__attack"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/GrenadeLauncher" method="_on_weapon_manager_2_fire"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/HitscanWeapon" method="_on_weapon_manager_2_fire"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/ProjectileWeapon" method="_on_weapon_manager_2_fire"]
 [connection signal="timeout" from="timers/boost_left" to="." method="_on_boost_left_timeout"]
 [connection signal="timeout" from="timers/boost_cooldown" to="." method="_on_boost_cooldown_timeout"]
+[connection signal="timeout" from="timers/step_timer" to="." method="_on_step_sound_timeout"]
+[connection signal="timeout" from="timers/weapon_switch_sound" to="." method="_on_weapon_switch_sound_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

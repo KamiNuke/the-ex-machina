@@ -47,5 +47,10 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	#var ent = area.get_parent()
 	if collect_item_instance != null:
+		$hitbox.disabled = true
+		$Area3D/CollisionShape3D.disabled = true
+		$Sprite3D.texture = null
+		$AudioStreamPlayer3D.play()
+		await get_tree().create_timer(.50).timeout
 		collect_item_instance.queue_free()
 		#collect_item_instance = null

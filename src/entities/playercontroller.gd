@@ -9,6 +9,12 @@ extends CharacterBody3D
 @onready var boost_cooldown: Timer = $timers/boost_cooldown
 @onready var cooldown_ui: CanvasLayer = $UI/Cooldown
 @onready var crosshair: Control = $UI/Crosshair
+@onready var step_timer: Timer = $timers/step_timer
+@onready var weapon_switch_sound: Timer = $timers/weapon_switch_sound
+@onready var win_camera: Camera3D = $win_camera
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
 "BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
@@ -23,6 +29,13 @@ extends CharacterBody3D
 
 var is_alive = true
 @onready var model_3d: MeshInstance3D = $MeshInstance3D
+
+var is_win = false
+var win_cam_angle := 0.0
+const win_cam_radius := 5.0
+const win_cam_height := 2.0
+var is_start_catscene_playing = true
+
 
 #DEBUG
 
@@ -54,8 +67,11 @@ var t_bob = 0.0 #don't touch
 @export var BASE_FOV = 75.0
 const CHANGE_FOV = 1.0
 
+func _ready() -> void:
+	animation_player.play("start_catscene")
+
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive:
+	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 
 		var rotation_delta = -event.relative.y * SENSIVITY
@@ -66,6 +82,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	print(camera.position)
 	# Health Points process
 	if HP <= 0 and is_alive:
 		print("cooked")
@@ -120,6 +137,13 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	var is_moving := input_dir.length() > 0.1
+	
+	if is_on_floor() and is_moving:
+		if step_timer.is_stopped():
+			step_timer.start()
+			$AudioStreamPlayer3D.play()
+	
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * speed
@@ -143,21 +167,40 @@ func _physics_process(delta: float) -> void:
 	var covered_distance = delta * 8.0
 	camera.fov = lerp(camera.fov, target_fov, covered_distance)
 	
+	if is_win:
+		win_cam_angle += delta * 1.0
+		var offset = Vector3(
+			cos(win_cam_angle) * win_cam_radius,
+			win_cam_height,
+			sin(win_cam_angle) * win_cam_radius
+		)
+		win_camera.global_position = global_position + offset
+		win_camera.look_at(global_position + Vector3(0, 1.5, 0), Vector3.UP)
+
 
 	if Input.is_action_pressed("one"):
 		weapon.switch_weapon(1)
+		if weapon_switch_sound.is_stopped():
+			$WeaponSwitch.play()
+			weapon_switch_sound.start()
 	
 	if Input.is_action_pressed("two"):
 		weapon.switch_weapon(2)
+		if weapon_switch_sound.is_stopped():
+			$WeaponSwitch.play()
+			weapon_switch_sound.start()
 		
 	if Input.is_action_pressed("three"):
 		weapon.switch_weapon(3)
-	
+		
+		if weapon_switch_sound.is_stopped():
+			$WeaponSwitch.play()
+			weapon_switch_sound.start()
+
 	if Input.is_action_pressed("attack"):
 		emit_signal("_attack")
 		#spawn_explosion()
 	
-
 	
 	move_and_slide()
 
@@ -196,3 +239,22 @@ func enable_collision():
 	$CollisionShape3D.disabled = false
 	$CollectableArea/CollisionShape3D.disabled = false
 	
+
+
+func _on_step_sound_timeout() -> void:
+	step_timer.stop()
+
+
+func _on_weapon_switch_sound_timeout() -> void:
+	weapon_switch_sound.stop()
+
+
+func _on_default_win() -> void:
+	is_win = true
+	win_camera.current = true
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "start_catscene":
+		is_start_catscene_playing = false
+	pass

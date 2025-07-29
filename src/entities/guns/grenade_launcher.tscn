@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://j0nas67m2oo5"]
+[gd_scene load_steps=4 format=3 uid="uid://j0nas67m2oo5"]
 
 [ext_resource type="Script" uid="uid://qayqbl87fjja" path="res://src/entities/guns/grenade_launcher.gd" id="1_07m74"]
 [ext_resource type="PackedScene" uid="uid://curbxgrljodh6" path="res://src/entities/guns/weapon.tscn" id="2_g1nuk"]
+[ext_resource type="AudioStream" uid="uid://blpfahh76xb1e" path="res://assets/sound/grenade_launcher.wav" id="3_ggead"]
 
 [node name="GrenadeLauncher" type="Node3D"]
 script = ExtResource("1_07m74")
@@ -11,6 +12,12 @@ up_direction = 3.5
 [node name="Weapon" parent="." instance=ExtResource("2_g1nuk")]
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ggead")
+volume_db = -10.0
+unit_size = 5.0
+pitch_scale = 3.0
 
 [connection signal="_empty" from="." to="Weapon" method="_on_grenade_launcher__empty"]
 [connection signal="_fire" from="." to="Weapon" method="_on_grenade_launcher__fire"]

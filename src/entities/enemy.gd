@@ -19,7 +19,9 @@ const SCATTER_DISTANCE = 50
 @onready var weapon: Node3D = $WeaponManager
 signal _attack
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var step_timer: Timer = $timers/step_timer
 
+signal dying_applause_signal
 
 var target_location := Vector3.ZERO
 const DISTANCE_FROM_PLAYER = 10.0
@@ -30,11 +32,13 @@ var is_circling = false
 var is_following = false
 var is_jumping = false
 
-const JUMP_VELOCITY = 6.5
+const JUMP_VELOCITY = 8.5
 
 func _ready() -> void:
 	scatter_timer.wait_time = randf_range(2.0, 4.0)
 	weapon.switch_weapon(randi_range(1, 3))
+	
+	dying_applause_signal.connect(Global.play_applause_on_enemy_death)
 
 func _process(delta: float) -> void:
 	if HP <= 0:
@@ -92,6 +96,15 @@ func _physics_process(delta: float) -> void:
 		const ROTATE_SPEED = 2.0
 		rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * ROTATE_SPEED)
 		
+
+	var horizontal_velocity = Vector2(velocity.x, velocity.z)
+	var is_moving := horizontal_velocity.length() > 0.1
+
+	if is_on_floor() and is_moving:
+		if step_timer.is_stopped():
+			step_timer.start()
+			$AudioStreamPlayer3D.play()
+
 	move_and_slide()
 
 
@@ -106,7 +119,9 @@ func hit(damage_amount):
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_jumping and not is_circling:
-		velocity = safe_velocity
+		velocity.x = safe_velocity.x
+		velocity.z = safe_velocity.z
+		#velocity = safe_velocity
 	pass
 
 
@@ -134,3 +149,11 @@ func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	if is_on_floor() and not is_jumping and jump_timer.is_stopped():
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
+
+
+func _on_step_timer_timeout() -> void:
+	step_timer.stop()
+
+
+func _on_tree_exiting() -> void:
+	emit_signal("dying_applause_signal")
