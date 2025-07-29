@@ -32,7 +32,7 @@ var is_circling = false
 var is_following = false
 var is_jumping = false
 
-const JUMP_VELOCITY = 6.5
+const JUMP_VELOCITY = 8.5
 
 func _ready() -> void:
 	scatter_timer.wait_time = randf_range(2.0, 4.0)
@@ -121,6 +121,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_jumping and not is_circling:
 		velocity.x = safe_velocity.x
 		velocity.z = safe_velocity.z
+		#velocity = safe_velocity
 	pass
 
 

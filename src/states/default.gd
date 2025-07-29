@@ -20,10 +20,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		var pause_instance = PAUSE_LAYER.instantiate()
 		add_child(pause_instance)
-	
 	var enemy_count = 0
-	for node in get_children():
-		if node.is_in_group("enemy"):
+	for child in get_tree().get_nodes_in_group("enemy"):
+		if is_instance_valid(child):
 			enemy_count += 1
 	if enemy_count == 0:
 		if !is_winning_audio_playing:
