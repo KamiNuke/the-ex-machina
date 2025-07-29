@@ -34,6 +34,7 @@ var is_win = false
 var win_cam_angle := 0.0
 const win_cam_radius := 5.0
 const win_cam_height := 2.0
+var is_start_catscene_playing = true
 
 
 #DEBUG
@@ -70,7 +71,7 @@ func _ready() -> void:
 	animation_player.play("start_catscene")
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive and !is_win:
+	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
 		head.rotate_y(-event.relative.x * SENSIVITY)
 
 		var rotation_delta = -event.relative.y * SENSIVITY
@@ -81,6 +82,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	print(camera.position)
 	# Health Points process
 	if HP <= 0 and is_alive:
 		print("cooked")
@@ -254,4 +256,5 @@ func _on_default_win() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "start_catscene":
-		$start_camera.current = false
+		is_start_catscene_playing = false
+	pass

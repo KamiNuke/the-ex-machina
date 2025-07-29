@@ -22,26 +22,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("start_camera:position")
+tracks/0/path = NodePath("head/cam_pivot/cam_collision/Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(3.16007, 1.56001, 5.7667)]
+"values": [Vector3(0, 0, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("start_camera:rotation")
+tracks/1/path = NodePath("head/cam_pivot/cam_collision/Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.20162, 0, 0)]
+"values": [Vector3(7.45058e-09, -0.436332, 4.43143e-16)]
 }
 
 [sub_resource type="Animation" id="Animation_0syf7"]
@@ -50,26 +50,26 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("start_camera:position")
+tracks/0/path = NodePath("head/cam_pivot/cam_collision/Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.46667, 2.83333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(3.16007, 1.56001, 5.7667), Vector3(0.698322, 1.56001, 2.97604), Vector3(0.561149, 1.06599, 1.99279)]
+"values": [Vector3(0.743398, 0.480325, 4.87643), Vector3(0, 0, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("start_camera:rotation")
+tracks/1/path = NodePath("head/cam_pivot/cam_collision/Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.20162, 0, 0)]
+"values": [Vector3(-0.00339993, -0.112451, 0.0208104), Vector3(7.45058e-09, -0.436332, 4.43143e-16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vucfn"]
@@ -116,7 +116,7 @@ transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, -7.45058e-09,
 spring_length = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="head/cam_pivot/cam_collision"]
-transform = Transform3D(0.906308, -3.14875e-09, -0.422618, 4.43143e-16, 1, -7.45058e-09, 0.422618, 6.75252e-09, 0.906308, 0, 0, 0)
+transform = Transform3D(0.906308, -3.14875e-09, -0.422618, 4.43143e-16, 1, -7.45058e-09, 0.422618, 6.75252e-09, 0.906308, 0, 0, 2)
 
 [node name="RayCast3D" type="RayCast3D" parent="head/cam_pivot/cam_collision"]
 transform = Transform3D(0.906308, -9.44625e-09, -0.422618, 4.43143e-16, 1, -2.23517e-08, 0.422618, 2.02576e-08, 0.906308, 0, 0, 0)
@@ -184,10 +184,6 @@ volume_db = -5.0
 
 [node name="win_camera" type="Camera3D" parent="."]
 transform = Transform3D(-0.999207, 0.0342393, 0.020304, 0.0396909, 0.895851, 0.442578, -0.00303578, 0.443033, -0.8965, 0, 1.33761, -1.93907)
-
-[node name="start_camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.979743, 0.200257, 0, -0.200257, 0.979743, 3.16007, 1.56001, 5.7667)
-current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
