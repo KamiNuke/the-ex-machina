@@ -1,4 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://cjea53wok0fx7"]
+[gd_scene load_steps=18 format=4 uid="uid://cjea53wok0fx7"]
+
+[ext_resource type="Texture2D" uid="uid://bogolfauumx6r" path="res://assets/materials/props/body_1.jpg" id="1_hct2g"]
+[ext_resource type="Texture2D" uid="uid://ct26k65xml2ab" path="res://assets/materials/props/wings_face_chair.jpg" id="1_k3o0t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kx4vd"]
+albedo_texture = ExtResource("1_hct2g")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4ycb"]
 
@@ -69,6 +75,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g8s0w")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hct2g"]
+albedo_texture = ExtResource("1_k3o0t")
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hct2g"]
 data = PackedVector3Array(-0.25, 0, -1, 0.8, 2, -1, 0.15, 2, -1, -0.25, 0, -1, 0.4, 0, -1, 0.8, 2, -1, 0.4, -1.5, -1, 0.4, 0, -1, -0.25, 0, -1, -2, -1.5, -1, 0.4, -1.5, -1, -0.25, 0, -1, -2, -1.5, -1, -0.25, 0, -1, -1.5, 0, -1, 0.4, 0, -1, 0.8, 2, 1, 0.8, 2, -1, 0.4, 0, -1, 0.4, 0, 1, 0.8, 2, 1, 0.4, -1.5, 1, -1.5, 0, 1, -0.25, 0, 1, 0.4, -1.5, 1, -2, -1.5, 1, -1.5, 0, 1, 0.4, -1.5, 1, -0.25, 0, 1, 0.4, 0, 1, 0.4, 0, 1, -0.25, 0, 1, 0.15, 2, 1, 0.4, 0, 1, 0.15, 2, 1, 0.8, 2, 1, 0.4, -1.5, -1, 0.4, 0, 1, 0.4, 0, -1, 0.4, -1.5, -1, 0.4, -1.5, 1, 0.4, 0, 1, -2, -1.5, 1, -1.5, 0, -1, -1.5, 0, 1, -2, -1.5, 1, -2, -1.5, -1, -1.5, 0, -1, 0.8, 2, -1, 0.15, 2, 1, 0.15, 2, -1, 0.8, 2, -1, 0.8, 2, 1, 0.15, 2, 1, -2, -1.5, -1, 0.4, -1.5, 1, 0.4, -1.5, -1, -2, -1.5, -1, -2, -1.5, 1, 0.4, -1.5, 1, -0.25, 0, 1, -1.5, 0, -1, -0.25, 0, -1, -0.25, 0, 1, -1.5, 0, 1, -1.5, 0, -1, 0.15, 2, -1, -0.25, 0, 1, -0.25, 0, -1, 0.15, 2, -1, 0.15, 2, 1, -0.25, 0, 1)
 
@@ -104,6 +113,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_r4ma4")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmola"]
+albedo_texture = ExtResource("1_k3o0t")
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xmola"]
 data = PackedVector3Array(-0.25, 0, -1, 0.8, 2, -1, 0.15, 2, -1, -0.25, 0, -1, 0.4, 0, -1, 0.8, 2, -1, 0.4, -1.5, -1, 0.4, 0, -1, -0.25, 0, -1, -2, -1.5, -1, 0.4, -1.5, -1, -0.25, 0, -1, -2, -1.5, -1, -0.25, 0, -1, -1.5, 0, -1, 0.4, 0, -1, 0.8, 2, 1, 0.8, 2, -1, 0.4, 0, -1, 0.4, 0, 1, 0.8, 2, 1, 0.4, -1.5, 1, -1.5, 0, 1, -0.25, 0, 1, 0.4, -1.5, 1, -2, -1.5, 1, -1.5, 0, 1, 0.4, -1.5, 1, -0.25, 0, 1, 0.4, 0, 1, 0.4, 0, 1, -0.25, 0, 1, 0.15, 2, 1, 0.4, 0, 1, 0.15, 2, 1, 0.8, 2, 1, 0.4, -1.5, -1, 0.4, 0, 1, 0.4, 0, -1, 0.4, -1.5, -1, 0.4, -1.5, 1, 0.4, 0, 1, -2, -1.5, 1, -1.5, 0, -1, -1.5, 0, 1, -2, -1.5, 1, -2, -1.5, -1, -1.5, 0, -1, 0.8, 2, -1, 0.15, 2, 1, 0.15, 2, -1, 0.8, 2, -1, 0.8, 2, 1, 0.15, 2, 1, -2, -1.5, -1, 0.4, -1.5, 1, 0.4, -1.5, -1, -2, -1.5, -1, -2, -1.5, 1, 0.4, -1.5, 1, -0.25, 0, 1, -1.5, 0, -1, -0.25, 0, -1, -0.25, 0, 1, -1.5, 0, 1, -1.5, 0, -1, 0.15, 2, -1, -0.25, 0, 1, -0.25, 0, -1, 0.15, 2, -1, 0.15, 2, 1, -0.25, 0, 1)
 
@@ -113,6 +125,7 @@ collision_mask = 7
 
 [node name="body_1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.668181, 0, 0, 0, 0.668181, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_kx4vd")
 mesh = SubResource("ArrayMesh_ykh8q")
 skeleton = NodePath("")
 
@@ -124,6 +137,7 @@ shape = SubResource("ConcavePolygonShape3D_k3o0t")
 transform = Transform3D(0.746648, 0, 0.212494, 0, 0.75, 0, -0.0708315, 0, 2.23994, 8.91865, 1.19226, -2.37379)
 mesh = SubResource("ArrayMesh_uvjvm")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_hct2g")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.746648, 0, 0.212494, 0, 0.75, 0, -0.0708315, 0, 2.23994, 8.91865, 1.19226, -2.37379)
@@ -133,6 +147,7 @@ shape = SubResource("ConcavePolygonShape3D_hct2g")
 transform = Transform3D(0.653615, -0.188891, 0.946823, 0.281834, -0.156316, -2.03168, 0.236342, 0.708791, -0.195738, 11.1912, 1.92773, -2.06864)
 mesh = SubResource("ArrayMesh_55ei0")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_xmola")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.653615, -0.188891, 0.946823, 0.281834, -0.156316, -2.03168, 0.236342, 0.708791, -0.195738, 11.1912, 1.92773, -2.06864)
