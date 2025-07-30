@@ -44,6 +44,17 @@ func add_ammo_to_each_weapon(grenades, lasers, bullets):
 	if is_instance_valid(projectile_weapon):
 		projectile_weapon.ammo += bullets
 
+func set_ammo_to_each_weapon(grenades, lasers, bullets):
+	set_ammo(grenade_launcher, grenades)
+	set_ammo(hitscan_weapon, lasers)
+	set_ammo(projectile_weapon, bullets)
+
+
+func set_ammo(object, amount):
+	if is_instance_valid(object):
+		object.ammo = amount
+		object.current_ammo = 0
+
 func get_grenade_launcher_ammo():
 	return if_weapon_ammo_exist(grenade_launcher)
 	
