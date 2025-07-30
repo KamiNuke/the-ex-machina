@@ -70,9 +70,14 @@ func _on_reborn_button_up() -> void:
 		player.is_alive = true
 		player.restore_model_visibility()
 		player.position = enemy_pos
-		player.player_legs = BodyParts.DEFAULT_LEGS
+		player.player_legs = BodyParts.SYMBIOTIC_LEGS
 		player.HP = 100
 		player.enable_collision()
+		
+		for child in player.get_children():
+			if child.has_method("add_ammo_to_each_weapon"):
+				child.add_ammo_to_each_weapon(20, 40, 60)
+		
 		death_screen.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif revives_left <= 0:

@@ -8,6 +8,10 @@ var switch_cooldown: bool = false
 
 signal fire
 
+@onready var grenade_launcher: Node3D = $GrenadeLauncher
+@onready var hitscan_weapon: Node3D = $HitscanWeapon
+@onready var projectile_weapon: Node3D = $ProjectileWeapon
+
 func _ready() -> void:
 	for g in guns:
 		if g.get_index() > 0:
@@ -31,3 +35,8 @@ func _on_timer_timeout() -> void:
 
 func _on_player_controller__attack() -> void:
 	emit_signal("fire")
+
+func add_ammo_to_each_weapon(grenades, lasers, bullets):
+	grenade_launcher.ammo += grenades
+	hitscan_weapon.ammo += lasers
+	projectile_weapon.ammo += bullets
