@@ -37,6 +37,24 @@ func _on_player_controller__attack() -> void:
 	emit_signal("fire")
 
 func add_ammo_to_each_weapon(grenades, lasers, bullets):
-	grenade_launcher.ammo += grenades
-	hitscan_weapon.ammo += lasers
-	projectile_weapon.ammo += bullets
+	if is_instance_valid(grenade_launcher):
+		grenade_launcher.ammo += grenades
+	if is_instance_valid(hitscan_weapon):
+		hitscan_weapon.ammo += lasers
+	if is_instance_valid(projectile_weapon):
+		projectile_weapon.ammo += bullets
+
+func get_grenade_launcher_ammo():
+	return if_weapon_ammo_exist(grenade_launcher)
+	
+func get_hitscan_ammo():
+	return if_weapon_ammo_exist(hitscan_weapon)
+	
+func get_projectile_ammo():
+	return if_weapon_ammo_exist(projectile_weapon)
+
+func if_weapon_ammo_exist(object):
+	if is_instance_valid(object):
+		return object.ammo - object.current_ammo
+	else:
+		return null

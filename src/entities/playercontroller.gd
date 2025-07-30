@@ -14,6 +14,9 @@ extends CharacterBody3D
 @onready var win_camera: Camera3D = $win_camera
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var grenade_ammo_label: Label = $UI/HBoxContainer_ammo/grenade_ammo_label
+@onready var hitscan_ammo_label: Label = $UI/HBoxContainer_ammo/hitscan_ammo_label
+@onready var projectile_ammo_label: Label = $UI/HBoxContainer_ammo/projectile_ammo_label
 
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
@@ -100,6 +103,7 @@ func _process(delta: float) -> void:
 	boost_cooldown.wait_time = BodyParts.legs_cooldown[player_legs]
 	
 	update_cooldown_ui()
+	set_ammo_labels()
 
 func update_cooldown_ui():
 	var progress: float	
@@ -258,3 +262,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "start_catscene":
 		is_start_catscene_playing = false
 	pass
+
+func set_ammo_labels():
+	grenade_ammo_label.text = "Grenades: " + str(weapon.get_grenade_launcher_ammo())
+	hitscan_ammo_label.text = "Lasers: " + str(weapon.get_hitscan_ammo())
+	projectile_ammo_label.text = "Bullets: " + str(weapon.get_projectile_ammo())

@@ -83,7 +83,6 @@ func _on_reborn_button_up() -> void:
 	elif revives_left <= 0:
 		$DeathScreen/text/Label.text = "No revives left"
 	else:
-		#say that no robots left
 		$DeathScreen/text/Label.text = "No robots left"
 		pass
 

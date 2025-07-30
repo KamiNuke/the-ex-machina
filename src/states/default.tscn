@@ -136,7 +136,8 @@ skeleton = NodePath("../../..")
 
 [node name="CollectablePart" parent="." instance=ExtResource("3_feaac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.6447, 72.9122, 115.824)
-body_legs = 4
+collectable_type = 1
+body_legs = 2
 
 [node name="audio" type="Node" parent="."]
 
