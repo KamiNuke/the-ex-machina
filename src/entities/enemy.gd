@@ -147,8 +147,17 @@ func scatter():
 
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	if is_on_floor() and not is_jumping and jump_timer.is_stopped():
-		velocity.y = JUMP_VELOCITY
-		is_jumping = true
+		if details.has("link_exit_position"):
+			var direction = (details["link_exit_position"] - global_position).normalized()
+			
+			var horizontal_jump_speed = 5.0
+			velocity.x = direction.x * horizontal_jump_speed
+			velocity.z = direction.z * horizontal_jump_speed
+			
+			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_VELOCITY
+			is_jumping = true
+			jump_timer.start()
 
 
 func _on_step_timer_timeout() -> void:

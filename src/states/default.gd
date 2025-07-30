@@ -4,6 +4,9 @@ extends Node
 @onready var death_screen: Control = $DeathScreen
 @onready var win_layer: Control = $WinLayer
 
+@onready var robot_counter: Label = $UI/VBoxContainer/robot_counter
+@onready var revive_counter: Label = $UI/VBoxContainer/revive_counter
+
 const PAUSE_LAYER = preload("res://src/ui/pause_layer.tscn")
 
 signal win
@@ -32,6 +35,8 @@ func _process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		emit_signal("win")
 		
+	robot_counter.text = "enemies left: " + str(enemy_count)
+	revive_counter.text = "revives left: " + str(revives_left)
 			
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(player):
