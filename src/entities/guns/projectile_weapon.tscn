@@ -1,17 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5flwp06tvo7r"]
 
 [ext_resource type="Script" uid="uid://bd36r46ri6la1" path="res://src/entities/guns/projectile_weapon.gd" id="1_jpodr"]
-[ext_resource type="PackedScene" uid="uid://curbxgrljodh6" path="res://src/entities/guns/weapon.tscn" id="1_y5vvv"]
+[ext_resource type="PackedScene" uid="uid://v77lotptmh1q" path="res://src/entities/guns/mky.tscn" id="2_jpodr"]
 
 [node name="ProjectileWeapon" type="Node3D"]
 script = ExtResource("1_jpodr")
 cool_down_count = 0.2
 
-[node name="Weapon" parent="." instance=ExtResource("1_y5vvv")]
+[node name="Weapon" parent="." instance=ExtResource("2_jpodr")]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 
-[connection signal="_empty" from="." to="Weapon" method="_on_projectile_weapon__empty"]
-[connection signal="_fire" from="." to="Weapon" method="_on_projectile_weapon__fire"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

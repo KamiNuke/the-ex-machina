@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+signal fall
+signal dash
+signal walk(value: int)
+
 @onready var head: Node3D = $"."
 @onready var aim: RayCast3D = $head/cam_pivot/cam_collision/RayCast3D
 @onready var camera: Camera3D = $head/cam_pivot/cam_collision/Camera3D
@@ -37,7 +41,7 @@ const PROJECTILE_WEAPON_TEXTURE_ICON = preload("res://assets/sprites/projectile_
 @export var LIMIT_VIEW_UP: int = 35
 
 var is_alive = true
-@onready var model_3d: MeshInstance3D = $MeshInstance3D
+@onready var model_3d = $bot_anims
 
 var is_win = false
 var win_cam_angle := 0.0
@@ -170,6 +174,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() and is_alive:
 		velocity += get_gravity() * delta
+		emit_signal("fall")
 	
 	if aim.is_colliding():
 		weapon.look_at(aim.get_collision_point())
@@ -177,6 +182,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		emit_signal("dash")
 
 	if !is_start_catscene_playing:
 		# Handle sprint
@@ -186,6 +192,7 @@ func _physics_process(delta: float) -> void:
 			speed = BOOST_SPEED * WALK_SPEED
 		elif boost_left.is_stopped():
 			speed = WALK_SPEED
+		emit_signal("dash")
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
@@ -198,6 +205,7 @@ func _physics_process(delta: float) -> void:
 			if step_timer.is_stopped():
 				step_timer.start()
 				$AudioStreamPlayer3D.play()
+			emit_signal("walk", 1)
 		
 		if is_on_floor():
 			if direction:

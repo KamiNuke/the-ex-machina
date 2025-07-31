@@ -42,7 +42,8 @@ func _ready() -> void:
 	scatter_timer.wait_time = randf_range(2.0, 4.0)
 	weapon.switch_weapon(randi_range(1, 3))
 	dying_applause_signal.connect(Global.play_applause_on_enemy_death)
-	
+	var playback = $bot_anims.animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+	playback.travel("raise")
 	SPEED = BodyParts.legs_speed[legs_type]
 
 func _process(delta: float) -> void:

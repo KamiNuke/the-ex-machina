@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://lr4ib5iyid5g"]
+[gd_scene load_steps=16 format=3 uid="uid://lr4ib5iyid5g"]
 
 [ext_resource type="Script" uid="uid://bilqvrmvichw6" path="res://src/entities/playercontroller.gd" id="1_2lfla"]
 [ext_resource type="PackedScene" uid="uid://y1yojrkdm0jh" path="res://src/ui/cooldown.tscn" id="2_3pnt3"]
 [ext_resource type="PackedScene" uid="uid://ctkv0cxdu136o" path="res://src/entities/guns/hitscan_weapon.tscn" id="2_dklf8"]
+[ext_resource type="PackedScene" uid="uid://6af5xfer1s6y" path="res://assets/models/character+weapons/bot_anims.tscn" id="2_ed3pp"]
 [ext_resource type="PackedScene" uid="uid://cvwdxebxx1yi5" path="res://src/entities/weapon_manager.tscn" id="2_udtjk"]
 [ext_resource type="PackedScene" uid="uid://j0nas67m2oo5" path="res://src/entities/guns/grenade_launcher.tscn" id="4_p1m7e"]
 [ext_resource type="PackedScene" uid="uid://drvs5gp6oq6lx" path="res://src/ui/crosshair.tscn" id="4_vm6si"]
@@ -81,11 +82,14 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_2lfla")
 
+[node name="bot_anims" parent="." instance=ExtResource("2_ed3pp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_2lfla")
 
 [node name="WeaponManager2" parent="." instance=ExtResource("2_udtjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.882099, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31485, 0.474353, -0.827923)
 
 [node name="GrenadeLauncher" parent="WeaponManager2" node_paths=PackedStringArray("shooter") instance=ExtResource("4_p1m7e")]
 ammo = 20
@@ -215,10 +219,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_vucfn")
 }
 
+[connection signal="_attack" from="." to="bot_anims" method="_on_player_controller__attack"]
 [connection signal="_attack" from="." to="WeaponManager2" method="_on_player_controller__attack"]
+[connection signal="dash" from="." to="bot_anims" method="_on_player_controller_dash"]
+[connection signal="fall" from="." to="bot_anims" method="_on_player_controller_fall"]
+[connection signal="walk" from="." to="bot_anims" method="_on_player_controller_walk"]
+[connection signal="empty" from="WeaponManager2" to="WeaponManager2/GrenadeLauncher" method="_on_weapon_manager_2_empty"]
+[connection signal="empty" from="WeaponManager2" to="WeaponManager2/HitscanWeapon" method="_on_weapon_manager_2_empty"]
+[connection signal="empty" from="WeaponManager2" to="WeaponManager2/ProjectileWeapon" method="_on_weapon_manager_2_empty"]
+[connection signal="fire" from="WeaponManager2" to="bot_anims" method="_on_weapon_manager_2_fire"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/GrenadeLauncher" method="_on_weapon_manager_2_fire"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/HitscanWeapon" method="_on_weapon_manager_2_fire"]
 [connection signal="fire" from="WeaponManager2" to="WeaponManager2/ProjectileWeapon" method="_on_weapon_manager_2_fire"]
+[connection signal="lower" from="WeaponManager2" to="bot_anims" method="_on_weapon_manager_2_lower"]
+[connection signal="rise" from="WeaponManager2" to="bot_anims" method="_on_weapon_manager_2_rise"]
 [connection signal="timeout" from="timers/boost_left" to="." method="_on_boost_left_timeout"]
 [connection signal="timeout" from="timers/boost_cooldown" to="." method="_on_boost_cooldown_timeout"]
 [connection signal="timeout" from="timers/step_timer" to="." method="_on_step_sound_timeout"]

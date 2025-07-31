@@ -7,12 +7,19 @@ extends Node3D
 var switch_cooldown: bool = false
 
 signal fire
+signal empty
+signal rise
+signal lower
 
 @onready var grenade_launcher: Node3D = $GrenadeLauncher
 @onready var hitscan_weapon: Node3D = $HitscanWeapon
 @onready var projectile_weapon: Node3D = $ProjectileWeapon
 
 func _ready() -> void:
+	#var bone_idx : int = $bot_anims.skeleton.find_bone("weapon")
+	#var local_bone_transform : Transform3D = $bot_anims.skeleton.get_bone_global_pose(bone_idx)
+	#var global_bone_pos : Vector3 = $bot_anims.skeleton.to_global(local_bone_transform.origin)
+	#position = global_bone_pos
 	for g in guns:
 		if g.get_index() > 0:
 			g.weapon.model.visible = false

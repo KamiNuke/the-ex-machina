@@ -40,3 +40,7 @@ func spawn_projectile() -> void:
 
 func _on_timer_timeout() -> void:
 	cool_down = false
+
+
+func _on_weapon_manager_2_empty() -> void:
+	pass # Replace with function body.

@@ -1,22 +1,22 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctkv0cxdu136o"]
 
 [ext_resource type="Script" uid="uid://bkmsbmbxjnln5" path="res://src/entities/guns/hitscan_weapon.gd" id="1_7o3ss"]
-[ext_resource type="PackedScene" uid="uid://curbxgrljodh6" path="res://src/entities/guns/weapon.tscn" id="2_gh1me"]
+[ext_resource type="PackedScene" uid="uid://dbcnpgkenkbku" path="res://src/entities/guns/cock17.tscn" id="2_7o3ss"]
 
 [node name="HitscanWeapon" type="Node3D"]
 script = ExtResource("1_7o3ss")
 
-[node name="Weapon" parent="." instance=ExtResource("2_gh1me")]
+[node name="Weapon" parent="." instance=ExtResource("2_7o3ss")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AimRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0240593, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 5
 
 [node name="AimEnd" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1001)
 
-[connection signal="_empty" from="." to="Weapon" method="_on_hitscan_weapon__empty"]
-[connection signal="_fire" from="." to="Weapon" method="_on_hitscan_weapon__fire"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
