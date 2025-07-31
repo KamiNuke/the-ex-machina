@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://v77lotptmh1q"]
 
 [ext_resource type="Script" uid="uid://v3n1ywno6ssq" path="res://src/entities/guns/weapon_base.gd" id="1_jmdwy"]
-[ext_resource type="PackedScene" uid="uid://r8ohai5p8rkl" path="res://assets/models/character+weapons/raw/projectile.glb" id="2_3wkeb"]
+[ext_resource type="PackedScene" uid="uid://4asxxd5le0in" path="res://assets/models/character+weapons/projectile.tscn" id="2_3wkeb"]
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_jmdwy")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbcnpgkenkbku"]
 
 [ext_resource type="Script" uid="uid://v3n1ywno6ssq" path="res://src/entities/guns/weapon_base.gd" id="1_52lm6"]
-[ext_resource type="PackedScene" uid="uid://b1ssjdxgdu2qe" path="res://assets/models/character+weapons/raw/hitscan_anims.glb" id="2_w2mu6"]
+[ext_resource type="PackedScene" uid="uid://biqaqkimrvs2x" path="res://assets/models/character+weapons/hitscan.tscn" id="2_w2mu6"]
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_52lm6")

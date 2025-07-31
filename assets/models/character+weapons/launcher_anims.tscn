@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmlp05yn2o8bn"]
+
+[ext_resource type="PackedScene" uid="uid://dcf6bqk3r3ddp" path="res://assets/models/character+weapons/raw/launcher_anims.glb" id="1_d6xn2"]
+[ext_resource type="Texture2D" uid="uid://bey4osrg1haar" path="res://assets/materials/props/,lg.png" id="2_g5ckf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnheu"]
+albedo_texture = ExtResource("2_g5ckf")
+
+[node name="launcher_anims" instance=ExtResource("1_d6xn2")]
+
+[node name="MLG" parent="launcher/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jnheu")

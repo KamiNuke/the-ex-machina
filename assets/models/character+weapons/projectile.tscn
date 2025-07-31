@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://4asxxd5le0in"]
+
+[ext_resource type="PackedScene" uid="uid://r8ohai5p8rkl" path="res://assets/models/character+weapons/raw/projectile.glb" id="1_8dq2e"]
+[ext_resource type="Texture2D" uid="uid://bo8a560cpa636" path="res://assets/materials/props/mcx.png" id="2_p7iqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ia8a2"]
+transparency = 1
+albedo_texture = ExtResource("2_p7iqw")
+
+[node name="projectile2" instance=ExtResource("1_8dq2e")]
+
+[node name="Skeleton3D" parent="projectile" index="0"]
+bones/1/position = Vector3(1.16798e-08, 0.194671, 0.0977923)
+
+[node name="mcx" parent="projectile/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ia8a2")

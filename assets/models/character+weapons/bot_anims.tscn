@@ -1,7 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://6af5xfer1s6y"]
+[gd_scene load_steps=40 format=3 uid="uid://6af5xfer1s6y"]
 
 [ext_resource type="PackedScene" uid="uid://d20sielfij7ih" path="res://assets/models/character+weapons/raw/bot_anims.glb" id="1_6muua"]
 [ext_resource type="Script" uid="uid://bgtthal7gmiwp" path="res://assets/models/character+weapons/bot_anims.gd" id="2_dggsd"]
+[ext_resource type="Texture2D" uid="uid://ck6pn2sd0cflh" path="res://assets/materials/props/bot.png" id="3_5hgu8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sn6u"]
+albedo_texture = ExtResource("3_5hgu8")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7sn6u"]
 animation = &"dash"
@@ -133,14 +137,17 @@ rise_state_name = "raise"
 animation_tree = NodePath("AnimationTree")
 
 [node name="Skeleton3D" parent="bot" index="0"]
-bones/1/position = Vector3(-1.45601e-23, 1.00445, 1.10766e-16)
+bones/1/position = Vector3(-1.45722e-23, 1.00447, 1.11145e-16)
 bones/1/rotation = Quaternion(1.2165e-14, -1.06581e-14, 4.37063e-22, 1)
 bones/2/rotation = Quaternion(-2.0051e-23, 8.88178e-15, -2.02022e-22, 1)
 bones/3/rotation = Quaternion(9.64003e-09, -4.711e-08, -0.509474, 0.860486)
 bones/4/rotation = Quaternion(0.459756, 0.219518, 0.776514, -0.37076)
-bones/5/rotation = Quaternion(-5.31666e-08, 6.25492e-08, 0.509474, 0.860486)
-bones/6/rotation = Quaternion(-4.03782e-07, 1.72295e-08, 0.93137, 0.364073)
-bones/7/rotation = Quaternion(-4.27059e-07, -2.35987e-07, 0.957127, -0.289669)
+bones/5/rotation = Quaternion(-0.000142348, 8.43119e-05, 0.509474, 0.860486)
+bones/6/rotation = Quaternion(7.82751e-05, -0.000201259, 0.93137, 0.364073)
+bones/7/rotation = Quaternion(3.9254e-05, 0.000130878, 0.957127, -0.289669)
+
+[node name="Cube_001" parent="bot/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7sn6u")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_8xy5l")
