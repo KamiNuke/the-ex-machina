@@ -19,6 +19,11 @@ extends CharacterBody3D
 @onready var projectile_ammo_label: Label = $UI/VBoxContainer/HBoxContainer_ammo/projectile_ammo_label
 
 @onready var hpbar: ProgressBar = $UI/VBoxContainer/hpbar
+@onready var weapon_icons: HBoxContainer = $UI/weapon_icons
+
+const GRENADE_LAUNCHER_TEXTURE_ICON = preload("res://assets/sprites/grenade_launcher_icon.png")
+const HITSCAN_WEAPON_TEXTURE_ICON = preload("res://assets/sprites/hitscan_icon.png")
+const PROJECTILE_WEAPON_TEXTURE_ICON = preload("res://assets/sprites/projectile_icon.png")
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
 "BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
@@ -40,6 +45,7 @@ const win_cam_radius := 5.0
 const win_cam_height := 2.0
 var is_start_catscene_playing = true
 
+var current_weapon = 0
 
 #DEBUG
 
@@ -73,6 +79,32 @@ const CHANGE_FOV = 1.0
 
 func _ready() -> void:
 	animation_player.play("start_catscene")
+	set_weapon_icon_texture(1)
+	set_weapon_icon_texture(2)
+	set_weapon_icon_texture(3)
+
+func set_weapon_icon_texture(index: int) -> void:
+	var weapon_icon = TextureRect.new()
+	weapon_icon.texture = get_weapon_icon_texture(index)
+	weapon_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+
+	var bg = ColorRect.new()
+	bg.color = Color(0, 0, 0, 0.1)
+	bg.anchor_right = 1.0
+	bg.anchor_bottom = 1.0
+
+	weapon_icon.add_child(bg)
+	weapon_icons.add_child(weapon_icon)
+
+
+func get_weapon_icon_texture(index: int):
+	var gun_instance = weapon.get_weapon(index)
+	if gun_instance.name == "GrenadeLauncher":
+		return GRENADE_LAUNCHER_TEXTURE_ICON
+	elif gun_instance.name == "HitscanWeapon":
+		return HITSCAN_WEAPON_TEXTURE_ICON
+	elif gun_instance.name == "ProjectileWeapon":
+		return PROJECTILE_WEAPON_TEXTURE_ICON
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
@@ -106,6 +138,21 @@ func _process(delta: float) -> void:
 	update_cooldown_ui()
 	set_ammo_labels()
 	update_hpbar()
+	update_weapon_icons()
+
+func update_weapon_icons():
+	if current_weapon == 0:
+		return
+		
+	for i in range(weapon_icons.get_child_count()):
+		var bg = weapon_icons.get_child(i).get_child(0)
+		if i == current_weapon - 1:
+			bg.color = Color(0, 0, 0, 0.4) # selected weapon
+		else:
+			bg.color = Color(0, 0, 0, 0.1) # unselected weapon
+
+		
+
 
 func update_hpbar():
 	hpbar.value = HP
@@ -189,19 +236,21 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("one"):
 		weapon.switch_weapon(1)
+		current_weapon = 1
 		if weapon_switch_sound.is_stopped():
 			$WeaponSwitch.play()
 			weapon_switch_sound.start()
 	
 	if Input.is_action_pressed("two"):
 		weapon.switch_weapon(2)
+		current_weapon = 2
 		if weapon_switch_sound.is_stopped():
 			$WeaponSwitch.play()
 			weapon_switch_sound.start()
 		
 	if Input.is_action_pressed("three"):
 		weapon.switch_weapon(3)
-		
+		current_weapon = 3
 		if weapon_switch_sound.is_stopped():
 			$WeaponSwitch.play()
 			weapon_switch_sound.start()

@@ -197,6 +197,14 @@ layout_mode = 2
 [node name="hpbar" type="ProgressBar" parent="UI/VBoxContainer"]
 layout_mode = 2
 
+[node name="weapon_icons" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = -108.0
+offset_top = 296.0
+offset_right = 84.0
+offset_bottom = 344.0
+alignment = 1
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_qsbkc")
 volume_db = 20.0

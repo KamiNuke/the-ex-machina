@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func switch_weapon(number: int) -> void:
 	if !switch_cooldown:
-		print_debug(number)
+		#print_debug(number)
 		for g in guns:
 			if g.get_index() > 0:
 				g.weapon.model.visible = false
@@ -69,3 +69,6 @@ func if_weapon_ammo_exist(object):
 		return object.ammo - object.current_ammo
 	else:
 		return null
+
+func get_weapon(index: int):
+	return guns[index]
