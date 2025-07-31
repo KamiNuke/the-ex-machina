@@ -190,9 +190,9 @@ func _physics_process(delta: float) -> void:
 			BOB_FREQ = 0.0 # remove camera shaking during boost
 			boost_left.start()
 			speed = BOOST_SPEED * WALK_SPEED
+			emit_signal("dash")
 		elif boost_left.is_stopped():
 			speed = WALK_SPEED
-		emit_signal("dash")
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.

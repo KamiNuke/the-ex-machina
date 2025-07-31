@@ -47,7 +47,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		var cur_scene = tree.get_current_scene()
 		tree.get_root().add_child(next_scene)
 		tree.get_root().remove_child(cur_scene)
-		tree.set_current_scene(next_scene)t
+		tree.set_current_scene(next_scene)
 
 func play_dialogue():
 	timer_started = false
