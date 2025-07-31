@@ -2,16 +2,17 @@ extends Node
 
 @onready var player: CharacterBody3D = $PlayerController
 @onready var death_screen: Control = $DeathScreen
-@onready var win_layer: Control = $WinLayer
+#@onready var win_layer: Control = $WinLayer
 
 @onready var robot_counter: Label = $robot_counters/SubViewport/robot_counter
 @onready var revive_counter: Label = $UI/VBoxContainer/revive_counter
 
 const PAUSE_LAYER = preload("res://src/ui/pause_layer.tscn")
+var next_scene = preload("res://src/states/final_catscene.tscn")
 
 signal win
 
-var is_winning_audio_playing = false
+#var is_winning_audio_playing = false
 var revives_left = 2
 
 # Called when the node enters the scene tree for the first time.
@@ -27,11 +28,16 @@ func _process(delta: float) -> void:
 	for child in get_tree().get_nodes_in_group("enemy"):
 		if is_instance_valid(child):
 			enemy_count += 1
+	
+	#if Input.is_action_just_pressed("action"):
+	#	enemy_count = 0
+	
 	if enemy_count == 0:
-		if !is_winning_audio_playing:
-			is_winning_audio_playing = true
-			$audio/winning.play()
-		win_layer.visible = true
+		#if !is_winning_audio_playing:
+		#	is_winning_audio_playing = true
+			#$audio/winning.play()
+		#win_layer.visible = true
+		go_to_next_scene()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		emit_signal("win")
 		
@@ -42,6 +48,8 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(player):
 		get_tree().call_group("enemy", "update_target_location", player.global_position)
 
+func go_to_next_scene():
+	get_tree().change_scene_to_packed(next_scene)
 
 #var death_screen = preload("res://src/states/death_screen.tscn");
 
@@ -96,4 +104,5 @@ func _on_escape_button_up() -> void:
 
 
 func _on_winning_finished() -> void:
-	is_winning_audio_playing = false
+	#is_winning_audio_playing = false
+	pass
