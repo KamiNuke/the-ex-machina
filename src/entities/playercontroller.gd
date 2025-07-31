@@ -14,10 +14,11 @@ extends CharacterBody3D
 @onready var win_camera: Camera3D = $win_camera
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var grenade_ammo_label: Label = $UI/HBoxContainer_ammo/grenade_ammo_label
-@onready var hitscan_ammo_label: Label = $UI/HBoxContainer_ammo/hitscan_ammo_label
-@onready var projectile_ammo_label: Label = $UI/HBoxContainer_ammo/projectile_ammo_label
+@onready var grenade_ammo_label: Label = $UI/VBoxContainer/HBoxContainer_ammo/grenade_ammo_label
+@onready var hitscan_ammo_label: Label = $UI/VBoxContainer/HBoxContainer_ammo/hitscan_ammo_label
+@onready var projectile_ammo_label: Label = $UI/VBoxContainer/HBoxContainer_ammo/projectile_ammo_label
 
+@onready var hpbar: ProgressBar = $UI/VBoxContainer/hpbar
 
 @export_enum("DEFAULT_LEGS", "NO_LEGS", 
 "BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var player_legs : int = BodyParts.DEFAULT_LEGS
@@ -85,7 +86,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	print(camera.position)
+	#print(camera.position)
 	# Health Points process
 	if HP <= 0 and is_alive:
 		print("cooked")
@@ -104,6 +105,10 @@ func _process(delta: float) -> void:
 	
 	update_cooldown_ui()
 	set_ammo_labels()
+	update_hpbar()
+
+func update_hpbar():
+	hpbar.value = HP
 
 func update_cooldown_ui():
 	var progress: float	

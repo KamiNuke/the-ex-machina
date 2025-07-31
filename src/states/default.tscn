@@ -93,7 +93,6 @@ environment = SubResource("Environment_feaac")
 [node name="PlayerController" parent="." instance=ExtResource("1_2evji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0216, 110.806, -44.6122)
 collision_layer = 6
-player_legs = 4
 
 [node name="RobotPart" parent="." instance=ExtResource("3_feaac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.4672, 61.4122, 131.25)
@@ -157,13 +156,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 4, 163)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.7915, 62.4122, 94.0237)
 HP = 20
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+[node name="Enemy4" parent="enemies" instance=ExtResource("4_i5v71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 34, -79)
+
+[node name="navlinks" type="Node" parent="."]
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="navlinks"]
 transform = Transform3D(0.965926, 0.258819, 0, -0.25, 0.933013, -0.258819, -0.0669873, 0.25, 0.965926, 1, 35, -32)
 end_position = Vector3(-7.051, -2.228, 0)
 
-[node name="NavigationLink3D2" type="NavigationLink3D" parent="."]
+[node name="NavigationLink3D2" type="NavigationLink3D" parent="navlinks"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, -38, 35, -11)
 end_position = Vector3(1.48, -2.054, -2.707)
+
+[node name="NavigationLink3D3" type="NavigationLink3D" parent="navlinks"]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, -43, 40, -66)
+bidirectional = false
+end_position = Vector3(0, -11.535, 9.695)
 
 [node name="light" type="Node3D" parent="."]
 
@@ -225,14 +234,6 @@ light_energy = 50.0
 light_bake_mode = 1
 spot_range = 266.049
 spot_angle = 79.5466
-
-[node name="NavigationLink3D3" type="NavigationLink3D" parent="."]
-transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, -43, 40, -66)
-bidirectional = false
-end_position = Vector3(0, -11.535, 9.695)
-
-[node name="Enemy" parent="." instance=ExtResource("4_i5v71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 34, -79)
 
 [connection signal="win" from="." to="PlayerController" method="_on_default_win"]
 [connection signal="button_up" from="DeathScreen/Buttons/Reborn" to="." method="_on_reborn_button_up"]

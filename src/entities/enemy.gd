@@ -6,7 +6,11 @@ extends CharacterBody3D
 
 # status variables
 @export var HP = 100
-@export var SPEED = 4.0
+
+@export_enum("DEFAULT_LEGS", "NO_LEGS", 
+"BASIC_LEGS", "SYMBIOTIC_LEGS", "GOD_LEGS") var legs_type : int = BodyParts.DEFAULT_LEGS
+
+var SPEED = 4.0
 
 # scatter variables
 var SCATTER_SPEED = SPEED / 2
@@ -37,8 +41,9 @@ const JUMP_VELOCITY = 8.5
 func _ready() -> void:
 	scatter_timer.wait_time = randf_range(2.0, 4.0)
 	weapon.switch_weapon(randi_range(1, 3))
-	
 	dying_applause_signal.connect(Global.play_applause_on_enemy_death)
+	
+	SPEED = BodyParts.legs_speed[legs_type]
 
 func _process(delta: float) -> void:
 	if HP <= 0:

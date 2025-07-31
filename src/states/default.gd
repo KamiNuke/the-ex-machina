@@ -55,6 +55,8 @@ func _on_player_controller_player_death() -> void:
 
 func _on_reborn_button_up() -> void:
 	var enemy_pos
+	var enemy_hp
+	var enemy_legs
 	var is_enemy_found = false
 	if revives_left > 0:
 		var enemies_node = $enemies
@@ -62,6 +64,8 @@ func _on_reborn_button_up() -> void:
 			if child.is_in_group("enemy"):
 				revives_left = revives_left - 1
 				enemy_pos = child.position
+				enemy_hp = child.HP
+				enemy_legs = child.legs_type
 				is_enemy_found = true
 				child.queue_free()
 				break;
@@ -71,8 +75,8 @@ func _on_reborn_button_up() -> void:
 		player.is_alive = true
 		player.restore_model_visibility()
 		player.position = enemy_pos
-		player.player_legs = BodyParts.DEFAULT_LEGS
-		player.HP = 50
+		player.player_legs = enemy_legs
+		player.HP = enemy_hp
 		player.enable_collision()
 		
 		for child in player.get_children():
