@@ -1,6 +1,6 @@
 extends Control
 
-var next_scene = preload("res://src/states/default.tscn").instantiate();
+var next_scene = preload("res://src/states/start_catscene_map.tscn").instantiate();
 
 func _on_start_button_up() -> void:
 	var tree = get_tree()

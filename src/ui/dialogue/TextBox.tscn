@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfafcb3b7ycq3"]
+
+[ext_resource type="Script" uid="uid://ctotj3h7osj6b" path="res://src/ui/dialogue/text_box.gd" id="1_1l74k"]
+
+[node name="TextBox" type="CanvasLayer"]
+script = ExtResource("1_1l74k")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -200.0
+offset_right = -64.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1024, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "dfpkldapkfa asdoasjdasod asjdoasjd asjidsajd jiasidsajdasi dsadsadasdsa"
+vertical_alignment = 3
+autowrap_mode = 2

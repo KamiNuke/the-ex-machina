@@ -151,8 +151,6 @@ func update_weapon_icons():
 		else:
 			bg.color = Color(0, 0, 0, 0.1) # unselected weapon
 
-		
-
 
 func update_hpbar():
 	hpbar.value = HP
@@ -180,38 +178,39 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Handle sprint
-	if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped() and player_legs != BodyParts.NO_LEGS:
-		BOB_FREQ = 0.0 # remove camera shaking during boost
-		boost_left.start()
-		speed = BOOST_SPEED * WALK_SPEED
-	elif boost_left.is_stopped():
-		speed = WALK_SPEED
+	if !is_start_catscene_playing:
+		# Handle sprint
+		if Input.is_action_just_pressed("shift") and boost_cooldown.is_stopped() and player_legs != BodyParts.NO_LEGS:
+			BOB_FREQ = 0.0 # remove camera shaking during boost
+			boost_left.start()
+			speed = BOOST_SPEED * WALK_SPEED
+		elif boost_left.is_stopped():
+			speed = WALK_SPEED
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "up", "down")
-	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	var is_moving := input_dir.length() > 0.1
-	
-	if is_on_floor() and is_moving:
-		if step_timer.is_stopped():
-			step_timer.start()
-			$AudioStreamPlayer3D.play()
-	
-	if is_on_floor():
-		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := Input.get_vector("left", "right", "up", "down")
+		var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		var is_moving := input_dir.length() > 0.1
+		
+		if is_on_floor() and is_moving:
+			if step_timer.is_stopped():
+				step_timer.start()
+				$AudioStreamPlayer3D.play()
+		
+		if is_on_floor():
+			if direction:
+				velocity.x = direction.x * speed
+				velocity.z = direction.z * speed
+			else:
+				const SLIDING = 7.5 # the less value the more character slides like on ice
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * SLIDING)
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * SLIDING)
 		else:
-			const SLIDING = 7.5 # the less value the more character slides like on ice
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * SLIDING)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * SLIDING)
-	else:
-		const CONTROL_IN_AIR = 10.0
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * CONTROL_IN_AIR)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * CONTROL_IN_AIR)
+			const CONTROL_IN_AIR = 10.0
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * CONTROL_IN_AIR)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * CONTROL_IN_AIR)
 
 	#sine wave
 	t_bob += delta * velocity.length() * float(is_on_floor())
