@@ -17,3 +17,5 @@ mono_crash.*.json
 
 # OverWeight Materials and Models sources:
 sources/
+
+build/

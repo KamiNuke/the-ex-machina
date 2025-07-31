@@ -126,14 +126,14 @@ func _unhandled_input(event: InputEvent) -> void:
 var capture_mouse := false
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and not capture_mouse:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		capture_mouse = true
-		Engine.time_scale = 1.0 
-	elif event.is_action_pressed("ui_cancel") and capture_mouse:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		capture_mouse = false
-		Engine.time_scale = 0.0
+	#if event is InputEventMouseButton and event.pressed and not capture_mouse:
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#capture_mouse = true
+		#Engine.time_scale = 1.0 
+	#elif event.is_action_pressed("ui_cancel") and capture_mouse:
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#capture_mouse = false
+		#Engine.time_scale = 0.0
 		
 	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
 		head.rotate_y(-event.relative.x * SENSIVITY)
