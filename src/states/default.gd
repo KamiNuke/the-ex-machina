@@ -4,7 +4,7 @@ extends Node
 @onready var death_screen: Control = $DeathScreen
 @onready var win_layer: Control = $WinLayer
 
-@onready var robot_counter: Label = $UI/VBoxContainer/robot_counter
+@onready var robot_counter: Label = $robot_counters/SubViewport/robot_counter
 @onready var revive_counter: Label = $UI/VBoxContainer/revive_counter
 
 const PAUSE_LAYER = preload("res://src/ui/pause_layer.tscn")
