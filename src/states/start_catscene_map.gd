@@ -17,7 +17,7 @@ var dialogues = [
 	"...",
 	"...",
 	"...I have to go...",
-	"Sure..."
+	"Sure, but always remember, we are ONLY ONE"
 ]
 
 # Called when the node enters the scene tree for the first time.
