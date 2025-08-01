@@ -4,11 +4,12 @@ The Ex-Machina is an action game, where you play as an entity, who controls robo
 ## Disclaimer
 This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior are expected.
 
-### How to compile project
+## How to compile project
 
 Requirements:
-    - Godot 4.4.1
-    - opengl 3.3+ compatible gpu
+
+    Godot 4.4.1
+    OpenGl 3.3+ compatible GPU
 
 1. Open project.godot files using godot editor
 2. Run project
