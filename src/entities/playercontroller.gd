@@ -145,10 +145,10 @@ func _process(delta: float) -> void:
 		is_alive = false
 		model_3d.visible = false
 		emit_signal("player_death")
-	elif HP < 20:
+	#elif HP < 20:
 		#death screen
-		player_legs = BodyParts.NO_LEGS
-		pass
+		#player_legs = BodyParts.NO_LEGS
+	#	pass
 	
 	# set walk speed and boost cooldown every frame in case of it being changed
 	WALK_SPEED = BodyParts.legs_speed[player_legs]
