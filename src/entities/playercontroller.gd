@@ -69,7 +69,9 @@ const BOOST_SPEED = 5.0
 var boost_cooldown_time = BodyParts.legs_cooldown[BodyParts.DEFAULT_LEGS]
 
 const JUMP_VELOCITY = 6.5
-const SENSIVITY = 0.005
+
+const SENSITIVITY = 0.0025
+const SENSITIVITY_WEB = 0.0125
 
 #sine wave part
 const CAMERA_SHAKING = 1.4
@@ -112,33 +114,22 @@ func get_weapon_icon_texture(index: int):
 	elif gun_instance.name == "ProjectileWeapon":
 		return PROJECTILE_WEAPON_TEXTURE_ICON
 
-func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
-		#head.rotate_y(-event.relative.x * SENSIVITY)
-#
-		#var rotation_delta = -event.relative.y * SENSIVITY
-		#cam_pivot.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
-		#
-		##Weapon view
-		#weapon.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
-	pass
 
 var capture_mouse := false
 
-func _input(event: InputEvent) -> void:
-	#if event is InputEventMouseButton and event.pressed and not capture_mouse:
-		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		#capture_mouse = true
-		#Engine.time_scale = 1.0 
-	#elif event.is_action_pressed("ui_cancel") and capture_mouse:
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		#capture_mouse = false
-		#Engine.time_scale = 0.0
-		
+func _input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
-		head.rotate_y(-event.relative.x * SENSIVITY)
+		var rotation_delta
+		
+		if OS.get_name() == "Web":
+			head.rotate_y(-event.relative.x * SENSITIVITY_WEB)
 
-		var rotation_delta = -event.relative.y * SENSIVITY
+			rotation_delta = -event.relative.y * SENSITIVITY_WEB
+		else:
+			head.rotate_y(-event.relative.x * SENSITIVITY)
+
+			rotation_delta = -event.relative.y * SENSITIVITY
+		
 		cam_pivot.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 		
 		#Weapon view
