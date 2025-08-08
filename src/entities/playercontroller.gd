@@ -70,9 +70,6 @@ var boost_cooldown_time = BodyParts.legs_cooldown[BodyParts.DEFAULT_LEGS]
 
 const JUMP_VELOCITY = 6.5
 
-const SENSITIVITY = 0.0025
-const SENSITIVITY_WEB = 0.0125
-
 #sine wave part
 const CAMERA_SHAKING = 1.4
 var BOB_FREQ = CAMERA_SHAKING #how often footsteps happen
@@ -121,14 +118,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
 		var rotation_delta
 		
-		if OS.get_name() == "Web":
-			head.rotate_y(-event.relative.x * SENSITIVITY_WEB)
-
-			rotation_delta = -event.relative.y * SENSITIVITY_WEB
-		else:
-			head.rotate_y(-event.relative.x * SENSITIVITY)
-
-			rotation_delta = -event.relative.y * SENSITIVITY
+		head.rotate_y(-event.relative.x * Global.SENSITIVITY)
+		rotation_delta = -event.relative.y * Global.SENSITIVITY
 		
 		cam_pivot.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 		

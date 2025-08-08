@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuq62t0nfo4he"]
+
+[ext_resource type="Script" uid="uid://8lb8c280m8ki" path="res://src/states/settings.gd" id="1_1deud"]
+[ext_resource type="Shader" uid="uid://dyk4tmp1jy4gy" path="res://src/shaders/simple_blur.gdshader" id="2_0v7an"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3q27p"]
+shader = ExtResource("2_0v7an")
+shader_parameter/lod = 2.5
+
+[node name="Settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_1deud")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_3q27p")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="settings" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 64.0
+offset_right = 832.0
+offset_bottom = 424.0
+alignment = 1
+
+[node name="Label" type="Label" parent="settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Sensitivity"
+horizontal_alignment = 1
+
+[node name="sensitivity_label" type="Label" parent="settings"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="sensitivity_hslider" type="HSlider" parent="settings"]
+layout_mode = 2
+max_value = 0.1
+step = 0.001
+value = 0.01
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 313.0
+offset_right = 832.0
+offset_bottom = 632.0
+alignment = 1
+
+[node name="Back" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Return"
+
+[connection signal="value_changed" from="settings/sensitivity_hslider" to="." method="_on_h_slider_value_changed"]
+[connection signal="button_up" from="Buttons/Back" to="." method="_on_back_button_up"]
