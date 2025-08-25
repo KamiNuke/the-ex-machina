@@ -47,10 +47,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Resume"
 
+[node name="settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+
 [node name="exit_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Exit"
 
 [connection signal="button_up" from="VBoxContainer/resume_button" to="." method="_on_resume_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/settings" to="." method="_on_settings_button_up"]
 [connection signal="button_up" from="VBoxContainer/exit_button" to="." method="_on_exit_button_button_up"]

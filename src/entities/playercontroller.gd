@@ -69,7 +69,6 @@ const BOOST_SPEED = 5.0
 var boost_cooldown_time = BodyParts.legs_cooldown[BodyParts.DEFAULT_LEGS]
 
 const JUMP_VELOCITY = 6.5
-const SENSIVITY = 0.005
 
 #sine wave part
 const CAMERA_SHAKING = 1.4
@@ -80,6 +79,8 @@ var t_bob = 0.0 #don't touch
 #FOV
 @export var BASE_FOV = 75.0
 const CHANGE_FOV = 1.0
+
+#var capture_mouse = false
 
 func _ready() -> void:
 	animation_player.play("start_catscene")
@@ -110,11 +111,16 @@ func get_weapon_icon_texture(index: int):
 	elif gun_instance.name == "ProjectileWeapon":
 		return PROJECTILE_WEAPON_TEXTURE_ICON
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
-		head.rotate_y(-event.relative.x * SENSIVITY)
 
-		var rotation_delta = -event.relative.y * SENSIVITY
+var capture_mouse := false
+
+func _input(event: InputEvent) -> void:	
+	if event is InputEventMouseMotion and is_alive and !is_win and !is_start_catscene_playing:
+		var rotation_delta
+		
+		head.rotate_y(-event.relative.x * Global.SENSITIVITY)
+		rotation_delta = -event.relative.y * Global.SENSITIVITY
+		
 		cam_pivot.rotation.x = clamp(rotation_delta + cam_pivot.rotation.x, deg_to_rad(LIMIT_VIEW_DOWN), deg_to_rad(LIMIT_VIEW_UP))
 		
 		#Weapon view
@@ -130,10 +136,10 @@ func _process(delta: float) -> void:
 		is_alive = false
 		model_3d.visible = false
 		emit_signal("player_death")
-	elif HP < 20:
+	#elif HP < 20:
 		#death screen
-		player_legs = BodyParts.NO_LEGS
-		pass
+		#player_legs = BodyParts.NO_LEGS
+	#	pass
 	
 	# set walk speed and boost cooldown every frame in case of it being changed
 	WALK_SPEED = BodyParts.legs_speed[player_legs]
