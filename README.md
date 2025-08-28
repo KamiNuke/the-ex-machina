@@ -1,5 +1,50 @@
+
 <h1 align="center">The Ex-Machina</h1>  
+
+<crop>
+<img src="./manual/pics/manual-panorama.png">
+</crop>
+
 ![panorama](./manual/pics/manual-panorama.png)  
+
+![boat-1](./manual/pics/boat-1.png)
+
+![boat-2](./manual/pics/boat-2.png)
+
+![boat-3](./manual/pics/boat-3.png)
+
+![boat-4](./manual/pics/boat-4.png)
+
+![bot](./manual/pics/bot.png)
+
+![cranes-1](./manual/pics/cranes-1.png)
+
+![cranes-2](./manual/pics/cranes-2.png)
+
+![cranes-3](./manual/pics/cranes-3.png)
+
+![cranes-4](./manual/pics/cranes-4.png)
+
+![map_layout](./manual/pics/map_layout.png)
+
+![plane-1](./manual/pics/plane-1.png)
+
+![plane-2](./manual/pics/plane-2.png)
+
+![plane-3](./manual/pics/plane-3.png)
+
+![plane-3](./manual/pics/plane-3.png)
+
+![projectile](./manual/pics/projectile.png)
+
+![launcher](./manual/pics/launcher.png)
+
+![hitscan](./manual/pics/hitscan.png)
+
+![robot-concept](./manual/pics/robot-concept.png)
+
+![strafe-concept](./manual/pics/strafe-concept.png)
+
 The Ex-Machina is an action game, where you play as an entity, who controls robots, by controlling robots a player supposed to destroy other robots in an area by taking control over them until only one is left.
 
 ## Disclaimer
