@@ -1,4 +1,5 @@
-# The Ex-Machina
+<h1 align="center">The Ex-Machina</h1>
+![panorama](./manual/manual-panorama.png)
 The Ex-Machina is an action game, where you play as an entity, who controls robots, by controlling robots a player supposed to destroy other robots in an area by taking control over them until only one is left.
 
 ## Disclaimer
