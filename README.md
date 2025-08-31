@@ -2,8 +2,6 @@
 
 ![panorama](./manual/pics/manual-panorama.png)  
 
-The Ex-Machina is an action game, where you play as an entity, who controls robots, by controlling robots a player supposed to destroy other robots in an area by taking control over them until only one is left.
-
 ## Disclaimer
 This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior are expected.
 
@@ -54,6 +52,8 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 
 
 ## Gameplay overview
+The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.
+Player placed in big arena, with unique locations.
 
 ## How to build project
 
