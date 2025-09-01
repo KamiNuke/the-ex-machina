@@ -5,11 +5,6 @@
 ## Disclaimer
 This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior are expected.
 
-## Screenshots
-![1](./screenshots/1.png)
-
-![2](./screenshots/2.png)
-
 <h1 align="center">Contents</h1>  
 
 [Gameplay Overview](#gameplay-overview)
@@ -54,6 +49,11 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 ## Gameplay overview
 The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.
 Player placed in big arena, with unique locations.
+
+### Screenshots
+![1](./screenshots/1.png)
+
+![2](./screenshots/2.png)
 
 ## How to build project
 
