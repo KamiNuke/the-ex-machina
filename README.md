@@ -9,6 +9,27 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 
 [Gameplay Overview](#gameplay-overview)
 
+## Gameplay overview
+The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.
+Player placed in big arena, with unique locations.
+
+### Screenshots
+![1](./screenshots/1.png)
+
+![2](./screenshots/2.png)
+
+## How to build project
+
+Requirements:
+    
+    OS: Windows, Linux or WEB
+    Godot 4.4.1
+    OpenGl 3.3+ or WebGL 2.0+ compatible GPU
+
+1. Open project.godot file using godot editor
+2. Run project
+
+
 ![boat-1](./manual/pics/boat-1.png)
 
 ![boat-2](./manual/pics/boat-2.png)
@@ -44,24 +65,3 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 ![robot-concept](./manual/pics/robot-concept.png)
 
 ![strafe-concept](./manual/pics/strafe-concept.png)
-
-
-## Gameplay overview
-The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.
-Player placed in big arena, with unique locations.
-
-### Screenshots
-![1](./screenshots/1.png)
-
-![2](./screenshots/2.png)
-
-## How to build project
-
-Requirements:
-    
-    OS: Windows, Linux or WEB
-    Godot 4.4.1
-    OpenGl 3.3+ or WebGL 2.0+ compatible GPU
-
-1. Open project.godot file using godot editor
-2. Run project
