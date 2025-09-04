@@ -10,13 +10,20 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 [Gameplay Overview](#gameplay-overview)
 
 ## Gameplay overview
-The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.
-Player placed in big arena, with unique locations.
+The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.  
+Level placed in big arena, with unique locations. Bots miss a little, so there is need in coveres and covered maneuvers and terrain with ruins can give such oportunity. Find way through and minimie damage because second tries not infinite.  
+Enemies - Bots. Straightforward algorythm control theme but not stupid. They follow not very long ditance but aim is something else. They even jump.  
+Weapons - player has decent amount of tools for destroying bots. Every gun is unique visually and by gameplay. Three weapons - three types, combination is the key to problem.  
+Robot stuff - player's killing machine can be upgradet and refilled with ammo. Search for gear, it could be hided somewhere. And even change some spare-parts - legs, it could upgrade walkspeed and strafe cool down.  
 
 ### Screenshots
-![1](./screenshots/1.png)
+![1](./screenshots/1.png)  
 
-![2](./screenshots/2.png)
+![2](./screenshots/2.png)  
+
+Further will be featured development details and game underhood.  
+
+##
 
 ## How to build project
 
