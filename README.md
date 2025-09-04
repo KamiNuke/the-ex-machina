@@ -21,6 +21,9 @@ Robot stuff - player's killing machine can be upgradet and refilled with ammo. S
 
 ![2](./screenshots/2.png)  
 
+### [Ex-Machina Full-Walkthrough Presentation](https://youtu.be/g-B_9nhvfcg)
+[![Watch the video](https://img.youtube.com/vi/g-B_9nhvfcg/maxresdefault.jpg)](https://youtu.be/g-B_9nhvfcg)
+
 Further will be featured development details and game underhood.  
 
 ##
