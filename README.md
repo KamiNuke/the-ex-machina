@@ -53,6 +53,8 @@ Sounds cool, it looks even better. Overall design is pretty grounded and was ins
 
 ## AI Overview  
 If there is robots - there is ai. Enemies ai utilizes extended features of Godot engine platform. The goal was to make straightforward but nit stupid machine, that won't allow player get bored.  
+Enemies have 2 global states: patroling and attacking. If they spot player - they will follow, if they lost - they patrol. There are some specificity of their behaviour - nice precision, slow rotation, so despite they being straightforward for player chase, they will deal real damage. Player forced to strafe, jump and dodge bots aim, and to shoot moving target won't be so easy.
+They have pathfinding mechanic that will allow them to find player:  
 <p align="center">   
     <img src="./manual/vids/ai-path2.gif" height="75%">
 </p>  
@@ -60,7 +62,14 @@ If there is robots - there is ai. Enemies ai utilizes extended features of Godot
     <img src="./manual/vids/ai-path3.gif" height="75%">
 </p>  
 
+Another interesting detail is their ability to jump. There are several spots on level that is designed to ne jumped through, so bots also can do such things:  
+
+<p align="center">   
+    <img src="./manual/vids/jump.gif" height="75%">
+</p>
+
 ## Level Overview  
+
 
 ## Weapons and Stuff Overview  
 
