@@ -34,8 +34,15 @@ Further will be featured development details and game underhood.
 The Ex-Machina takes place in near future, humanized robots with modern guns fights to death in huge arena. It's a show, and it will be spectacular.  
 
 <p align="center">
-    <img src="./manual/pics/loc_concept.png" text-align="center" width="30%">
+    <img src="./manual/pics/loc_concept.png" text-align="center" width="40%">
 </p>  
+
+Sounds cool, it looks even better. Overall design is pretty grounded and was inspired by real life counterparts, for example robot takes example from Boston Dynamics, and even such detail as robot booster inspired by NASAs engines.
+
+<p align="center">
+    <img src="./manual/pics/robot_concept.png" text-align="center" width="40%">
+    <img src="./manual/pics/strafe_concept.png" text-align="center" width="40%">
+</p>
 
 ## AI Overview  
 
