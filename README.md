@@ -19,10 +19,13 @@ Level placed in big arena, with unique locations. Bots miss a little, so there i
 Enemies - Bots. Straightforward algorythm control theme but not stupid. They follow not very long ditance but aim is something else. They even jump.  
 Weapons - player has decent amount of tools for destroying bots. Every gun is unique visually and by gameplay. Three weapons - three types, combination is the key to problem.  
 Robot stuff - player's killing machine can be upgradet and refilled with ammo. Search for gear, it could be hided somewhere. And even change some spare-parts - legs, it could upgrade walkspeed and strafe cool down.  
-<p align="center">
-    <h2 text-align="center"> Gameplay in Action</h2>
-    <img src="./manual/vids/strafe_action.gif" width="40%">
+
+### Gameplay in Action  
+
+<p align="center">   
+    <img src="./manual/vids/action-strafe.gif" height="75%">
 </p>  
+
 
 ### Screenshots
 ![1](./screenshots/1.png)  
