@@ -53,6 +53,12 @@ Sounds cool, it looks even better. Overall design is pretty grounded and was ins
 
 ## AI Overview  
 If there is robots - there is ai. Enemies ai utilizes extended features of Godot engine platform. The goal was to make straightforward but nit stupid machine, that won't allow player get bored.  
+<p align="center">   
+    <img src="./manual/vids/ai-path2.gif" height="75%">
+</p>  
+<p align="center">   
+    <img src="./manual/vids/ai-path3.gif" height="75%">
+</p>  
 
 ## Level Overview  
 
