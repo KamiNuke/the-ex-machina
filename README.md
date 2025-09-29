@@ -8,6 +8,10 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 <h1 align="center">Contents</h1>  
 
 [Gameplay Overview](#gameplay-overview)
+[Setting Overview](#setting-overview)
+[AI Overview](#ai-overview)
+[Level Overview](#level-overview)
+[Weapons & Stuff  Overview](#weapons-&-stuff-overview)
 
 ## Gameplay overview
 The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.  
@@ -26,7 +30,14 @@ Robot stuff - player's killing machine can be upgradet and refilled with ammo. S
 
 Further will be featured development details and game underhood.  
 
-##
+## Setting Overview  
+The Ex=Machina takes place in near future, humanized robots with modern guns fights to death in huge arena. It's a show, and it will be spectacular. 
+
+## AI Overview  
+
+## Level Overview  
+
+## Weapons & Stuff Overview  
 
 ## How to build project
 
