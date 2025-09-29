@@ -38,7 +38,7 @@ Robot stuff - player's killing machine can be upgradet and refilled with ammo. S
 Further will be featured development details and game underhood.  
 
 ## Setting Overview  
-The Ex-Machina takes place in near future, humanized robots with modern guns fights to death in huge arena. It's a show, and it will be spectacular.  
+The Ex-Machina takes place in near future, humanized robots with modern guns fights to death in huge arena and all in PS2/PSP style, like in old times. It's a show, and it will be spectacular.  
 
 <p align="center">
     <img src="./manual/pics/loc_concept.png" width="40%">
@@ -77,20 +77,49 @@ As said earlier setting is battle royale of robots, so best area for such thing 
 
 The idea of level is to make 'lightspots' and 'mid' areas. There are some views of key locations:  
 
-![boat-1](./manual/pics/boat-1.png)  
-![boat-2](./manual/pics/boat-2.png)  
-![boat-3](./manual/pics/boat-3.png)  
-![boat-4](./manual/pics/boat-4.png)  
-![cranes-1](./manual/pics/cranes-1.png)  
-![cranes-2](./manual/pics/cranes-2.png)  
-![cranes-3](./manual/pics/cranes-3.png)  
-![cranes-4](./manual/pics/cranes-4.png)  
-![plane-1](./manual/pics/plane-1.png)  
-![plane-2](./manual/pics/plane-2.png)  
-![plane-3](./manual/pics/plane-3.png)  
+<p align="center">
+    <img src="./manual/pics/boat-1.png" width="60%">
+</p>  
+<p align="center">
+    <img src="./manual/pics/boat-2.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/boat-3.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/boat-4.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/cranes-1.png" width="60%">
+</p>  
+<p align="center">
+    <img src="./manual/pics/cranes-2.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/cranes-3.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/cranes-4.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/plane-1.png" width="60%">
+</p>  
+<p align="center">
+    <img src="./manual/pics/plane-2.png" width="60%">
+</p> 
+<p align="center">
+    <img src="./manual/pics/plane-3.png" width="60%">
+</p>  
 
 
 ## Weapons and Stuff Overview  
+Game arsenal gives player 3 weapon units with different decent ammo. Every weapon has it's own unique gameplay mechanic that allow player to play the way he want or even combine this tools.  
+There are such guns as:  
+### Laser-gun  
+<p align="center">
+    <img src="./manual/pics/hitscan.png" width="50%">
+</p>  
+Th
 
 ## How to build project
 
@@ -113,4 +142,4 @@ Requirements:
 
 ![launcher](./manual/pics/launcher.png)
 
-![hitscan](./manual/pics/hitscan.png)
+
