@@ -69,6 +69,7 @@ Another interesting detail is their ability to jump. There are several spots on 
 </p>
 
 ## Level Overview  
+As said earlier setting is battle royale of robots, so best area for such thing is - Arena. For variety purposes there would be unique different sub-areas. The goal was to make balanced layout with interesting appearence. The idea was make sand dunes like Monster-Trucks stadiums and give it some junks and construction:
 
 
 ## Weapons and Stuff Overview  
