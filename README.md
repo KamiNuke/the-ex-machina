@@ -69,7 +69,25 @@ Another interesting detail is their ability to jump. There are several spots on 
 </p>
 
 ## Level Overview  
-As said earlier setting is battle royale of robots, so best area for such thing is - Arena. For variety purposes there would be unique different sub-areas. The goal was to make balanced layout with interesting appearence. The idea was make sand dunes like Monster-Trucks stadiums and give it some junks and construction:
+As said earlier setting is battle royale of robots, so best area for such thing is - Arena. For variety purposes there would be unique different sub-areas. The goal was to make balanced layout with interesting appearence. The idea was make sand dunes like Monster-Trucks stadiums and give it some junks and construction:  
+
+<p align="center">
+    <img src="./manual/pics/map_layout.png" width="40%">
+</p>  
+
+The idea of level is to make 'lightspots' and 'mid' areas. There are some views of key locations:  
+
+![boat-1](./manual/pics/boat-1.png)  
+![boat-2](./manual/pics/boat-2.png)  
+![boat-3](./manual/pics/boat-3.png)  
+![boat-4](./manual/pics/boat-4.png)  
+![cranes-1](./manual/pics/cranes-1.png)  
+![cranes-2](./manual/pics/cranes-2.png)  
+![cranes-3](./manual/pics/cranes-3.png)  
+![cranes-4](./manual/pics/cranes-4.png)  
+![plane-1](./manual/pics/plane-1.png)  
+![plane-2](./manual/pics/plane-2.png)  
+![plane-3](./manual/pics/plane-3.png)  
 
 
 ## Weapons and Stuff Overview  
@@ -86,38 +104,13 @@ Requirements:
 2. Run project
 
 
-![boat-1](./manual/pics/boat-1.png)
 
-![boat-2](./manual/pics/boat-2.png)
 
-![boat-3](./manual/pics/boat-3.png)
-
-![boat-4](./manual/pics/boat-4.png)
 
 ![bot](./manual/pics/bot.png)
-
-![cranes-1](./manual/pics/cranes-1.png)
-
-![cranes-2](./manual/pics/cranes-2.png)
-
-![cranes-3](./manual/pics/cranes-3.png)
-
-![cranes-4](./manual/pics/cranes-4.png)
-
-![map_layout](./manual/pics/map_layout.png)
-
-![plane-1](./manual/pics/plane-1.png)
-
-![plane-2](./manual/pics/plane-2.png)
-
-![plane-3](./manual/pics/plane-3.png)
 
 ![projectile](./manual/pics/projectile.png)
 
 ![launcher](./manual/pics/launcher.png)
 
 ![hitscan](./manual/pics/hitscan.png)
-
-![robot-concept](./manual/pics/robot-concept.png)
-
-![strafe-concept](./manual/pics/strafe-concept.png)
