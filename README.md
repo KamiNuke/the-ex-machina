@@ -2,6 +2,9 @@
 
 ![panorama](./manual/pics/manual-panorama.png)  
 
+[ITCH.IO](https://kaminuke.itch.io/the-ex-machina)  
+
+
 ## Disclaimer
 This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior are expected.
 
@@ -11,7 +14,10 @@ This is a prototype made for PirateJam 2025 Summer. Bugs and unexpected behavior
 [Setting Overview](#setting-overview)  
 [AI Overview](#ai-overview)  
 [Level Overview](#level-overview)  
-[Weapons and Stuff Overview](#weapons-and-stuff-overview)  
+[Weapons and Stuff Overview](#weapons-and-stuff-overview) 
+[How to build project](#how-to-build-project)  
+[Credits](#credits)  
+
 
 ## Gameplay overview
 The Ex-Machina is an 3d third person action shooter, where player supposed to controll the only one left machine: fight, die, reborn - make your way through that junk-metal pile. And remember, crowd is looking at you - do your best.  
@@ -78,37 +84,37 @@ As said earlier setting is battle royale of robots, so best area for such thing 
 The idea of level is to make 'lightspots' and 'mid' areas. There are some views of key locations:  
 
 <p align="center">
-    <img src="./manual/pics/boat-1.png" width="60%">
+    <img src="./manual/pics/boat-1.png" width="92%">
 </p>  
 <p align="center">
-    <img src="./manual/pics/boat-2.png" width="60%">
+    <img src="./manual/pics/boat-2.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/boat-3.png" width="60%">
+    <img src="./manual/pics/boat-3.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/boat-4.png" width="60%">
+    <img src="./manual/pics/boat-4.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/cranes-1.png" width="60%">
+    <img src="./manual/pics/cranes-1.png" width="92%">
 </p>  
 <p align="center">
-    <img src="./manual/pics/cranes-2.png" width="60%">
+    <img src="./manual/pics/cranes-2.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/cranes-3.png" width="60%">
+    <img src="./manual/pics/cranes-3.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/cranes-4.png" width="60%">
+    <img src="./manual/pics/cranes-4.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/plane-1.png" width="60%">
+    <img src="./manual/pics/plane-1.png" width="92%">
 </p>  
 <p align="center">
-    <img src="./manual/pics/plane-2.png" width="60%">
+    <img src="./manual/pics/plane-2.png" width="92%">
 </p> 
 <p align="center">
-    <img src="./manual/pics/plane-3.png" width="60%">
+    <img src="./manual/pics/plane-3.png" width="92%">
 </p>  
 
 
@@ -117,9 +123,47 @@ Game arsenal gives player 3 weapon units with different decent ammo. Every weapo
 There are such guns as:  
 ### Laser-gun  
 <p align="center">
-    <img src="./manual/pics/hitscan.png" width="50%">
+    <img src="./manual/pics/hitscan.png" width="40%">
 </p>  
-Th
+The main mechanic of this weapon is - hitscan. The way you aim and press, the way you shoot, only minus firerate low and damage not so big.3D model ref is glock 17.   
+
+<p align="center">   
+    <img src="./manual/vids/gun-raycast.gif" height="75%">
+</p>  
+
+### Projectile-gun  
+<p align="center">
+    <img src="./manual/pics/projectile.png" width="40%">
+</p>  
+The main mechanic of this weapon is - projectile. Every bullet has it's own physics, mass, speed, and even direction. Advantage - damage and firerate, Disadvantage - bullet speed.   
+
+<p align="center">   
+    <img src="./manual/vids/gun-projectile.gif" height="75%">
+</p>
+
+### Grenade-Launcher  
+<p align="center">
+    <img src="./manual/pics/launcher.png" width="40%">
+</p>  
+The main mechanic of this weapon is - greande. So it launches grenades with delayed fuse, which do big amount of splash damage. Great risk to get luck. Advantage - damage, Disadvantage - fuse time.  
+
+<p align="center">   
+    <img src="./manual/vids/gun-launcher.gif" height="75%">
+</p>
+
+### Staff
+Player controlls robot that have some lack of design flow, such as legs, if it damaged enough they slow down in battle condition this can be fatal.  
+<p align="center">
+    <img src="./manual/pics/bot.png" width="20%">
+</p> 
+And ammo fir guns aren't infinity, sometimes player is forced to find some and with ammo he can find leg spare parts tht can be swaped for mobility purpose:  
+<p align="center">   
+    <img src="./manual/vids/item-pickup.gif" height="75%">
+</p>  
+But there are something that will help to dodge some bulets - boosters, ofcourse if robot isn't in worst condition. It fires than charges during cooldown, to reduce cooldown - find better legs.  
+<p align="center">   
+    <img src="./manual/vids/strafe.gif" height="75%">
+</p>
 
 ## How to build project
 
@@ -132,14 +176,7 @@ Requirements:
 1. Open project.godot file using godot editor
 2. Run project
 
+## Credits
+KamiNuke - Programing Director : Gameplay Programmer, AI Programmer, Player Controller Programmer, "Robot parts system" Programmer, 2D Artist, Level Designer (Gameplay Content Filling), Game Designer, Cinematics Cutscenes;  
 
-
-
-
-![bot](./manual/pics/bot.png)
-
-![projectile](./manual/pics/projectile.png)
-
-![launcher](./manual/pics/launcher.png)
-
-
+OldAchok - Art-Director : 3d Modeller\3d Artist (Meshes and UV of all models: Props, Guns, Chars, Terrain, Locations), Level Artist, Level Designer (Level Layout), Weapon Programmer, Manual; 
